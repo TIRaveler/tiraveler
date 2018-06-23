@@ -3,3 +3,6 @@ node_modules
 
 # semantic dist folder
 client/dist/semantic/dist
+
+# package lock file
+package-lock.json
