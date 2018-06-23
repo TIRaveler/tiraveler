@@ -51,6 +51,8 @@
     "react-router": "^4.3.1",
     "semantic-ui": "^2.3.2",
     "semantic-ui-react": "^0.81.1",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "body-parser": "^1.18.3",
+    "semantic-ui": "^2.3.2"
   }
 }
