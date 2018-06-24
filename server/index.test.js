@@ -10,3 +10,5 @@ test('hello world', ()=>{
     expect(res.text).toEqual('Hello world!');
   })
 })
+
+server.close();
