@@ -20,19 +20,6 @@ module.exports = {
     ],
   },
 
-<<<<<<< HEAD
-  externals: {
-    react: 'React',
-    'react-router-dom': 'ReactRouterDOM',
-    'react-dom': 'ReactDOM',
-    'semantic-ui-react': 'semanticUIReact',
-    'prop-types': 'PropTypes',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
-};
-=======
  externals: {
    react: 'React',
    'react-router-dom': 'ReactRouterDOM',
@@ -44,4 +31,3 @@ module.exports = {
    extensions: ['.js', '.jsx'],
  },
 };
->>>>>>> Build search page
