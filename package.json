@@ -7,7 +7,9 @@
     "test": "jest",
     "react-dev": "webpack --mode=development --watch",
     "postinstall": "cd client/dist/semantic && gulp build && cd ../../../ && webpack --mode=production",
-    "semantic-dev": "cd client/dist/semantic && gulp build"
+    "semantic-dev": "cd client/dist/semantic && gulp build",
+    "start": "node server/index.js",
+    "server-dev": "nodemon --inspect server/index.js"
   },
   "repository": {
     "type": "git",
