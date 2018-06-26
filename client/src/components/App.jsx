@@ -20,8 +20,6 @@ class App extends React.Component {
     this.postSelectedTags=this.postSelectedTags.bind(this);
   }
 
-  //getPictures:
-
  //  superFunction(key) {
  //   return (event) => {
  //     this.setState({ [key]: event.target.value });
