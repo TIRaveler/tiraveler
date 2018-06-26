@@ -27,8 +27,6 @@ class App extends React.Component {
       this.setState({[key]: event.target.value});
     };
   }
-
- //  superFunction(key) {
  //   return (event) => {
  //     this.setState({ [key]: event.target.value });
  //     console.log('supperFunction is called!')
