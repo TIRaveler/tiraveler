@@ -6,3 +6,6 @@ client/dist/semantic/dist
 
 # package lock file
 package-lock.json
+
+# bundle.js
+client/dist/bundle.js
