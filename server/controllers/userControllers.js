@@ -1,3 +1,5 @@
+const { User } = require('../../db/index');
+
 exports.login = (req, res) => {
   res.send('YOU MADE IT!');
 };

@@ -1,6 +1,8 @@
-module.exports = function (database, DataTypes) {
+module.exports = (database, DataTypes) => {
   const User = database.define('user', {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING
-  })
-}
+    username: DataTypes.STRING,
+    password: DataTypes.STRING,
+  });
+
+  return User;
+};

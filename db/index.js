@@ -1,30 +1,22 @@
 const Sequelize = require('sequelize');
-const database = new Sequelize('TIRavelerDB', 'root', '',{
-  dialect: 'mysql'
+
+const database = new Sequelize('TIRavelerDB', 'root', '', {
+  dialect: 'mysql',
 });
 
-const User = database.define('user', {
-  username: Sequelize.STRING,
-  password: Sequelize.STRING
-})
+const Event = require('./schemas/Event')(database, Sequelize);
+const Itinerary = require('./schemas/Itinerary')(database, Sequelize);
+const User = require('./schemas/User')(database, Sequelize);
 
-const Itinerary = database.define('itinerary', {
-  name: Sequelize.STRING
-})
+Event.associateMany(Itinerary);
+// Itinerary.associateMany(Event);
+Itinerary.associate(User);
 
-Itinerary.belongsTo(User)
+database.sync({ force: false });
 
-const Event = database.define('event', {
-  name: Sequelize.STRING, 
-  location: Sequelize.STRING, 
-  yelplink: Sequelize.STRING, 
-  tags: Sequelize.STRING, 
-  location: Sequelize.DECIMAL
-})
-
-Event.belongsToMany(Itinerary, {through: 'ItineraryEventJoin'});
-Itinerary.belongsToMany(Event, {through: 'ItineraryEventJoin'});
-
-db.Sequelize = database;
-database.sync({force: false})
-module.exports = db;
+module.exports = {
+  Event,
+  Itinerary,
+  User,
+  Sequelize: database,
+};
