@@ -25,4 +25,6 @@ const Event = database.define('event', {
 Event.belongsToMany(Itinerary, {through: 'ItineraryEventJoin'});
 Itinerary.belongsToMany(Event, {through: 'ItineraryEventJoin'});
 
+db.Sequelize = database;
+database.sync({force: false})
 module.exports = db;
