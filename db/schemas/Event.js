@@ -1,9 +1,18 @@
-module.exports = function (database, DataTypes) {
+module.exports = (database, DataTypes) => {
   const Event = database.define('event', {
-    name: Sequelize.STRING, 
-    location: Sequelize.STRING, 
-    yelplink: Sequelize.STRING, 
-    tags: Sequelize.STRING, 
-    location: Sequelize.DECIMAL
-  })
-}
+    name: DataTypes.STRING,
+    location: DataTypes.STRING,
+    yelplink: DataTypes.STRING,
+    tags: DataTypes.STRING,
+    price: DataTypes.DECIMAL,
+    photoUrl: DataTypes.STRING,
+  });
+
+  console.log('Event', Event);
+
+  Event.associateMany = (models) => {
+    Event.hasMany(models, { foreignKey: models.id });
+  };
+
+  return Event;
+};
