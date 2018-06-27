@@ -13,6 +13,9 @@ import Itinerary from './Itinerary';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedPhotos: []
+    }
   }
 
   render() {
