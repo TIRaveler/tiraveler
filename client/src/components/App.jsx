@@ -15,9 +15,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       selectedPhotos: [],
-      pictures: []
+      pictures: [],
+      budget: 0,
+      location: ''
     }
     this.postSelectedTags=this.postSelectedTags.bind(this);
+  }
+
+  superFunction(key) {
+    return (event) => {
+      this.setState({[key]: event.target.value});
+    };
   }
 
  //  superFunction(key) {
@@ -48,15 +56,15 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" exact render={props => <Main />} />
-          <Route path="/login" exact render={props => <Login />} />
-          <Route path="/search" exact render={props => <Search />} />
-          <Route path="/time" exact render={props => <Time />} />
-          <Route path="/photos" exact render={props => <Photos sendSelectedPhotos={this.postSelectedTags}/>} />
-          <Route path="/events" exact render={props => <Events />} />
-          <Route path="/review" exact render={props => <Review />} />
-          <Route path="/finalized" exact render={props => <Finalized />} />
-          <Route path="/myItineraries" exact render={props => <Itinerary />} />
+          <Route exact path="/" render={props => <Main />} />
+          <Route exact path="/login" render={props => <Login />} />
+          <Route exact path="/search" render={(props) => <Search handleBudget={this.superFunction('budget')} handleLocation={this.superFunction('location')} appState={this.state}/>} />
+          <Route exact path="/time" render={props => <Time />} />
+          <Route exact path="/photos" render={props => <Photos sendSelectedPhotos={this.postSelectedTags}/>} />
+          <Route exact path="/events" render={props => <Events />} />
+          <Route exact path="/review" render={props => <Review />} />
+          <Route exact path="/finalized" render={props => <Finalized />} />
+          <Route exact path="/myItineraries" render={props => <Itinerary />} />
         </Switch>
       </BrowserRouter>
     );
