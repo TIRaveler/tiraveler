@@ -32,8 +32,6 @@ class App extends React.Component {
  //   return (event) => {
  //     this.setState({ [key]: event.target.value });
  //     console.log('supperFunction is called!')
- //   };
- // }
 
   postSelectedTags(event){
     this.setState ({selectedPhotos:event.target.value});
