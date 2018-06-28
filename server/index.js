@@ -9,11 +9,12 @@ const app = express();
 const port = process.env.PORT || 8000;
 const clientFolder = path.join(__dirname, '../client/dist');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(clientFolder));
 app.use('/', routes);
+// Last endpoint, wild card
 app.use('/*', express.static(`${clientFolder}/index.html`));
 
 const server = app.listen(port, () => console.log(`server running on port ${port}`));
