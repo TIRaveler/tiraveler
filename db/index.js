@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const database = new Sequelize('TIRavelerDB', 'root', '', {
+const database = new Sequelize('TIRavelerDB', 'root', 'Diet coke917', {
   dialect: 'mysql',
 });
 
@@ -8,9 +8,10 @@ const Event = require('./schemas/Event')(database, Sequelize);
 const Itinerary = require('./schemas/Itinerary')(database, Sequelize);
 const User = require('./schemas/User')(database, Sequelize);
 
-Event.associateMany(Itinerary);
-// Itinerary.associateMany(Event);
-Itinerary.associate(User);
+Event.belongsToMany(Itinerary, { through: 'itineraryEvent' });
+Itinerary.belongsToMany(Event, { through: 'itineraryEvent' });
+Itinerary.belongsTo(User);
+User.hasMany(Itinerary);
 
 database.sync({ force: false });
 

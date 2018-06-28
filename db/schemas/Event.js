@@ -12,9 +12,5 @@ module.exports = (database, DataTypes) => {
     photoUrl: DataTypes.STRING,
   });
 
-  Event.associateMany = (models) => {
-    Event.hasMany(models, { foreignKey: models.id });
-  };
-
   return Event;
 };
