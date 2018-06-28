@@ -14,9 +14,37 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPhotos: []
+      selectedPhotos: [],
+      pictures: []
     }
+    this.postSelectedTags=this.postSelectedTags.bind(this);
   }
+
+  //getPictures:
+
+ //  superFunction(key) {
+ //   return (event) => {
+ //     this.setState({ [key]: event.target.value });
+ //     console.log('supperFunction is called!')
+ //   };
+ // }
+
+  postSelectedTags(event){
+    this.setState ({selectedPhotos:event.target.value});
+    $.ajax({
+          url:`/events/search`,
+          data: JSON.stringify(event.target.value),
+          type:"POST",
+          error: function(xhr,status,err){
+            console.error(err);
+          },
+          success: function(data){
+            console.log('Data posted', data);
+          }
+    })
+  }
+
+
 
   render() {
     return (
@@ -26,7 +54,7 @@ class App extends React.Component {
           <Route path="/login" exact render={props => <Login />} />
           <Route path="/search" exact render={props => <Search />} />
           <Route path="/time" exact render={props => <Time />} />
-          <Route path="/photos" exact render={props => <Photos />} />
+          <Route path="/photos" exact render={props => <Photos sendSelectedPhotos={this.postSelectedTags}/>} />
           <Route path="/events" exact render={props => <Events />} />
           <Route path="/review" exact render={props => <Review />} />
           <Route path="/finalized" exact render={props => <Finalized />} />
