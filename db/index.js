@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const database = new Sequelize('TIRavelerDB', 'root', 'Diet coke917', {
+const database = new Sequelize('TIRavelerDB', 'root', '', {
   dialect: 'mysql',
 });
 

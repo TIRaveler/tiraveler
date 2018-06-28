@@ -20,14 +20,14 @@ module.exports = {
     ],
   },
 
-  externals: {
-    react: 'React',
-    'react-router-dom': 'ReactRouterDOM',
-    'react-dom': 'ReactDOM',
-    'semantic-ui-react': 'semanticUIReact',
-    'prop-types': 'PropTypes',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  },
+ externals: {
+   react: 'React',
+   'react-router-dom': 'ReactRouterDOM',
+   'react-dom': 'ReactDOM',
+   'semantic-ui-react': 'semanticUIReact',
+   'prop-types': 'PropTypes',
+   'jquery': 'jQuery'
+ },  resolve: {
+   extensions: ['.js', '.jsx'],
+ },
 };
