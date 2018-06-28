@@ -28,7 +28,7 @@ class App extends React.Component {
     };
   }
 
-  //i
+
  //   return (event) => {
  //     this.setState({ [key]: event.target.value });
  //     console.log('supperFunction is called!')

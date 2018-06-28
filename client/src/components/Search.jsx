@@ -1,5 +1,5 @@
-import React from 'react';
 import $ from 'jquery';
+import React from 'react';
 import {Button, Input, Form, Container, Grid} from 'semantic-ui-react';
 
 const searchService = ({location, budget}) => {
@@ -17,7 +17,7 @@ const Search = ({handleBudget, handleLocation, appState}) => {
       <div className='three column centered row'>Hello Sam!</div>
       <div className='four column centered row'>Where would you like to go?</div>
       <Container>
-        <Grid className='ui segement center'>
+        <Grid>
           <Form>
             <Form.Group>
               <Input placeholder='Paradise...' onChange={handleLocation}/>
@@ -34,6 +34,6 @@ const Search = ({handleBudget, handleLocation, appState}) => {
       </div>
     </div>
   )
-} ;
+};
 
 export default Search;
