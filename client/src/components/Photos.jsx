@@ -40,7 +40,7 @@ componentDidMount(){
     return (
       <div>
           <h1 className='ui big header'>Select 5 places you want to go! </h1>
-          <Image.Group size='medium' horizontal image>
+          <Image.Group size='medium' >
            {this.state.pictures}
           </Image.Group>
           <button className="ui blue button" onClick ={this.props.sendSelectedPhotos}>Submit</button>
