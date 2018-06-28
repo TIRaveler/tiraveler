@@ -92,6 +92,7 @@ class Photos extends React.Component {
   }
 }
 
+
 Photos.propTypes = {
   // Holds all pictures
   pictures: PropTypes.arrayOf({
