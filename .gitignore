@@ -2,10 +2,13 @@
 node_modules
 
 # semantic dist folder
-client/dist/semantic/dist
+client/dist/semantic/dist/
 
 # bundle.js
 client/dist/bundle.js
 
 # config
 config.js
+
+# Environment variables
+.env
