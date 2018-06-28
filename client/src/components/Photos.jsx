@@ -6,6 +6,7 @@ import {
   Image,
 } from 'semantic-ui-react';
 
+<<<<<<< HEAD
 // Toggle isSelected in photo and returns new array
 // pictures: Array of picture objects (See Photos proptypes)
 // index: Index of photo to toggle
@@ -61,10 +62,39 @@ class Photos extends React.Component {
       .then(setPictures);
   }
 
+=======
+componentDidMount(){
+  fetch('/photos/search',{method : 'POST'})
+  .then(function(response){
+
+      return response.json();
+
+    })
+  .then(function(data){
+      console.log('fetch data', data);
+      let picArray = data.photos.photo.map((pic) => {
+        var srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
+        var picTitle = pic.title;
+        return(
+           <div key={pic.id}>
+              <Image
+                  src={srcPath}
+                  text= {picTitle}
+              />
+              <Checkbox label={{ children: 'select' }} />
+           </div>
+        )
+      })
+      this.setState({pictures: picArray});
+    }.bind(this))
+ }
+
+>>>>>>> Clean code in photos.jsx
   render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
     return (
       <div>
+<<<<<<< HEAD
         <h1 className="ui big header">
           Select 5 places you want to go!
           {' '}
@@ -85,6 +115,13 @@ class Photos extends React.Component {
         <Button className="blue" onClick={sendSelectedPhotos}>
           Submit
         </Button>
+=======
+          <h1 className='ui big header'>Select 5 places you want to go! </h1>
+          <Image.Group size='medium' horizontal image>
+           {this.state.pictures}
+          </Image.Group>
+          <button className="ui blue button" onClick ={this.props.sendSelectedPhotos}>Submit</button>
+>>>>>>> Clean code in photos.jsx
       </div>
     );
   }
