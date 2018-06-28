@@ -38,6 +38,7 @@ exports.search = (req, res) => {
 
       return photosByViewsCount.slice(0, 10);
     })
+
     // .then(photosByViewsCount => {
     //   let finalReturnArray = photosByViewsCount.filter((photo, index) => {
     //     let tags = photo.photo.tags.tag;
