@@ -17,7 +17,7 @@ module.exports = (database, DataTypes) => {
   };
 
   Itinerary.saveItinerary = () => {
-    console.log('you have saved your itinerary!!')
+    console.log('you have saved your itinerary!!');
   };
 
   return Itinerary;

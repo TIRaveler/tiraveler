@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Time = () => (
-  <div>Time</div>
+  <div>
+Time
+  </div>
 );
 
 export default Time;

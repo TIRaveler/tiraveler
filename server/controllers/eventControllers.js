@@ -1,3 +1,3 @@
 exports.search = (req, res) => {
-  res.send('HERE ARE SOME EVENTS!!');
+  res.send(req.body);
 };
