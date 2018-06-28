@@ -6,3 +6,6 @@ client/dist/semantic/dist
 
 # bundle.js
 client/dist/bundle.js
+
+# config
+config.js
