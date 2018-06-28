@@ -30,23 +30,17 @@ componentDidMount(){
               />
               <Checkbox label={{ children: 'select' }} />
            </div>
-
         )
       })
       this.setState({pictures: picArray});
     }.bind(this))
  }
 
- setSelectedTags(){
-
-
- }
-
   render() {
     return (
       <div>
           <h1 className='ui big header'>Select 5 places you want to go! </h1>
-          <Image.Group size='medium'>
+          <Image.Group size='medium' horizontal image>
            {this.state.pictures}
           </Image.Group>
           <button className="ui blue button" onClick ={this.props.sendSelectedPhotos}>Submit</button>
