@@ -1,52 +1,60 @@
 import $ from 'jquery';
 import React from 'react';
-import {Button, Modal} from 'semantic-ui-react';
+import { Button, Modal } from 'semantic-ui-react';
 
 
 class Review extends React.Component {
   constructor(props) {
     super(props);
-    this.state={
-      isOpen: false
-    }
-    this.open=this.open.bind(this)
-    this.close=this.close.bind(this)
-    this.finalize=this.finalize.bind(this)
+    this.state = {
+      isOpen: false,
+    };
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+    this.finalize = this.finalize.bind(this);
   }
 
-  open(){
+  open() {
     this.setState({
-      isOpen:true
-    })
+      isOpen: true,
+    });
   }
 
-  close(){
+  close() {
     this.setState({
-      isOpen:false
-    })
+      isOpen: false,
+    });
   }
 
-  finalize(){
+  finalize() {
     $.post('/itinerary/save')
-    .then(response => console.log(response))
-    .catch(error => console.log(error, 'problem sending itinerary'));
+      .then(response => console.log(response))
+      .catch(error => console.log(error, 'problem sending itinerary'));
     this.close();
   }
 
- render(){
-   return (
-    <Modal 
-    trigger={<Button onClick={this.open}>Review</Button>}
-    open={this.state.isOpen} 
-    onClose={this.close}
-    basic
-    >
-      <Modal.Header>Please Review Your Epic Itinerary</Modal.Header>
-      <Modal.Content>
-        <Button onClick={this.finalize}>FINALIZE!</Button>
-      </Modal.Content>
-    </Modal>
-   )
+  render() {
+    return (
+      <Modal
+        trigger={(
+          <Button onClick={this.open}>
+Review
+          </Button>
+)}
+        open={this.state.isOpen}
+        onClose={this.close}
+        basic
+      >
+        <Modal.Header>
+Please Review Your Epic Itinerary
+        </Modal.Header>
+        <Modal.Content>
+          <Button onClick={this.finalize}>
+FINALIZE!
+          </Button>
+        </Modal.Content>
+      </Modal>
+    );
   }
 }
 

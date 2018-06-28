@@ -1,11 +1,12 @@
 # node_modules
 node_modules
 
-# semantic dist folder
-client/dist/semantic/dist
-
-# bundle.js
-client/dist/bundle.js
+# dist folder
+client/dist
+!client/dist/index.html
 
 # config
 config.js
+
+# Environment variables
+.env
