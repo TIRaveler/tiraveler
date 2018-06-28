@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize');
 
-const database = new Sequelize('TIRavelerDB', 'root', '', {
+const username = process.env.DB_USER || 'root';
+const password = process.env.DB_PASSWORD || '';
+
+const database = new Sequelize('TIRavelerDB', username, password, {
   dialect: 'mysql',
 });
 
