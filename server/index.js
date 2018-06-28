@@ -9,7 +9,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 const clientFolder = path.join(__dirname, '../client/dist');
 
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', express.static(clientFolder));
