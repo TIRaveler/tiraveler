@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "build:dev": "webpack --mode=development",
+    "build:dev": "webpack --mode=development --watch",
     "lint": "eslint . --ext .js --ext .jsx --ext .json --ext .md",
     "lint:fix": "eslint --fix . --ext .js --ext .jsx --ext .json --ext .md",
     "start": "node server/index.js",
