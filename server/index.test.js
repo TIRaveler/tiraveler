@@ -10,9 +10,7 @@ describe('Server sends website pages', () => {
       .get('/')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for login', () => {
@@ -20,9 +18,7 @@ describe('Server sends website pages', () => {
       .get('/login')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for search', () => {
@@ -30,9 +26,7 @@ describe('Server sends website pages', () => {
       .get('/search')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for time', () => {
@@ -40,9 +34,7 @@ describe('Server sends website pages', () => {
       .get('/time')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for photos', () => {
@@ -50,9 +42,7 @@ describe('Server sends website pages', () => {
       .get('/photos')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for events', () => {
@@ -60,9 +50,7 @@ describe('Server sends website pages', () => {
       .get('/events')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for review', () => {
@@ -70,9 +58,7 @@ describe('Server sends website pages', () => {
       .get('/review')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for finalized', () => {
@@ -80,9 +66,7 @@ describe('Server sends website pages', () => {
       .get('/finalized')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 
   test('returns index for my itineraries', () => {
@@ -90,9 +74,7 @@ describe('Server sends website pages', () => {
       .get('/myItineraries')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text.includes('<html>')).toEqual(true);
-      });
+      .then(res => expect(res.text.includes('<html>')).toEqual(true));
   });
 });
 
@@ -102,9 +84,7 @@ describe('Server handles API calls', () => {
       .post('/user/login')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text).toEqual('Success');
-      });
+      .then(res => expect(res.text).toEqual('Success'));
   });
 
   test('successful logout', () => {
@@ -112,9 +92,7 @@ describe('Server handles API calls', () => {
       .post('/user/logout')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text).toEqual('Success');
-      });
+      .then(res => expect(res.text).toEqual('Success'));
   });
 
   test('successful register', () => {
@@ -122,9 +100,7 @@ describe('Server handles API calls', () => {
       .post('/user/register')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text).toEqual('Success');
-      });
+      .then(res => expect(res.text).toEqual('Success'));
   });
 
   test('successful photo search', () => {
@@ -132,9 +108,7 @@ describe('Server handles API calls', () => {
       .post('/photos/search')
       .expect(200)
       .set('Accept', 'application/json')
-      .then((res) => {
-        expect(res.body).toBeInstanceOf(Array);
-      });
+      .then(res => expect(res.body).toBeInstanceOf(Array));
   });
 
   test('successful events search', () => {
@@ -142,9 +116,7 @@ describe('Server handles API calls', () => {
       .post('/events/search')
       .expect(200)
       .set('Accept', 'application/json')
-      .then((res) => {
-        expect(res.body).toBeInstanceOf(Array);
-      });
+      .then(res => expect(res.body).toBeInstanceOf(Array));
   });
 
   test('successful itinerary save', () => {
@@ -152,9 +124,7 @@ describe('Server handles API calls', () => {
       .post('/itinerary/save')
       .expect(200)
       .set('Accept', 'text/html')
-      .then((res) => {
-        expect(res.text).toEqual('Success');
-      });
+      .then(res => expect(res.text).toEqual('Success'));
   });
 
   afterAll(server.close());
