@@ -15,11 +15,22 @@ const getPhotoInfo = (photoId) => {
 };
 
 exports.search = (req, res) => {
-  const price = req.body.price;
+  //const price = req.body.price;
   const location = req.body.location;
   // let travelTags = ['wanderlust', 'adventureseeker', 'doyoutravel', 'travelmore', 'goexplore', 'wonderfulplaces', 'openmyworld', 'lovetotravel', 'adventurethatislife', 'roamtheplanet', 'travelblogging', 'thattravelblog', 'bloggerlife', 'travellifestyle', 'travelpreneur', 'digitalnomads', 'workandtravel', 'locationindependent', 'workhardanywhere', 'roomwithaview', 'hotellife', 'hotelroom', 'luxuryhotels', 'hoteldesign', 'luxuryholiday', 'hotelfun', 'responsibletravel', 'seekmoments', 'momentsofmine', 'postcardsfromtheworld', 'getoutstayout', 'choosemountains', 'travelgirl', 'traveldudes', 'solotravel', 'travelcouple', 'travelquotes', 'viewfromabove', 'travel', 'nature', 'sunset', 'trip', 'travelgram', 'vacation', 'instatravel', 'adventure', 'travelphotography', 'tourist', 'tourism', 'scenic', 'sightseeing'];
 
-  const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}&text=${location}&privacy_filter=1&accuracy=16&has_geo=1&radius=5&format=json&nojsoncallback=1&authenticated=true&perms=read`;
+  // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}&text=${location}&privacy_filter=1&accuracy=16&has_geo=1&radius=5&format=json&nojsoncallback=1&authenticated=true&perms=read`;
+
+   // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=London&text=${location}&privacy_filter=1&accuracy=16&has_geo=1&radius=5&per_page=10&format=json&nojsoncallback=1&authenticated=true&perms=read`;
+
+   // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=london+londonbridge&text_mode=ALL&views>300&tag_mode=ALL&per_page=10&format=json&nojsoncallback=1`
+
+
+   // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b1088ff6013a6c50850d8846e6814813&tags=food%2Cchinatown&tag_mode=any&text=san+francisco&sort=+interestingness-desc&per_page=10&format=json&nojsoncallback=1&sort=+interestingness-desc`
+
+   const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=food%2Cchinatown%2Cbeach%2Chiking%2Cpark&tag_mode=any&text=san+francisco&sort=relevance&accuracy=6&per_page=20&format=json&nojsoncallback=1&has_geo=1`
+
+   // const flickrPhotos=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=beach&per_page=10&format=json`
 
   axios.get(flickrPhotos)
     .then(async (data) => {
@@ -27,11 +38,11 @@ exports.search = (req, res) => {
       const photosInfo = await Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
       return photosInfo;
     })
-    .then((photosInfo) => {
-      const photosByViewsCount = photosInfo.sort((photoA, photoB) => photoB.photo.views - photoA.photo.views);
+    // .then((photosInfo) => {
+    //   const photosByViewsCount = photosInfo.sort((photoA, photoB) => photoB.photo.views - photoA.photo.views);
 
-      return photosByViewsCount.slice(0, 10);
-    })
+    //   return photosByViewsCount.slice(0, 10);
+    // })
 
     // .then(photosByViewsCount => {
     //   let finalReturnArray = photosByViewsCount.filter((photo, index) => {
@@ -52,8 +63,8 @@ exports.search = (req, res) => {
     //   console.log(finalReturnArray.length);
     //   return finalReturnArray;
     // })
-    .then((photosByViewsCount) => {
-      res.status(200).send(photosByViewsCount);
+    .then((photosInfo) => {
+      res.status(200).send(photosInfo);
     })
     .catch((err) => {
       console.error(err);
