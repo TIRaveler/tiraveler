@@ -27,7 +27,8 @@ const Main = () => (
       strength={400}
     >
       <StatCard />
-      <div style={{ height: '100px' }} />
+      Stats about our product
+      <div style={{ height: '600px' }} />
     </Parallax>
 
     <Parallax
