@@ -19,7 +19,8 @@ const getEvents = async (location, tags) => {
           term: tags,
         },
       },
-    );
+    )
+      .then(data => data.businesses);
   } catch (e) {
     console.error(e);
 
@@ -56,6 +57,7 @@ module.exports.search = async (req, res) => {
   }
 
   const tags = resolveTags(pictures);
+  console.log('Pictures', pictures);
   const events = await getEvents(location, tags);
   res.send(events);
 };
