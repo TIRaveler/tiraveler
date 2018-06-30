@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 
-const database = new Sequelize('TIRavelerDB', 'root', 'Diet coke917', {
+const databaseUrl = process.env.DATABASE_URL || 'mysql://root@localhost?reconnect=true';
+const database = new Sequelize(databaseUrl, {
   dialect: 'mysql',
 });
 
