@@ -14,7 +14,7 @@ describe('Event controller', () => {
   let res;
 
   beforeAll(() => {
-    stub(axios, 'get').returns(eventData);
+    stub(axios, 'get').resolves(eventData);
   });
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('Event controller', () => {
 
   test('returns events', async () => {
     await eventController.search(reqSample, res);
-    expect(res.data).toEqual(eventData);
+    expect(res.data).toEqual(eventData.businesses);
   });
 
   test('returns 400 if missing location', async () => {
