@@ -1,8 +1,4 @@
 const router = require('express').Router();
-const userCtrl = require('./controllers/userControllers');
-const photoCtrl = require('./controllers/photoControllers');
-const eventCtrl = require('./controllers/eventControllers');
-const dbCtrl = require('./controllers/dbControllers');
 
 /**
  * User login page
@@ -10,13 +6,13 @@ const dbCtrl = require('./controllers/dbControllers');
  * @param {string} password - The user's password
  */
 router.route('/user/login')
-  .post(userCtrl.login);
+  .post((req, res) => res.send('Success'));
 
 /**
  * Logout user
  */
 router.route('/user/logout')
-  .post(userCtrl.logout);
+  .post((req, res) => res.send('Success'));
 
 /**
  * Register user
@@ -24,14 +20,14 @@ router.route('/user/logout')
  * @param {string} password - The user's password
  */
 router.route('/user/register')
-  .post(userCtrl.register);
+  .post((req, res) => res.send('Success'));
 
 /**
  * Search photos
  * @returns {array}
  */
 router.route('/photos/search')
-  .post(photoCtrl.search);
+  .post((req, res) => res.send([]));
 
 /**
  * Search events
@@ -39,12 +35,12 @@ router.route('/photos/search')
  * @param {array} pictures - Selected picture information to search with
  */
 router.route('/events/search')
-  .post(eventCtrl.search);
+  .post((req, res) => res.send([]));
 
 /**
  * Save user itinerary
  */
 router.route('/itinerary/save')
-  .post(dbCtrl.save);
+  .post((req, res) => res.send('Success'));
 
 module.exports = router;

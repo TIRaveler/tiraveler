@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 import {
   Button,
   Checkbox,
@@ -90,9 +91,18 @@ class Photos extends React.Component {
             ))
           }
         </Image.Group>
-        <Button className="blue" onClick={sendSelectedPhotos}>
-          Submit
-        </Button>
+        <Route render={({ history }) => (
+          <Button
+            className="blue"
+            onClick={(event) => {
+              history.push('/events');
+              sendSelectedPhotos(event);
+            }}
+          >
+            Submit
+          </Button>
+        )}
+        />
       </div>
     );
   }

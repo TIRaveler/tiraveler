@@ -1,11 +1,12 @@
 const axios = require('axios');
 
 const getPhotoInfo = (photoId) => {
-  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo
+  &api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
 
   return (axios.get(flickrPhotoInfo)
     .then((data) => {
-      photoInfo = data.data;
+      const photoInfo = data.data;
       return photoInfo;
     })
     .catch((err) => {
