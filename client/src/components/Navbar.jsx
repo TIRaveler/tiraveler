@@ -1,5 +1,7 @@
 import React from 'react';
+import GetStarted from './GetStarted.jsx';
 
+const signinBtn = <button type="button" className="ui basic button">Sign In</button>;
 const Navbar = () => (
   <div className="ui top fixed menu secondary pointing menu" style={{ background: "white" }}>
     <div className="item">
@@ -7,9 +9,7 @@ const Navbar = () => (
     </div>
     <div className="right menu">
       <div className="item" style={{ marginBottom: "10px" }}>
-        <button type="button" className="ui basic button">
-          Sign In
-        </button>
+        <GetStarted signin={signinBtn} />
       </div>
     </div>
   </div>
