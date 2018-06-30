@@ -4,7 +4,9 @@ import { Button } from 'semantic-ui-react';
 import Navbar from './Navbar.jsx';
 import StatCard from './StatCard.jsx';
 import AboutUs from './AboutUs.jsx';
+import GetStarted from './GetStarted.jsx';
 
+const signInBtn = <Button primary size='massive'>Get Started</Button>;
 const Main = () => (
   <div>
     <Navbar />
@@ -15,9 +17,7 @@ const Main = () => (
     > 
       <div style={{ height: '550px' }} />
       <div className='ui center aligned segment' style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
-        <Button primary size='massive'>
-          Get Started
-        </Button>
+        <GetStarted signin={signInBtn} />
       </div>
     </Parallax>
     <Parallax
@@ -28,7 +28,7 @@ const Main = () => (
     >
       <StatCard />
       Stats about our product
-      <div style={{ height: '600px' }} />
+      <div style={{ height: '400px' }} />
     </Parallax>
 
     <Parallax
