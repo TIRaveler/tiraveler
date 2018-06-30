@@ -7,6 +7,7 @@ import {
   Image,
 } from 'semantic-ui-react';
 
+
 // Toggle isSelected in photo and returns new array
 // pictures: Array of picture objects (See Photos proptypes)
 // index: Index of photo to toggle
