@@ -3,6 +3,7 @@ import React from 'react';
 import {
   Button, Input, Form, Container, Grid,
 } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
 
 const searchService = ({ location, budget }) => {
   $.post('/photos/search', {
@@ -37,9 +38,18 @@ What is your budget?  $
       </Grid>
     </Container>
     <div className="row">
-      <Button color="blue" onClick={searchService.bind(null, appState)}>
-GO
-      </Button>
+      <Route render={({ history }) => (
+        <Button
+          color="blue"
+          onClick={() => {
+            history.push('/photos');
+            searchService(appState);
+          }}
+        >
+          GO
+        </Button>
+      )}
+      />
     </div>
   </div>
 );
