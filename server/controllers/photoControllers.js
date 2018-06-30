@@ -1,8 +1,7 @@
 const axios = require('axios');
 
 const getPhotoInfo = (photoId) => {
-  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo
-  &api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
 
   return (axios.get(flickrPhotoInfo)
     .then((data) => {
@@ -24,7 +23,6 @@ exports.search = (req, res) => {
     .then(async (data) => {
       const photos = data.data.photos.photo;
       const photosInfo = await Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
-        console.log(photosInfo);
       return photosInfo;
     })
     .then((photosInfo) => {
