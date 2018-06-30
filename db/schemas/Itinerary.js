@@ -2,6 +2,7 @@ module.exports = (database, DataTypes) => {
   const Itinerary = database.define('itinerary', {
     id: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
     name: DataTypes.STRING,
@@ -16,9 +17,8 @@ module.exports = (database, DataTypes) => {
     Itinerary.hasMany(models, { foreignKey: models.id });
   };
 
-  Itinerary.saveItinerary = () => {
-    console.log('you have saved your itinerary!!');
-  };
+  Itinerary.saveItinerary = (Itin, EventId) => Itinerary.create({ name: Itin.name })
+    .then(result => [EventId, result.dataValues.id]);
 
   return Itinerary;
 };

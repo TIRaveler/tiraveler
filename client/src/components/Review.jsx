@@ -27,7 +27,24 @@ class Review extends React.Component {
   }
 
   finalize() {
-    $.post('/itinerary/save')
+    $.post('/itinerary/save', {
+      itin: { name: 'sampleName' },
+      events: [{
+        name: 'eventName1',
+        location: 'here',
+        yelplink: 'yelpdotcom',
+        tags: 'tagtagtag',
+        price: 100.00,
+        photoUrl: 'photoUrl',
+      }, {
+        name: 'eventName2',
+        location: 'there',
+        yelplink: 'yelpdotcom',
+        tags: 'tagtagtag',
+        price: 200.00,
+        photoUrl: 'photoUrl',
+      }],
+    })
       .then(response => console.log(response))
       .catch(error => console.log(error, 'problem sending itinerary'));
     this.close();
@@ -38,19 +55,19 @@ class Review extends React.Component {
       <Modal
         trigger={(
           <Button onClick={this.open}>
-Review
+            Review
           </Button>
-)}
+        )}
         open={this.state.isOpen}
         onClose={this.close}
         basic
       >
         <Modal.Header>
-Please Review Your Epic Itinerary
+          Please Review Your Epic Itinerary
         </Modal.Header>
         <Modal.Content>
           <Button onClick={this.finalize}>
-FINALIZE!
+            FINALIZE!
           </Button>
         </Modal.Content>
       </Modal>
