@@ -14,13 +14,16 @@ describe('Event controller', () => {
   let res;
 
   beforeAll(() => {
-    stub(axios, 'get').yields(null, eventData);
+    stub(axios, 'get').returns(eventData);
   });
 
   beforeEach(() => {
     res = {
       send: spy(function send(data) {
         this.data = data;
+      }),
+      status: spy(function status(statusCode) {
+        this.statusCode = statusCode;
       }),
     };
   });
@@ -32,10 +35,28 @@ describe('Event controller', () => {
 
   test('returns events', async () => {
     await eventController.search(reqSample, res);
-    expect(res.send.data).toEqual(eventData);
+    expect(res.data).toEqual(eventData);
+  });
+
+  test('returns 400 if missing location', async () => {
+    const reqMissing = Object.assign(reqSample);
+    reqMissing.body.location = undefined;
+
+    await eventController.search(reqMissing, res);
+    expect(res.statusCode).toEqual(400);
+    expect(res.data).toEqual(undefined);
+  });
+
+  test('returns 400 if missing pictures', async () => {
+    const reqMissing = Object.assign(reqSample);
+    reqMissing.body.pictures = undefined;
+
+    await eventController.search(reqMissing, res);
+    expect(res.statusCode).toEqual(400);
+    expect(res.data).toEqual(undefined);
   });
 
   afterAll(() => {
-    axios.restore();
+    axios.get.restore();
   });
 });
