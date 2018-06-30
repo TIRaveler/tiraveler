@@ -23,7 +23,6 @@ exports.search = (req, res) => {
     .then(async (data) => {
       const photos = data.data.photos.photo;
       const photosInfo = await Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
-
       return photosInfo;
     })
     .then((photosInfo) => {
