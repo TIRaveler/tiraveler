@@ -28,7 +28,18 @@ exports.search = (req, res) => {
 
    // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b1088ff6013a6c50850d8846e6814813&tags=food%2Cchinatown&tag_mode=any&text=san+francisco&sort=+interestingness-desc&per_page=10&format=json&nojsoncallback=1&sort=+interestingness-desc`
 
-   const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=food%2Cchinatown%2Cbeach%2Chiking%2Cpark&tag_mode=any&text=san+francisco&sort=relevance&accuracy=6&per_page=20&format=json&nojsoncallback=1&has_geo=1`
+   // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=food%2Cbeach%2Chiking%2Cmountain&tag_mode=any&text=${location}&sort=relevance&accuracy=6&per_page=20&format=json&nojsoncallback=1&has_geo=1`
+
+const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Ctravel%2Chiking%2Cfood%2Cacient&tag_mode=any&text=sanfrancisco&sort=interestingness-desc&accuracy=8&per_page=12&format=json&nojsoncallback=1&has_geo=1&page=1`
+
+
+// const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=food%2C+restaurant%2C+dish&tag_mode=all&text=sanfrancisco&sort=relevance&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1`
+
+// const flickrPhotos = flickrPhotos1.photos.photo.push(flickrPhotos2.photos.photo[0]);
+// const flickrPhotos ='https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=b5bfa150afa31b190bd3206ec315515c&tags=food%2C+restaurant&tag_mode=ALL&text=san+francisco&sort=relevance&has_geo=1&per_page=10&format=json&nojsoncallback=1'
+
+
+// const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=museum&tag_mode=any&text=san+francisco&sort=relevance&accuracy=6&per_page=10&format=json&nojsoncallback=1&has_geo=1`
 
    // const flickrPhotos=`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=beach&per_page=10&format=json`
 
@@ -36,6 +47,7 @@ exports.search = (req, res) => {
     .then(async (data) => {
       const photos = data.data.photos.photo;
       const photosInfo = await Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
+      console.log(photos);
       return photosInfo;
     })
     // .then((photosInfo) => {
