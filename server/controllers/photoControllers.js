@@ -1,8 +1,7 @@
 const axios = require('axios');
 
 const getPhotoInfo = (photoId) => {
-  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo
-  &api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
 
   return (axios.get(flickrPhotoInfo)
     .then((data) => {
@@ -16,8 +15,9 @@ const getPhotoInfo = (photoId) => {
 };
 
 exports.search = (req, res) => {
-  const location = req.body.location || '';
-  const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}&text=${location}&per_page=10&privacy_filter=1&accuracy=16&has_geo=1&radius=5&format=json&nojsoncallback=1&authenticated=true&perms=read`;
+  const location = req.body.location;
+//location is set to London
+ const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctravel%2Ctrip%2Chiking%2Cfood%2Cacient&tag_mode=any&text=London&sort=relevance&accuracy=8&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1`
 
   axios.get(flickrPhotos)
     .then(async (data) => {
@@ -26,12 +26,7 @@ exports.search = (req, res) => {
       return photosInfo;
     })
     .then((photosInfo) => {
-      const photosByViewsCount = photosInfo.sort((photoA, photoB) => (
-        photoB.photo.views - photoA.photo.views));
-      return photosByViewsCount.slice(0, 10);
-    })
-    .then((photosByViewsCount) => {
-      res.status(200).send(photosByViewsCount);
+      res.status(200).send(photosInfo);
     })
     .catch((err) => {
       console.error(err);
