@@ -8,6 +8,7 @@ const database = new Sequelize(databaseUrl, {
 const Event = require('./schemas/Event')(database, Sequelize);
 const Itinerary = require('./schemas/Itinerary')(database, Sequelize);
 const User = require('./schemas/User')(database, Sequelize);
+const ItinEvents = require('./schemas/ItinEvents')(database, Sequelize);
 
 Event.belongsToMany(Itinerary, { through: 'itineraryEvent' });
 Itinerary.belongsToMany(Event, { through: 'itineraryEvent' });
@@ -20,5 +21,6 @@ module.exports = {
   Event,
   Itinerary,
   User,
+  ItinEvents,
   Sequelize: database,
 };
