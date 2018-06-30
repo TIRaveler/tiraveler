@@ -1,7 +1,8 @@
 const axios = require('axios');
 
 const getPhotoInfo = (photoId) => {
-  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
+  const flickrPhotoInfo = `https://api.flickr.com/services/rest/?method=flickr.photos.getInfo
+  &api_key=${process.env.FLICKR_API}&photo_id=${photoId}&format=json&nojsoncallback=1`;
 
   return (axios.get(flickrPhotoInfo)
     .then((data) => {
@@ -26,8 +27,7 @@ exports.search = (req, res) => {
     })
     .then((photosInfo) => {
       const photosByViewsCount = photosInfo.sort((photoA, photoB) => (
-        photoB.photo.views - photoA.photo.views
-      ));
+        photoB.photo.views - photoA.photo.views));
       return photosByViewsCount.slice(0, 10);
     })
     .then((photosByViewsCount) => {
