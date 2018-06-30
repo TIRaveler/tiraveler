@@ -3,7 +3,6 @@ module.exports = (database, DataTypes) => {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      // autoIncrement: true,
       primaryKey: true,
     },
     name: DataTypes.STRING,
@@ -18,8 +17,8 @@ module.exports = (database, DataTypes) => {
     Itinerary.hasMany(models, { foreignKey: models.id });
   };
 
-  Itinerary.saveItinerary = Itin => Itinerary.create({ name: Itin.name })
-    .then(result => result.dataValues.id);
+  Itinerary.saveItinerary = (Itin, EventId) => Itinerary.create({ name: Itin.name })
+    .then(result => [EventId, result.dataValues.id]);
 
   return Itinerary;
 };
