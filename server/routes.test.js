@@ -55,7 +55,7 @@ describe('Server API routes', () => {
       .post('/events/search')
       .expect(200)
       .set('Accept', 'application/json')
-      .then(res => expect(Array.isArray(res.body)).toEqual(true));
+      .then(res => expect(Array.isArray(res.body.businesses)).toEqual(true));
   });
 
   test('can save to itinerary to database', () => {
