@@ -10,8 +10,6 @@ const Itinerary = require('./schemas/Itinerary')(database, Sequelize);
 const User = require('./schemas/User')(database, Sequelize);
 const ItinEvents = require('./schemas/ItinEvents')(database, Sequelize);
 
-Event.belongsToMany(Itinerary, { through: 'itineraryEvent' });
-Itinerary.belongsToMany(Event, { through: 'itineraryEvent' });
 Itinerary.belongsTo(User);
 User.hasMany(Itinerary);
 
