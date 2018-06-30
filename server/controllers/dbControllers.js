@@ -1,7 +1,7 @@
 const { Event, Itinerary, ItinEvents } = require('../../db/index');
 
 exports.save = (req, res) => {
-  for (let i = 0; i < req.body.events.length; i++) {
+  for (let i = 0; i < req.body.events.length; i += 1) {
     Event.saveEvent(req.body.events[i])
       .then(result => Itinerary.saveItinerary(req.body.itin, result))
       .then(result => ItinEvents.saveItem(result))
