@@ -31,6 +31,7 @@ class App extends React.Component {
 
   superFunction(key) {
     return (event) => {
+      console.log(event);
       this.setState({ [key]: event.target.value });
     };
   }
