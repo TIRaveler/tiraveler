@@ -53,13 +53,12 @@ class Photos extends React.Component {
           target: {
             value: data.map(({ photo }) => ({
               id: photo.id,
-              title: photo.title['_content'],
-              description: photo.description['_content'],
-              location:{lat:photo.location.longitude , lon: photo.location.longitude },
+              title: photo.title._content,
+              description: photo.description._content,
+              location: { lat: photo.location.longitude, lon: photo.location.longitude },
               tags: photo.tags.tag.map(
-                   ({raw}) => {
-                     return raw;
-                    }),
+                ({ raw }) => raw,
+              ),
               srcPath: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
             })),
           },
