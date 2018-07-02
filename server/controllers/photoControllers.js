@@ -16,13 +16,13 @@ const getPhotoInfo = (photoId) => {
 
 exports.search = (req, res) => {
   //const location = req.body.location;
-  const location = 'San Francisco';
-  //const location = 'London';
+  //const location = 'San Francisco';
+  const location = 'London';
   //const location ='San Jose';
 //location is set to London
  // const flickrPhotos = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctravel%2Ctrip%2Chiking%2Cfood%2Cacient&tag_mode=any&text=London&sort=interestingness-desc&accuracy=8&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1`
 
- const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Ctravel&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&per_page=12&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`
+ const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Ctravel%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chikingtrail&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&per_page=12&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`
 
   const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=%2Cfood%2Crestaurant%2Cdish%2Cmeal&tag_mode=all&text=${location}+&sort=relevance&accuracy=11&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`
 
