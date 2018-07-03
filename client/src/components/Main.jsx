@@ -1,10 +1,10 @@
 import React from 'react';
 import { Parallax } from 'react-parallax';
 import { Button } from 'semantic-ui-react';
-import Navbar from './Navbar.jsx';
-import StatCard from './StatCard.jsx';
-import AboutUs from './AboutUs.jsx';
-import GetStarted from './GetStarted.jsx';
+import Navbar from './Navbar';
+import StatCard from './StatCard';
+import AboutUs from './AboutUs';
+import GetStarted from './GetStarted';
 
 const signInBtn = <Button primary size='massive'>Get Started</Button>;
 const Main = () => (
