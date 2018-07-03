@@ -7,8 +7,12 @@ const ItineraryEntry = ({ entry }) => (
       <img className="media-object" src={entry.snippet.thumbnails.default.url} alt="" />
     </div>
     <div className="media-body">
-      <div className="entry-list-entry-title">{entry.snippet.title}</div>
-      <div className="entry-list-entry-detail">{entry.snippet.description}</div>
+      <div className="entry-list-entry-title">
+        {entry.snippet.title}
+      </div>
+      <div className="entry-list-entry-detail">
+        {entry.snippet.description}
+      </div>
     </div>
   </div>
 );

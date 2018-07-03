@@ -7,26 +7,20 @@ const Console = require('../Console');
  * @param {Array} tags Array of tags to search for
  * @return {Array} Array of events
  */
-const getEvents = async (location, tags) => {
-  try {
-    return axios.get(
-      'https://api.yelp.com/v3/businesses/search',
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.YELP_API}`,
-        },
-        params: {
-          location,
-          term: tags,
-        },
-      },
-    )
-      .then(data => data.businesses);
-  } catch (e) {
-    Console.error(e);
-    return [];
-  }
-};
+const getEvents = (location, tags) => axios.get(
+  'https://api.yelp.com/v3/businesses/search',
+  {
+    headers: {
+      Authorization: `Bearer ${process.env.YELP_API}`,
+    },
+    params: {
+      location,
+      term: tags,
+    },
+  },
+)
+  .then(data => data.businesses)
+  .catch(Console.err);
 
 /**
  * Get event tags to search
@@ -52,7 +46,7 @@ module.exports.search = async (req, res) => {
 
   if (!location || !pictures) {
     res.status(400);
-    res.send(undefined);
+    res.send({ error: 'Must specify location and pictures' });
     res.statusMessage = 'Missing location or pictures parameter';
     return;
   }
