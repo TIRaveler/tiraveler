@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import $ from 'jquery';
 
 import App from './App';
-import { businesses as events } from '../../../server/controllers/sample_data/events';
+import events from '../../../server/controllers/sample_data/events';
 
 const { shallow } = Enzyme;
 
@@ -15,17 +15,35 @@ describe('App page', () => {
   let app;
 
   beforeAll(() => {
-    sinon.stub($, 'ajax').callsFake(({ success, url }) => {
+    const handleRoutes = (url, success) => {
       if (url === '/events/search') {
         success(events);
       }
+    };
+
+    sinon.stub($, 'ajax').callsFake(({ success, url }) => {
+      handleRoutes(url, success);
     });
+    sinon.stub($, 'post').callsFake((url, data, success) => {
+      handleRoutes(url, success);
+    });
+
     app = shallow(<App />);
   });
 
-  test('Can post selected photos and set events', () => {
+  test('can use superFunction to set state', () => {
+    const setEvents = app.instance().superFunction('events');
+    setEvents({ target: { value: events } });
+    expect(app.state().events).toEqual(events);
+  });
+
+  test('can post selected photos and set events', () => {
     app.setState({ location: 'San Francisco', pictures: [] });
     app.instance().postSelectedTags();
     expect(app.state().events).toEqual(events);
+  });
+
+  afterAll(() => {
+    $.ajax.restore();
   });
 });
