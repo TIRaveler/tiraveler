@@ -155,19 +155,21 @@ class Photos extends React.Component {
 
     return (
       <div>
-        <h1 className="ui big header">
+        <h1 className="ui big header" centered>
           Select 5 places you want to go!
           {' '}
         </h1>
-        <Card.Group centered itemsPerRow={4} >
+        <Card.Group size="medium" itemsPerRow={5} >
           {
             pictures.map((photo, index) => (
+              <Card>
                 <Card.Content>
-                  <Image size="medium"
+                  <Image style={{width: '250px', height: '250px'}}
                     src={photo.srcPath} />
                     <Card.Description>{photo.title}</Card.Description>
                   <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
                 </Card.Content>
+              </Card>
             ))
           }
 
