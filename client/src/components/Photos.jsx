@@ -67,9 +67,15 @@ class Photos extends React.Component {
           target: {
             value: data.map(({ photo }) => ({
               id: photo.id,
+<<<<<<< HEAD
               title: photo.title._content,
               description: photo.description._content,
               location: { lat: photo.location.latitude, lon: photo.location.longitude },
+=======
+              title: photo.title['_content'],
+              description: photo.description['_content'],
+              location: { lat: photo.location.longitude, lon: photo.location.longitude },
+>>>>>>> Lint photos.jsx file
               tags: photo.tags.tag.map(
                 ({ raw }) => raw,
               ),
