@@ -5,6 +5,7 @@ import {
   Button,
   Checkbox,
   Image,
+  Card
 } from 'semantic-ui-react';
 
 
@@ -55,7 +56,7 @@ class Photos extends React.Component {
               id: photo.id,
               title: photo.title['_content'],
               description: photo.description['_content'],
-              location:{lat:photo.location.longitude , lon: photo.location.longitude },
+              location:{lat:photo.location.latitude , lon: photo.location.longitude },
               tags: photo.tags.tag.map(
                    ({raw}) => {
                      return raw;
@@ -70,27 +71,107 @@ class Photos extends React.Component {
   }
 
 
-  render() {
+  // render() {
+  //   const { pictures, setPictures, sendSelectedPhotos } = this.props;
+  //   return (
+  //     <div>
+  //       <h1 className="ui big header">
+  //         Select 5 places you want to go!
+  //         {' '}
+  //       </h1>
+  //       <Image.Group size="medium">
+  //         {
+  //           pictures.map((photo, index) => (
+  //             <div key={photo.id}>
+  //               <Image
+  //                 src={photo.srcPath}
+  //                 text={photo.title}
+  //                 verticalAlign='bottom'
+  //                 //floated='left'
+  //               />
+
+  //               <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }}
+  //                 verticalAlign='bottom'/>
+  //             </div>
+  //           ))
+  //         }
+  //       </Image.Group>
+  //       <Route render={({ history }) => (
+  //         <Button
+  //           className="blue"
+  //           onClick={(event) => {
+  //             history.push('/events');
+  //             sendSelectedPhotos(event);
+  //           }}
+  //         >
+  //           Submit
+  //         </Button>
+  //       )}
+  //       />
+  //     </div>
+  //   );
+  // }
+
+  // render() {
+  //   const { pictures, setPictures, sendSelectedPhotos } = this.props;
+  //   return (
+  //     <div>
+  //       <h1 className="ui big header">
+  //         Select 5 places you want to go!
+  //         {' '}
+  //       </h1>
+  //       <Card.Group itemsPerRow={3}>
+  //         <Card fluid floated='left'>
+  //         {
+  //           pictures.map((photo, index) => (
+  //               <Card.Content>
+  //                 <Image
+  //                   src={photo.srcPath} />
+  //                   <Card.Description>{photo.title}</Card.Description>
+  //                 <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
+  //               </Card.Content>
+  //           ))
+  //         }
+  //         </Card>
+  //       </Card.Group>
+  //       <Route render={({ history }) => (
+  //         <Button
+  //           className="blue"
+  //           onClick={(event) => {
+  //             history.push('/events');
+  //             sendSelectedPhotos(event);
+  //           }}
+  //         >
+  //           Submit
+  //         </Button>
+  //       )}
+  //       />
+  //     </div>
+  //   );
+  // }
+
+    render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
+
     return (
       <div>
         <h1 className="ui big header">
           Select 5 places you want to go!
           {' '}
         </h1>
-        <Image.Group size="medium">
+        <Card.Group centered itemsPerRow={4} >
           {
             pictures.map((photo, index) => (
-              <div key={photo.id}>
-                <Image
-                  src={photo.srcPath}
-                  text={photo.title}
-                />
-                <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
-              </div>
+                <Card.Content>
+                  <Image size="medium"
+                    src={photo.srcPath} />
+                    <Card.Description>{photo.title}</Card.Description>
+                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
+                </Card.Content>
             ))
           }
-        </Image.Group>
+
+        </Card.Group>
         <Route render={({ history }) => (
           <Button
             className="blue"
