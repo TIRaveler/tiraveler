@@ -8,8 +8,8 @@ const routes = require('./routes');
 const config = require('../config.js');
 
 passport.use(new Strategy({
-  consumerKey: config.APIs.TWITTER_API,
-  consumerSecret: config.APIs.TWITTER_SECRET,
+  consumerKey: 'WFbI9lrnLFm9pAiaqUfn6VOCJ',
+  consumerSecret: 'kdYi9FBlLBTjuQOACu44162Xs7iaizL6M5oLIa9LHE99LDKPh1',
   callbackURL: 'http://127.0.0.1:8000/auth/twitter/callback',
 }, (token, tokenSecret, profile, done) => done(null, profile)));
 
