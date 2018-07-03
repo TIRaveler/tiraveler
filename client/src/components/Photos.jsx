@@ -70,86 +70,6 @@ class Photos extends React.Component {
       .then(setPictures);
   }
 
-
-  // render() {
-  //   const { pictures, setPictures, sendSelectedPhotos } = this.props;
-  //   return (
-  //     <div>
-  //       <h1 className="ui big header">
-  //         Select 5 places you want to go!
-  //         {' '}
-  //       </h1>
-  //       <Image.Group size="medium">
-  //         {
-  //           pictures.map((photo, index) => (
-  //             <div key={photo.id}>
-  //               <Image
-  //                 src={photo.srcPath}
-  //                 text={photo.title}
-  //                 verticalAlign='bottom'
-  //                 //floated='left'
-  //               />
-
-  //               <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }}
-  //                 verticalAlign='bottom'/>
-  //             </div>
-  //           ))
-  //         }
-  //       </Image.Group>
-  //       <Route render={({ history }) => (
-  //         <Button
-  //           className="blue"
-  //           onClick={(event) => {
-  //             history.push('/events');
-  //             sendSelectedPhotos(event);
-  //           }}
-  //         >
-  //           Submit
-  //         </Button>
-  //       )}
-  //       />
-  //     </div>
-  //   );
-  // }
-
-  // render() {
-  //   const { pictures, setPictures, sendSelectedPhotos } = this.props;
-  //   return (
-  //     <div>
-  //       <h1 className="ui big header">
-  //         Select 5 places you want to go!
-  //         {' '}
-  //       </h1>
-  //       <Card.Group itemsPerRow={3}>
-  //         <Card fluid floated='left'>
-  //         {
-  //           pictures.map((photo, index) => (
-  //               <Card.Content>
-  //                 <Image
-  //                   src={photo.srcPath} />
-  //                   <Card.Description>{photo.title}</Card.Description>
-  //                 <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
-  //               </Card.Content>
-  //           ))
-  //         }
-  //         </Card>
-  //       </Card.Group>
-  //       <Route render={({ history }) => (
-  //         <Button
-  //           className="blue"
-  //           onClick={(event) => {
-  //             history.push('/events');
-  //             sendSelectedPhotos(event);
-  //           }}
-  //         >
-  //           Submit
-  //         </Button>
-  //       )}
-  //       />
-  //     </div>
-  //   );
-  // }
-
     render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
 
@@ -159,15 +79,15 @@ class Photos extends React.Component {
           Select 5 places you want to go!
           {' '}
         </h1>
-        <Card.Group size="medium" itemsPerRow={5} >
+        <Card.Group  itemsPerRow={5} >
           {
             pictures.map((photo, index) => (
-              <Card>
+              <Card key={photo.id}>
                 <Card.Content>
-                  <Image style={{width: '250px', height: '250px'}}
+                  <Image style={{width: '220px', height: '220px'}}
                     src={photo.srcPath} />
                     <Card.Description>{photo.title}</Card.Description>
-                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
+                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} floated='right'/>
                 </Card.Content>
               </Card>
             ))
@@ -175,7 +95,7 @@ class Photos extends React.Component {
 
         </Card.Group>
         <Route render={({ history }) => (
-          <Button
+          <Button floated='right'
             className="blue"
             onClick={(event) => {
               history.push('/events');
