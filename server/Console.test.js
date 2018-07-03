@@ -1,19 +1,34 @@
-import { spy, stub } from 'sinon';
+import { stub } from 'sinon';
 
 import Console from './Console';
 
 describe('Console', () => {
-  let errorLog = [];
   let consoleLog = [];
+  let errorLog = [];
+  const oldWriteLog = process.stdout.write;
+  const oldWriteError = process.stderr.write;
 
-  beforeAll(() => {
-    stub(process, 'stderr').callsFake((...args) => {
-      args.forEach(arg => errorLog.push(arg));
-    });
+  const stubLog = stub(process.stdout, 'write').callsFake((...args) => {
+    args.forEach(arg => consoleLog.push(arg));
+    oldWriteLog(...args);
+  });
 
-    stub(process, 'stdout').callsFake((...args) => {
-      args.forEach(arg => consoleLog.push(arg));
-    });
+  const stubError = stub(process.stderr, 'write').callsFake((...args) => {
+    args.forEach(arg => errorLog.push(arg));
+    oldWriteError(...args);
+  });
+
+  beforeEach(() => {
+    consoleLog = [];
+    errorLog = [];
+
+    process.stderr.write = stubError;
+    process.stdout.write = stubLog;
+  });
+
+  afterEach(() => {
+    process.stderr.write.restore();
+    process.stdout.write.restore();
   });
 
   test('console has log and error', () => {
@@ -23,13 +38,32 @@ describe('Console', () => {
 
   test('console can log', () => {
     const testString = 'Test';
+
     Console.log(testString);
-    expect(consoleLog.includes(testString));
+
+    expect(consoleLog[0]).toEqual(`${testString}\n`);
+  });
+
+  test('console can log multiple', () => {
+    const testStrings = [
+      'This',
+      'Is',
+      'A',
+      'Test',
+    ];
+
+    const stringResult = 'This Is A Test\n';
+
+    Console.log(...testStrings);
+
+    expect(consoleLog[0]).toEqual(stringResult);
   });
 
   test('console can write errors', () => {
     const testString = 'Test';
+
     Console.error(testString);
-    expect(errorLog).includes(testString);
+
+    expect(errorLog[0]).toEqual(`${testString}\n`);
   });
 });
