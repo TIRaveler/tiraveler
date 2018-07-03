@@ -7,10 +7,10 @@ import { Route } from 'react-router-dom';
 
 const styles = {
   bordered: {
-    paddingTop:"11px"
+    paddingTop: '11px',
   },
   all: {
-    paddingTop:"80px"
+    paddingTop: '80px',
   },
 };
 
@@ -25,8 +25,6 @@ const searchService = ({ location, budget }) => {
 
 const Search = ({ handleBudget, handleLocation, appState }) => (
   <div className="ui equal width center aligned padded grid" style={styles.all}>
-    {/* <div className="row" />
-    <div className="row" /> */}
     <div className="ui twelve column centered grid">
       <div className="row">
         <Header size="large">
