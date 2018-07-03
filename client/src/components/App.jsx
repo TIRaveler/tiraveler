@@ -11,18 +11,14 @@ import Review from './Review';
 import Finalized from './Finalized';
 import Itinerary from './Itinerary';
 
-// TIRaveler Itinerary App
-// Uses React Routing
+/**
+ * TIRavler travel app
+ */
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       budget: 0,
-      events: [{
-        name: 'Beach Island Resort',
-        description: 'Relaxation starts here',
-        src: 'https://images.unsplash.com/photo-1529058904714-78f84a77cce4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5017992a445fa402226767146f267e8d&auto=format&fit=crop&w=1350&q=80',
-      }],
       location: '',
       pictures: [],
     };
@@ -36,6 +32,10 @@ class App extends React.Component {
     };
   }
 
+  /**
+   * Post selected photos to server
+   * Sets events state to result
+   */
   postSelectedTags() {
     const { location, pictures } = this.state;
 
@@ -50,7 +50,9 @@ class App extends React.Component {
         console.error(err);
       },
       success: (data) => {
-        console.log('Data posted', data);
+        this.setState({
+          events: data,
+        });
       },
     });
   }

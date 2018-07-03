@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { spy, stub } from 'sinon';
 import eventController from './eventControllers';
-import eventData from './sample_data/events';
+import rawData from './sample_data/rawEvents';
+import events from './sample_data/events';
 
 const reqSample = {
   body: {
@@ -14,7 +15,7 @@ describe('Event controller', () => {
   let res;
 
   beforeAll(() => {
-    stub(axios, 'get').returns(eventData);
+    stub(axios, 'get').resolves(rawData);
   });
 
   beforeEach(() => {
@@ -35,7 +36,7 @@ describe('Event controller', () => {
 
   test('returns events', async () => {
     await eventController.search(reqSample, res);
-    expect(res.data).toEqual(eventData);
+    expect(res.data).toEqual(events);
   });
 
   test('returns 400 if missing location', async () => {
@@ -44,7 +45,7 @@ describe('Event controller', () => {
 
     await eventController.search(reqMissing, res);
     expect(res.statusCode).toEqual(400);
-    expect(res.data).toEqual(undefined);
+    expect(res.data.error).toBeDefined();
   });
 
   test('returns 400 if missing pictures', async () => {
@@ -53,7 +54,7 @@ describe('Event controller', () => {
 
     await eventController.search(reqMissing, res);
     expect(res.statusCode).toEqual(400);
-    expect(res.data).toEqual(undefined);
+    expect(res.data.error).toBeDefined();
   });
 
   afterAll(() => {

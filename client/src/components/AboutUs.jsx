@@ -32,6 +32,6 @@ const teamMembers = [
   },
 ];
 
-const AboutUs = () => <Card.Group centered items={teamMembers} style={{ marginTop: "300px" }}/>
+const AboutUs = () => <Card.Group centered items={teamMembers} style={{ marginTop: '300px' }} />;
 
 export default AboutUs;
