@@ -5,6 +5,7 @@ import {
   Button,
   Checkbox,
   Image,
+  Card
 } from 'semantic-ui-react';
 
 
@@ -55,7 +56,7 @@ class Photos extends React.Component {
               id: photo.id,
               title: photo.title['_content'],
               description: photo.description['_content'],
-              location:{lat:photo.location.longitude , lon: photo.location.longitude },
+              location:{lat:photo.location.latitude , lon: photo.location.longitude },
               tags: photo.tags.tag.map(
                    ({raw}) => {
                      return raw;
@@ -69,30 +70,32 @@ class Photos extends React.Component {
       .then(setPictures);
   }
 
-
-  render() {
+    render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
+
     return (
       <div>
-        <h1 className="ui big header">
+        <h1 className="ui big header" centered>
           Select 5 places you want to go!
           {' '}
         </h1>
-        <Image.Group size="medium">
+        <Card.Group  itemsPerRow={5} >
           {
             pictures.map((photo, index) => (
-              <div key={photo.id}>
-                <Image
-                  src={photo.srcPath}
-                  text={photo.title}
-                />
-                <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} />
-              </div>
+              <Card key={photo.id}>
+                <Card.Content>
+                  <Image style={{width: '220px', height: '220px'}}
+                    src={photo.srcPath} />
+                    <Card.Description>{photo.title}</Card.Description>
+                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} floated='right'/>
+                </Card.Content>
+              </Card>
             ))
           }
-        </Image.Group>
+
+        </Card.Group>
         <Route render={({ history }) => (
-          <Button
+          <Button floated='right'
             className="blue"
             onClick={(event) => {
               history.push('/events');
