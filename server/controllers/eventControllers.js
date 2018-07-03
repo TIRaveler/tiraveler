@@ -1,4 +1,5 @@
 const axios = require('axios');
+const Console = require('../Console');
 
 /**
  * Get events fitting location and tag
@@ -22,8 +23,7 @@ const getEvents = async (location, tags) => {
     )
       .then(data => data.businesses);
   } catch (e) {
-    console.error(e);
-
+    Console.error(e);
     return [];
   }
 };
@@ -33,7 +33,7 @@ const getEvents = async (location, tags) => {
  * @param {Array} pictures all pictures to analyze
  * @return {Array} Tags to search
  */
-const resolveTags = pictures => (
+const resolveTags = () => (
   // TODO: Resolve tags
   ['hiking', 'fishing']
 );
@@ -41,9 +41,10 @@ const resolveTags = pictures => (
 /**
  * Search for events
  * @param {Object} req Express server request
- * @param {Object} res Express server response
+ * @param {Object} req.body POST body
  * @param {String} req.body.location Location to search
  * @param {Array} req.body.pictures Picture information to search with
+ * @param {Object} res Express server response
  * @return {Array} Array of events
  */
 module.exports.search = async (req, res) => {

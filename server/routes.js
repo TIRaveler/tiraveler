@@ -47,4 +47,7 @@ router.route('/events/search')
 router.route('/itinerary/save')
   .post(dbCtrl.save);
 
+/**
+ * Router containing all API routes
+ */
 module.exports = router;
