@@ -5,11 +5,10 @@ const passport = require('passport');
 const Strategy = require('passport-twitter').Strategy;
 const path = require('path');
 const routes = require('./routes');
-const config = require('../config.js');
 
 passport.use(new Strategy({
-  consumerKey: 'WFbI9lrnLFm9pAiaqUfn6VOCJ',
-  consumerSecret: 'kdYi9FBlLBTjuQOACu44162Xs7iaizL6M5oLIa9LHE99LDKPh1',
+  consumerKey: process.env.TWITTER_API,
+  consumerSecret: process.env.TWITTER_SECRET,
   callbackURL: 'http://127.0.0.1:8000/auth/twitter/callback',
 }, (token, tokenSecret, profile, done) => done(null, profile)));
 
