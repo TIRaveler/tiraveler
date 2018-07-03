@@ -6,14 +6,10 @@ import StatCard from './StatCard';
 import AboutUs from './AboutUs';
 import GetStarted from './GetStarted';
 
-const signInBtn = (
-  <Button primary size="massive">
-Get Started
-  </Button>
-);
-const Main = () => (
+const signInBtn = <Button primary size="massive">Get Started</Button>;
+const Main = ({ isAuthenticated, twitterLogin }) => (
   <div>
-    <Navbar />
+    <Navbar isAuthenticated={isAuthenticated} twitterLogin={twitterLogin} />
     <Parallax
       bgImage="https://image.ibb.co/nN3bjy/adult_book_business_297755_1.jpg"
       bgImageAlt="welcome"
@@ -21,7 +17,7 @@ const Main = () => (
     >
       <div style={{ height: '550px' }} />
       <div className="ui center aligned segment" style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
-        <GetStarted signin={signInBtn} />
+        <GetStarted signin={signInBtn} twitterLogin={twitterLogin} />
       </div>
     </Parallax>
     <Parallax
