@@ -1,9 +1,18 @@
 import $ from 'jquery';
 import React from 'react';
 import {
-  Button, Input, Form, Container, Grid,
+  Button, Divider, Input, Header, Container, Grid,
 } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
+
+const styles = {
+  bordered: {
+    paddingTop: '11px',
+  },
+  all: {
+    paddingTop: '80px',
+  },
+};
 
 const searchService = ({ location, budget }) => {
   $.post('/photos/search', {
@@ -15,41 +24,53 @@ const searchService = ({ location, budget }) => {
 };
 
 const Search = ({ handleBudget, handleLocation, appState }) => (
-  <div className="ui twelve column centered grid">
-    <div className="three column centered row">
-Hello Sam!
-    </div>
-    <div className="four column centered row">
-Where would you like to go?
-    </div>
-    <Container>
-      <Grid>
-        <Form>
-          <Form.Group>
-            <Input placeholder="Paradise..." onChange={handleLocation} />
-          </Form.Group>
-          <Form.Group widths="equal">
-            <span>
-What is your budget?  $
-            </span>
-            <Input onChange={handleBudget} />
-          </Form.Group>
-        </Form>
-      </Grid>
-    </Container>
-    <div className="row">
-      <Route render={({ history }) => (
-        <Button
-          color="blue"
-          onClick={() => {
-            history.push('/photos');
-            searchService(appState);
-          }}
-        >
+  <div className="ui equal width center aligned padded grid" style={styles.all}>
+    <div className="ui twelve column centered grid">
+      <div className="row">
+        <Header size="large">
+          <Divider horizontal>
+          Hello Sam!
+          </Divider>
+        </Header>
+      </div>
+      <div className="six column centered row">
+        <Header size="huge">
+        Where would you like to go?
+        </Header>
+      </div>
+      <Container>
+        <Grid>
+          <div className="eight column centered row">
+            <Input fluid size="huge" placeholder="Paradise..." onChange={handleLocation} />
+          </div>
+          <div className="equal width row">
+            <div className="column">
+              <Header size="medium" floated="right" style={styles.bordered}>
+              What is your budget?
+              </Header>
+            </div>
+            <div className="column">
+              <Input fluid size="big" onChange={handleBudget} icon="dollar sign" iconPosition="left"/>
+            </div>
+          </div>
+        </Grid>
+      </Container>
+      <div className="row">
+        <Route render={({ history }) => (
+          <Button
+            fluid
+            size="huge"
+            color="blue"
+            onClick={() => {
+              history.push('/photos');
+              searchService(appState);
+            }}
+          >
           GO
-        </Button>
-      )}
-      />
+          </Button>
+        )}
+        />
+      </div>
     </div>
   </div>
 );

@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
+import ItineraryEntry from './ItineryEntry';
 
 
 class Review extends React.Component {
@@ -66,6 +67,9 @@ class Review extends React.Component {
           Please Review Your Epic Itinerary
         </Modal.Header>
         <Modal.Content>
+          <div>
+            {entries.map(entry => <ItineraryEntry entry={entry} />)}
+          </div>
           <Button onClick={this.finalize}>
             FINALIZE!
           </Button>
