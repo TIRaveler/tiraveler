@@ -79,7 +79,7 @@ class App extends React.Component {
             exact
             path="/"
             render={props => (
-              <Main 
+              <Main
                 {...props}
                 twitterLogin={this.twitterLogin}
                 isAuthenticated={isAuthenticated}

@@ -1,7 +1,11 @@
 import React from 'react';
 import GetStarted from './GetStarted.jsx';
 
-const signinBtn = <button type="button" className="ui basic button">Sign In</button>;
+const signinBtn = (
+  <button type="button" className="ui basic button">
+Sign In
+  </button>
+);
 const Navbar = ({ twitterLogin }) => (
 
   <div className="ui top fixed menu secondary pointing menu" style={{ background: 'white' }}>

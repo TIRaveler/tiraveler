@@ -6,7 +6,11 @@ import StatCard from './StatCard';
 import AboutUs from './AboutUs';
 import GetStarted from './GetStarted';
 
-const signInBtn = <Button primary size="massive">Get Started</Button>;
+const signInBtn = (
+  <Button primary size="massive">
+Get Started
+  </Button>
+);
 const Main = ({ isAuthenticated, twitterLogin }) => (
   <div>
     <Navbar isAuthenticated={isAuthenticated} twitterLogin={twitterLogin} />

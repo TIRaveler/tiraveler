@@ -1,6 +1,10 @@
 import React from 'react';
 
-const logoutBtn = <button type="button" className="ui basic button">Logout</button>;
+const logoutBtn = (
+  <button type="button" className="ui basic button">
+Logout
+  </button>
+);
 const LoggedInNav = () => (
   <div className="ui top fixed menu secondary pointing menu" style={{ background: 'white' }}>
     <div className="item">

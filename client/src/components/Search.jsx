@@ -53,7 +53,7 @@ const Search = ({ handleBudget, handleLocation, appState }) => (
                 </Header>
               </div>
               <div className="column">
-                <Input fluid size="big" onChange={handleBudget} icon="dollar sign" iconPosition="left"/>
+                <Input fluid size="big" onChange={handleBudget} icon="dollar sign" iconPosition="left" />
               </div>
             </div>
           </Grid>
