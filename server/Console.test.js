@@ -31,12 +31,12 @@ describe('Console', () => {
     process.stdout.write.restore();
   });
 
-  test('console has log and error', () => {
+  test('has log and error', () => {
     expect(Console.log).toBeDefined();
     expect(Console.error).toBeDefined();
   });
 
-  test('console can log', () => {
+  test('can log', () => {
     const testString = 'Test';
 
     Console.log(testString);
@@ -44,7 +44,7 @@ describe('Console', () => {
     expect(consoleLog[0]).toEqual(`${testString}\n`);
   });
 
-  test('console can log multiple', () => {
+  test('can log multiple', () => {
     const testStrings = [
       'This',
       'Is',
@@ -59,7 +59,7 @@ describe('Console', () => {
     expect(consoleLog[0]).toEqual(stringResult);
   });
 
-  test('console can write errors', () => {
+  test('can write errors', () => {
     const testString = 'Test';
 
     Console.error(testString);
@@ -67,7 +67,7 @@ describe('Console', () => {
     expect(errorLog[0]).toEqual(`${testString}\n`);
   });
 
-  test('console can write multiple error', () => {
+  test('can write multiple errors', () => {
     const testStrings = [
       'This',
       'Is',
