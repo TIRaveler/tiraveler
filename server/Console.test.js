@@ -66,4 +66,19 @@ describe('Console', () => {
 
     expect(errorLog[0]).toEqual(`${testString}\n`);
   });
+
+  test('console can write multiple error', () => {
+    const testStrings = [
+      'This',
+      'Is',
+      'An',
+      'Error',
+    ];
+
+    const stringResult = 'This Is An Error\n';
+
+    Console.error(...testStrings);
+
+    expect(errorLog[0]).toEqual(stringResult);
+  });
 });
