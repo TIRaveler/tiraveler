@@ -9,10 +9,10 @@ exports.save = (req, res) => {
       .catch(error => console.error(error));
   }
   res.status(200).send('Success!');
-
-  // Itinerary.saveItinerary(req.body.itin)
-  //   .then(itinId => Event.saveEvent(req.body.events[0], itinId))
-  //   .then(result => console.log(result, 'MOREMORE'))
-  //   .catch(error => res.send(error));
-  // res.send('You are now entering the twilight zone.!!');
 };
+
+
+// Promise.all(req.body.events.map(Event.saveEvent))
+//   .then(results  => Pormise.all(results.map(result => Itinerary.saveItinerary(req.body.itin, result))))
+//   .then(results => Promise.all(...ItinEvents.saveItem...))
+//   .then(console log sthn here)
