@@ -4,14 +4,17 @@ import Console from './Console';
 
 describe('Console', () => {
   let consoleLog = [];
-  const oldWriteLog = process.stdout.write;
+  // Use to display test errors info
+  // const oldWriteLog = process.stdout.write.bind(process.stdout);
+
   // Console.log, Console.error, and Console.Console classes methods are instances
   // of makeLogger for Stream by testing this you are effectively testing everything
   const logToStream = Console.makeLoggerForStream(process.stdout);
 
   const stubLog = stub(process.stdout, 'write').callsFake((...args) => {
     args.forEach(arg => consoleLog.push(arg));
-    oldWriteLog(...args);
+    // Uncomment to display test error information
+    // oldWriteLog(...args);
   });
 
   beforeEach(() => {
@@ -68,9 +71,45 @@ describe('Console', () => {
     expect(consoleLog[3]).toEqual('null\n');
 
     logToStream(['This', 'is', 'a', 'test']);
-    expect(consoleLog[4]).toEqual('[\nThis\nis\na\ntest\n]');
+    expect(consoleLog[4]).toEqual('[\nThis\nis\na\ntest\n]\n');
 
     logToStream({ test: 'This', is: 'one' });
-    expect(consoleLog[5]).toEqual('{\ntest: \'This\'\nis: \'one\'');
+    expect(consoleLog[5]).toEqual('{\ntest: This\nis: one\n}\n');
+  });
+
+  test('default log can write strings', () => {
+    Console.log('Test');
+    expect(consoleLog[0]).toEqual('Test\n');
+  });
+
+  test('default error can write strings', () => {
+    const errorLog = [];
+    stub(process.stderr, 'write').callsFake((...args) => {
+      args.forEach(arg => errorLog.push(arg));
+    });
+
+    Console.error('Test');
+    expect(errorLog[0]).toEqual('Test\n');
+
+    // Restore writting to error stream
+    process.stderr.write.restore();
+  });
+
+  test('Console class can write strings', () => {
+    const errorLog = [];
+    stub(process.stderr, 'write').callsFake((...args) => {
+      args.forEach(arg => errorLog.push(arg));
+    });
+
+    const newConsole = new Console.Console(process.stdout, process.stderr);
+
+    newConsole.log('Test');
+    expect(consoleLog[0]).toEqual('Test\n');
+
+    newConsole.error('Test');
+    expect(errorLog[0]).toEqual('Test\n');
+
+    // Restore writting to error stream
+    process.stderr.write.restore();
   });
 });
