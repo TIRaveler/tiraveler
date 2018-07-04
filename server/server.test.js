@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import { app, server } from './index';
+import app from './index';
 
 jest.mock('../db/index');
 jest.mock('./routes.js');
@@ -127,5 +127,4 @@ describe('Server handles API calls', () => {
       .then(res => expect(res.text).toEqual('Success'));
   });
 
-  afterAll(server.close());
 });

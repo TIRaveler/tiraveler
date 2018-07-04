@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import $ from 'jquery';
+import axios from 'axios';
 import Main from './Main';
-import Login from './Login';
+// import Login from './Login';
 import Search from './Search';
 import Time from './Time';
 import Photos from './Photos';
@@ -18,11 +19,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAuthenticated: false,
       budget: 0,
       location: '',
       pictures: [],
     };
     this.postSelectedTags = this.postSelectedTags.bind(this);
+    this.twitterLogin = this.twitterLogin.bind(this);
   }
 
   superFunction(key) {
@@ -57,13 +60,32 @@ class App extends React.Component {
     });
   }
 
+  twitterLogin() {
+    axios.get('/login/twitter')
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      })
+      .catch((err) => { console.error(err); });
+  }
+
   render() {
-    const { events, pictures } = this.state;
+    const { events, pictures, isAuthenticated } = this.state;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={props => <Main {...props} />} />
-          <Route exact path="/login" render={props => <Login {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Main
+                {...props}
+                twitterLogin={this.twitterLogin}
+                isAuthenticated={isAuthenticated}
+              />)}
+          />
+          {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
           <Route
             exact
             path="/search"
@@ -73,6 +95,7 @@ class App extends React.Component {
                 handleBudget={this.superFunction('budget')}
                 handleLocation={this.superFunction('location')}
                 appState={this.state}
+                isAuthenticated={isAuthenticated}
               />)}
           />
           <Route exact path="/time" render={props => <Time {...props} />} />

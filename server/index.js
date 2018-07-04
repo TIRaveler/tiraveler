@@ -1,22 +1,16 @@
 require('dotenv').config();
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const routes = require('./routes');
-
-const app = express();
 const port = process.env.PORT || 8000;
-const clientFolder = path.join(__dirname, '../client/dist');
+const passport = require('./authentication');
+const app = require('./server');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-app.use('/', express.static(clientFolder));
-app.use('/', routes);
-// Last endpoint, wild card
-app.use('/*', express.static(`${clientFolder}/index.html`));
+app.get('/login/twitter', passport.authenticate('twitter'));
+app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }),
+  (req, res) => {
+    console.log('res.req.sessionID after callback: ', res.req.sessionID);
+    res.redirect('/search');
+  });
 
 const server = app.listen(port, () => console.log(`server running on port ${port}`));
-
-module.exports.server = server;
-module.exports.app = app;
