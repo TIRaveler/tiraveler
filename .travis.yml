@@ -1,7 +1,14 @@
 language: node_js
 node_js: node
 
-script: 
+script: echo "Running tests" 
+
+jobs: 
+  include: 
 # - npm run lint
- - npm run test
- - npm run build
+  - stage: test
+    script: npm run test
+  - stage: coverage
+    script: npm run coveralls
+  - stage: build
+    script: npm run build
