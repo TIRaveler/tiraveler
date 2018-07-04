@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const port = process.env.PORT || 8000;
 const passport = require('./authentication');
 const app = require('./server');
@@ -13,4 +14,4 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedi
     res.redirect('/search');
   });
 
-const server = app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(port, () => console.log(`server running on port ${port}`));
