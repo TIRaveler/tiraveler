@@ -1,14 +1,11 @@
 language: node_js
 node_js: node
 
-script: echo "Running tests" 
+install:
+  - npm ci
 
-jobs: 
-  include: 
+script: 
 # - npm run lint
-  - stage: test
-    script: npm run test
-  - stage: coverage
-    script: npm run coveralls
-  - stage: build
-    script: npm run build
+  - npm run jest
+  - npm run coveralls
+  - npm run build
