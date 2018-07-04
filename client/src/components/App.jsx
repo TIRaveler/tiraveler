@@ -19,8 +19,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuthenticated: false,
       budget: 0,
+      events: [],
+      isAuthenticated: false,
       location: '',
       pictures: [],
     };
