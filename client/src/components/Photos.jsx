@@ -45,15 +45,16 @@ const getToggleEvent = (pictures, index, setPictures) => (
 // Select photos to determine itinerary
 class Photos extends React.Component {
   componentDidMount() {
-    const { setPictures,location } = this.props;
+    const { setPictures, location } = this.props;
 
-    fetch('/photos/search', { method: 'POST',
+    fetch('/photos/search', {
+      method: 'POST',
       headers: {
-     'Accept': 'application/json',
-     'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({location})
-     })
+      body: JSON.stringify({ location }),
+    })
       .then(response => response.json())
       .then((data) => {
         const event = {

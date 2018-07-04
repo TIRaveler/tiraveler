@@ -15,7 +15,6 @@ const getPhotoInfo = (photoId) => {
 };
 
 exports.search = (req, res) => {
-
   const location = req.body.location;
 
   // for general travel info search
