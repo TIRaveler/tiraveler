@@ -15,17 +15,19 @@ describe('App page', () => {
   let app;
 
   beforeAll(() => {
-    const handleRoutes = (url, success) => {
+    const handleRoutes = (url, data, success) => {
       if (url === '/events/search') {
-        success(events);
+        if (typeof data.location === 'string' && Array.isArray(data.pictures)) {
+          success(events);
+        }
       }
     };
 
-    sinon.stub($, 'ajax').callsFake(({ success, url }) => {
-      handleRoutes(url, success);
+    sinon.stub($, 'ajax').callsFake(({ data, url, success }) => {
+      handleRoutes(url, data, success);
     });
     sinon.stub($, 'post').callsFake((url, data, success) => {
-      handleRoutes(url, success);
+      handleRoutes(url, data, success);
     });
 
     app = shallow(<App />);
