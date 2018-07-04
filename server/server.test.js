@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import { app, server } from './index';
+import app from './server';
 
 jest.mock('../db/index');
 jest.mock('./routes.js');
@@ -8,14 +8,6 @@ describe('Server sends website pages', () => {
   test('returns index for index page', () => {
     supertest(app)
       .get('/')
-      .expect(200)
-      .set('Accept', 'text/html')
-      .then(res => expect(res.text.includes('<html>')).toEqual(true));
-  });
-
-  test('returns index for login', () => {
-    supertest(app)
-      .get('/login')
       .expect(200)
       .set('Accept', 'text/html')
       .then(res => expect(res.text.includes('<html>')).toEqual(true));
@@ -126,6 +118,4 @@ describe('Server handles API calls', () => {
       .set('Accept', 'text/html')
       .then(res => expect(res.text).toEqual('Success'));
   });
-
-  afterAll(server.close());
 });
