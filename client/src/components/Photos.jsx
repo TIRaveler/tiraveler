@@ -87,7 +87,7 @@ class Photos extends React.Component {
 
     return (
       <div>
-        <h1 className="ui big header" centered>
+        <h1 className="ui big header center aligned page">
           Select 5 places you want to go!
           {' '}
         </h1>
