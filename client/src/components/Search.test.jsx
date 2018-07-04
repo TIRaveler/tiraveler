@@ -86,7 +86,7 @@ describe('Search', () => {
   test('it updates budget on entering text', () => {
     const aBudget = 100;
     const inputBudget = wrapSearch.find('#input-budget').at(1);
-    inputBudget.simulate('change', { target: { value: aBudget } });
+    inputBudget.simulate('change', { target: { value: aBudget.toString() } });
     expect(mockBudgetState).toEqual(aBudget);
   });
 });
