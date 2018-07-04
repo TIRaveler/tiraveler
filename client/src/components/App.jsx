@@ -41,12 +41,14 @@ class App extends React.Component {
    */
   postSelectedTags() {
     const { location, pictures } = this.state;
-
+    const selectedPics= pictures.filter(pic => pic.isSelected);
+    console.log('selectedPics', selectedPics);
     $.ajax({
       url: '/events/search',
+
       data: {
         location,
-        pictures,
+        'pictures':selectedPics,
       },
       type: 'POST',
       error: (xhr, status, err) => {
@@ -105,6 +107,7 @@ class App extends React.Component {
             render={props => (
               <Photos
                 {...props}
+                location={this.state.location}
                 pictures={pictures}
                 setPictures={this.superFunction('pictures')}
                 sendSelectedPhotos={this.postSelectedTags}

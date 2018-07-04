@@ -43,6 +43,7 @@ const resolveTags = () => (
  */
 module.exports.search = async (req, res) => {
   const { location, pictures } = req.body;
+  console.log(pictures);
 
   if (!location || !pictures) {
     res.status(400);
