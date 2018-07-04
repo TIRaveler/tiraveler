@@ -11,8 +11,8 @@ import {
 
 
 /** Toggle isSelected in photo and returns new array
- * @param {[]} pictures Array of picture objects (See Photos proptypes)
- * @param {number} index Index of photo to toggle
+ * @param {[]}     pictures Array of picture objects (See Photos proptypes)
+ * @param {number} index    Index of photo to toggle
  */
 const toggleSelectedPhoto = (pictures, index) => {
   const newPictures = pictures.slice();
@@ -24,8 +24,8 @@ const toggleSelectedPhoto = (pictures, index) => {
 
 /**
  * Toggle selected photo and update state
- * @param {[]} pictures Array of pictures
- * @param {number} index Index of photo in array to toggle
+ * @param {[]} pictures                         Array of pictures
+ * @param {number} index                        Index of photo in array to toggle
  * @param {(event: *) => undefined} setPictures Set picture state using event.target.value
  */
 const toggleSelectedPhotoAndUpdate = (pictures, index, setPictures) => {
@@ -38,8 +38,8 @@ const toggleSelectedPhotoAndUpdate = (pictures, index, setPictures) => {
 
 /**
  * Create picture toggle event
- * @param pictures Array of pictures
- * @param index index of picture in array
+ * @param pictures    Array of pictures
+ * @param index       index of picture in array
  * @param setPictures fuction to set pictures state
  */
 const getToggleEvent = (pictures, index, setPictures) => (

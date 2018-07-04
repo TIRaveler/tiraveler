@@ -12,7 +12,7 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Search', () => {
   /**
    * The current app state
-   * @prop {number} budget The current budget
+   * @prop {number} budget   The current budget
    * @prop {string} location The current location
    */
   const mockAppState = {
@@ -39,8 +39,8 @@ describe('Search', () => {
 
   /**
    * Set budget state
-   * @param {*} event Event object
-   * @param {*} event.target Target object
+   * @param {*}      event              Event object
+   * @param {*}      event.target       Target object
    * @param {number} event.target.value Value of budget
    */
   const mockHandleBudget = (event) => {
@@ -49,8 +49,8 @@ describe('Search', () => {
 
   /**
    * Set location state
-   * @param {*} event Event object
-   * @param {*} event.target Target object
+   * @param {*}      event              Event object
+   * @param {*}      event.target       Target object
    * @param {string} event.target.value Value of location
    */
   const mockHandleLocation = (event) => {

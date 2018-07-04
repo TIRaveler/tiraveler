@@ -107,7 +107,7 @@ const Search = ({ handleBudget, handleLocation, appState }) => (
 Search.propTypes = {
   /**
    * Current app state
-   * @prop {number} budget Current budget
+   * @prop {number} budget   Current budget
    * @prop {string} location Current location
    */
   appState: PropTypes.shape({
