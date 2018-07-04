@@ -1,7 +1,8 @@
-const routes = require('./routes');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const routes = require('./routes');
+
 const clientFolder = path.join(__dirname, '../client/dist');
 const app = express();
 
@@ -17,8 +18,8 @@ app.use(require('express-session')({
 app.use('/', express.static(clientFolder));
 app.use('/', routes);
 // Last endpoint, wild card
-const reactRouterRoutes = ["/", "/search", "/time", "/photos", "/events",
-"/review", "/finalized", "/myItineraries"];
+const reactRouterRoutes = ['/', '/search', '/time', '/photos', '/events',
+  '/review', '/finalized', '/myItineraries'];
 reactRouterRoutes.forEach((route) => {
   app.use(route, express.static(`${clientFolder}/index.html`));
 });
