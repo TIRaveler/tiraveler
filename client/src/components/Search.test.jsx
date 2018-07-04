@@ -89,4 +89,11 @@ describe('Search', () => {
     inputBudget.simulate('change', { target: { value: aBudget.toString() } });
     expect(mockBudgetState).toEqual(aBudget);
   });
+
+  test('it updates location on entering text', () => {
+    const aLocation = 'Los Angles';
+    const inputLocation = wrapSearch.find('#input-location').at(1);
+    inputLocation.simulate('change', { target: { value: aLocation } });
+    expect(mockLocationState).toEqual(aLocation);
+  });
 });
