@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode=production",
     "build:dev": "webpack --mode=development --watch",
-    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls",
+    "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "heroku-postbuild": "npm run build",
     "lint": "eslint . --ext .js --ext .jsx --ext .json --ext .md",
     "lint:fix": "eslint --fix . --ext .js --ext .jsx --ext .json --ext .md",
