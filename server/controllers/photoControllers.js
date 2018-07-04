@@ -16,9 +16,11 @@ const getPhotoInfo = (photoId) => {
 
 exports.search = (req, res) => {
 
-  //const location = req.body.location;
+  const location = req.body.location;
+  //console.log('req.body.location', req.body.location);
+  console.log('req.body', req.body);
   //const location = 'San Francisco';
-  const location = 'London';
+  //const location = 'London';
   //const location ='San Jose';
 //location is set to London
 

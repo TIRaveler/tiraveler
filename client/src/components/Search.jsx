@@ -15,12 +15,12 @@ const styles = {
 };
 
 const searchService = ({ location, budget }) => {
-  $.post('/photos/search', {
-    price: budget, location,
-  })
-    .catch((error) => {
-      console.log(error, 'problem submitting search');
-    });
+  // $.post('/photos/search', {
+  //   price: budget, location,
+  // })
+  //   .catch((error) => {
+  //     console.log(error, 'problem submitting search');
+  //   });
 };
 
 const Search = ({ handleBudget, handleLocation, appState }) => (
