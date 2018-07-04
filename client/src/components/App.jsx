@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import $ from 'jquery';
+import axios from 'axios';
 import Main from './Main';
-import Login from './Login';
+// import Login from './Login';
 import Search from './Search';
 import Time from './Time';
 import Photos from './Photos';
@@ -11,22 +12,20 @@ import Review from './Review';
 import Finalized from './Finalized';
 import Itinerary from './Itinerary';
 
-// TIRaveler Itinerary App
-// Uses React Routing
+/**
+ * TIRavler travel app
+ */
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAuthenticated: false,
       budget: 0,
-      events: [{
-        name: 'Beach Island Resort',
-        description: 'Relaxation starts here',
-        src: 'https://images.unsplash.com/photo-1529058904714-78f84a77cce4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5017992a445fa402226767146f267e8d&auto=format&fit=crop&w=1350&q=80',
-      }],
       location: '',
       pictures: [],
     };
     this.postSelectedTags = this.postSelectedTags.bind(this);
+    this.twitterLogin = this.twitterLogin.bind(this);
   }
 
   superFunction(key) {
@@ -36,6 +35,10 @@ class App extends React.Component {
     };
   }
 
+  /**
+   * Post selected photos to server
+   * Sets events state to result
+   */
   postSelectedTags() {
     const { location, pictures } = this.state;
     const selectedPics= pictures.filter(pic => pic.isSelected);
@@ -52,18 +55,39 @@ class App extends React.Component {
         console.error(err);
       },
       success: (data) => {
-        console.log('Data posted', data);
+        this.setState({
+          events: data,
+        });
       },
     });
   }
 
+  twitterLogin() {
+    axios.get('/login/twitter')
+      .then(() => {
+        this.setState({
+          isAuthenticated: true,
+        });
+      })
+      .catch((err) => { console.error(err); });
+  }
+
   render() {
-    const { events, pictures } = this.state;
+    const { events, pictures, isAuthenticated } = this.state;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={props => <Main {...props} />} />
-          <Route exact path="/login" render={props => <Login {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <Main
+                {...props}
+                twitterLogin={this.twitterLogin}
+                isAuthenticated={isAuthenticated}
+              />)}
+          />
+          {/* <Route exact path="/login" render={props => <Login {...props} />} /> */}
           <Route
             exact
             path="/search"
@@ -73,6 +97,7 @@ class App extends React.Component {
                 handleBudget={this.superFunction('budget')}
                 handleLocation={this.superFunction('location')}
                 appState={this.state}
+                isAuthenticated={isAuthenticated}
               />)}
           />
           <Route exact path="/time" render={props => <Time {...props} />} />

@@ -8,20 +8,19 @@ import {
   Image,
 } from 'semantic-ui-react';
 
-// Displays and indivisual event
-// name: Name of the event
-// description: Description of the event
-// imageSrc: URL source of the image
-const Event = ({ name, description, imageSrc }) => (
+/**
+ * Displays and indivisual event
+ * @param {*} props Event properties
+ * @param {string} props.name: Name of the event
+ * @param {string} props.imageSrc: URL source of the image
+*/
+const Event = ({ name, imageSrc }) => (
   <Card>
-    <Image medium src={imageSrc} />
+    <Image size="medium" src={imageSrc} />
     <Card.Content>
       <Card.Header>
         {name}
       </Card.Header>
-      <Card.Description>
-        {description}
-      </Card.Description>
     </Card.Content>
     <Card.Content extra>
       <Button positive>
@@ -38,7 +37,6 @@ const Event = ({ name, description, imageSrc }) => (
 
 Event.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   imageSrc: PropTypes.string,
 };
 
@@ -66,6 +64,7 @@ Events.propTypes = {
   events: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
+      imageSrc: PropTypes.string,
     }).isRequired,
   ).isRequired,
   setEvents: PropTypes.func.isRequired,

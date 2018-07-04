@@ -30,7 +30,7 @@ class Login extends React.Component {
   }
 
   handleSubmit() {
-    console.log(this.state.submittedEmail, this.state.submittedPassword)
+    console.log(this.state.submittedEmail, this.state.submittedPassword);
     this.setState({
       password: '',
       email: '',
@@ -44,26 +44,28 @@ class Login extends React.Component {
         <div className="ui center aligned basic segment">
           <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
             <Form.Group>
-              <Form.Input placeholder='Email' name='email' value={email} onChange={this.handleEmailChange} />
+              <Form.Input placeholder="Email" name="email" value={email} onChange={this.handleEmailChange} />
             </Form.Group>
             <Form.Group>
               <Form.Input
-                type='password'
-                placeholder='Password'
-                name='password'
+                type="password"
+                placeholder="Password"
+                name="password"
                 value={password}
                 onChange={this.handlePasswordChange}
               />
             </Form.Group>
-            <Form.Button content='Submit' />
+            <Form.Button content="Submit" />
           </Form>
           <div className="ui horizontal divider">
             Or
           </div>
-          <div className="ui big blue labeled icon button">
-            <Icon className="twitter"></Icon>
-            Sign in with Twitter
-          </div>
+          <a href="/login/twitter" onClick={this.props.twitterLogin}>
+            <div className="ui big blue labeled icon button">
+              <Icon className="twitter" />
+              Sign in with Twitter
+            </div>
+          </a>
         </div>
       </div>
     );

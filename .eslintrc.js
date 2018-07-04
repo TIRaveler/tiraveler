@@ -1,4 +1,9 @@
 module.exports = {
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+  },
   "extends": "airbnb",
   "parserOptions": {
     "ecmaVersion": "2018",
@@ -11,9 +16,4 @@ module.exports = {
     "json",
     "markdown",
   ],
-  "env": {
-    "browser": true,
-    "node": true,
-    "jest": true,
-  },
 };

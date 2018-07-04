@@ -5,7 +5,7 @@ import {
   Button,
   Checkbox,
   Image,
-  Card
+  Card,
 } from 'semantic-ui-react';
 
 
@@ -60,13 +60,12 @@ class Photos extends React.Component {
           target: {
             value: data.map(({ photo }) => ({
               id: photo.id,
-              title: photo.title['_content'],
-              description: photo.description['_content'],
-              location:{lat:photo.location.latitude , lon: photo.location.longitude },
+              title: photo.title._content,
+              description: photo.description._content,
+              location: { lat: photo.location.latitude, lon: photo.location.longitude },
               tags: photo.tags.tag.map(
-                   ({raw}) => {
-                     return raw;
-                    }),
+                ({ raw }) => raw,
+              ),
               srcPath: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
             })),
           },
@@ -76,7 +75,7 @@ class Photos extends React.Component {
       .then(setPictures);
   }
 
-    render() {
+  render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
 
     return (
@@ -85,15 +84,19 @@ class Photos extends React.Component {
           Select 5 places you want to go!
           {' '}
         </h1>
-        <Card.Group  itemsPerRow={5} >
+        <Card.Group itemsPerRow={5}>
           {
             pictures.map((photo, index) => (
               <Card key={photo.id}>
                 <Card.Content>
-                  <Image style={{width: '220px', height: '220px'}}
-                    src={photo.srcPath} />
-                    <Card.Description>{photo.title}</Card.Description>
-                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} floated='right'/>
+                  <Image
+                    style={{ width: '220px', height: '220px' }}
+                    src={photo.srcPath}
+                  />
+                  <Card.Description>
+                    {photo.title}
+                  </Card.Description>
+                  <Checkbox onClick={getToggleEvent(pictures, index, setPictures)} label={{ children: 'select' }} floated="right" />
                 </Card.Content>
               </Card>
             ))
@@ -101,7 +104,8 @@ class Photos extends React.Component {
 
         </Card.Group>
         <Route render={({ history }) => (
-          <Button floated='right'
+          <Button
+            floated="right"
             className="blue"
             onClick={(event) => {
               history.push('/events');
