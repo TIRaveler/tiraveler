@@ -41,14 +41,14 @@ class App extends React.Component {
    */
   postSelectedTags() {
     const { location, pictures } = this.state;
-    const selectedPics= pictures.filter(pic => pic.isSelected);
+    const selectedPics = pictures.filter(pic => pic.isSelected);
     console.log('selectedPics', selectedPics);
     $.ajax({
       url: '/events/search',
 
       data: {
         location,
-        'pictures':selectedPics,
+        pictures: selectedPics,
       },
       type: 'POST',
       error: (xhr, status, err) => {
@@ -73,7 +73,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { events, pictures, isAuthenticated } = this.state;
+    const {
+      budget,
+      events,
+      isAuthenticated,
+      location,
+      pictures,
+    } = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -107,13 +114,13 @@ class App extends React.Component {
             render={props => (
               <Photos
                 {...props}
-                location={this.state.location}
+                location={location}
                 pictures={pictures}
                 setPictures={this.superFunction('pictures')}
                 sendSelectedPhotos={this.postSelectedTags}
               />)}
           />
-          <Route path="/events" exact render={props => <Events {...props} events={events} setEvents={this.superFunction('events')} />} />
+          <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
           <Route path="/review" exact render={props => <Review {...props} />} />
           <Route path="/finalized" exact render={props => <Finalized {...props} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
