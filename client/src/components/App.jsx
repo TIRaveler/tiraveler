@@ -128,7 +128,6 @@ class App extends React.Component {
               />)}
           />
           <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
-          <Route path="/review" exact render={props => <Review {...props} entries={this.getLikedEvents()} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
         </Switch>
       </BrowserRouter>
