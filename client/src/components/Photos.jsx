@@ -83,7 +83,7 @@ class Photos extends React.Component {
   }
 
   render() {
-    const { pictures, setPictures, sendSelectedPhotos } = this.props;
+    const { pictures, setPictures } = this.props;
 
     return (
       <div>
@@ -112,11 +112,11 @@ class Photos extends React.Component {
         </Card.Group>
         <Route render={({ history }) => (
           <Button
+            id="submit"
             floated="right"
             className="blue"
-            onClick={(event) => {
+            onClick={() => {
               history.push('/events');
-              sendSelectedPhotos(event);
             }}
           >
             Submit
@@ -159,11 +159,7 @@ Photos.propTypes = {
     /** URL image source */
     srcPath: PropTypes.string,
   })).isRequired,
-  /**
-   * Function to send selected photos
-   * @param input: Event of submit button
-  */
-  sendSelectedPhotos: PropTypes.func.isRequired,
+
   /**
    * Function to update App picture state
    * @param Input: Array of pictures (See Photos pictures prop-type)
