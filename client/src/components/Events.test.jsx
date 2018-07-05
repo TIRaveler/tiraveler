@@ -11,15 +11,33 @@ const { mount } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Events page', () => {
+  /** The current budget */
   const budgetProp = 100;
-  let eventState = [];
+
+  /** Array holding all events */
+  let eventsState = [];
+
+  /**
+   * Stub for setting events
+   * @type {(events: [*]) => undefined}
+   */
   let setEventsStub;
+
+  /** Browser for routing */
   let wrapBrowser;
+
+  /** React events page */
   let wrapEvents;
+
+  /** First like button on page */
+  let firstLikeButton;
+
+  /** First dislike button on page */
+  let firstDislikeButton;
 
   beforeAll(() => {
     setEventsStub = (currentEvents) => {
-      eventState = currentEvents;
+      eventsState = currentEvents;
     };
 
     wrapBrowser = mount(
@@ -32,33 +50,51 @@ describe('Events page', () => {
       </MemoryRouter>,
     );
 
+    // Get events
     wrapEvents = wrapBrowser.find(Events);
+
+    // Get first like button
+    firstLikeButton = wrapEvents.find('[positive] > button').at(0);
+
+    // Get first dislike button
+    firstDislikeButton = wrapEvents.find('[negative] > button').at(0);
   });
 
   beforeEach(() => {
-    eventState = [];
+    eventsState = [];
   });
 
   test('updates events on like and dislike', () => {
-    // Get first like button
-    const firstEventLikeButton = wrapEvents.find('[positive] > button').at(0);
-
     // Click like
-    firstEventLikeButton.simulate('click');
+    firstLikeButton.simulate('click');
 
     // Expect state was updated
-    expect(eventState.length).toEqual(sampleEvents.length);
+    expect(eventsState.length).toEqual(sampleEvents.length);
 
     // Reset event state
-    eventState = [];
-
-    // Get first dislike button
-    const firstEventDislikeButton = wrapEvents.find('[negative] > button').at(0);
+    eventsState = [];
 
     // Click dislike
-    firstEventDislikeButton.simulate('click');
+    firstDislikeButton.simulate('click');
 
     // Expect state was update
-    expect(eventState.length).toEqual(sampleEvents.length);
+    expect(eventsState.length).toEqual(sampleEvents.length);
+  });
+
+  test('like and dislike change userRating', () => {
+    // Click like
+    firstLikeButton.simulate('click');
+
+    // Expect userRating is one
+    expect(eventsState[0].userRating).toEqual(1);
+
+    // Reset events state
+    eventsState = [];
+
+    // Click dislike
+    firstDislikeButton.simulate('click');
+
+    // Expect user rating is -1
+    expect(eventsState[0].userRating).toEqual(-1);
   });
 });
