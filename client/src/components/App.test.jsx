@@ -41,7 +41,7 @@ describe('App page', () => {
 
   test('can post selected photos and set events', () => {
     app.setState({ location: 'San Francisco', pictures: [] });
-    app.instance().postSelectedTags();
+    app.instance().sendSelectedPhotos();
     expect(app.state().events).toEqual(events);
   });
 

@@ -25,13 +25,16 @@ class App extends React.Component {
       location: '',
       pictures: [],
     };
-    this.postSelectedTags = this.postSelectedTags.bind(this);
+    this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.twitterLogin = this.twitterLogin.bind(this);
   }
 
+  /**
+   * Closure to edit state
+   * @param {*} key State element to alter
+   */
   superFunction(key) {
     return (event) => {
-      console.log(event);
       this.setState({ [key]: event.target.value });
     };
   }
@@ -40,10 +43,10 @@ class App extends React.Component {
    * Post selected photos to server
    * Sets events state to result
    */
-  postSelectedTags() {
+  sendSelectedPhotos() {
     const { location, pictures } = this.state;
     const selectedPics = pictures.filter(pic => pic.isSelected);
-    console.log('selectedPics', selectedPics);
+
     $.ajax({
       url: '/events/search',
 
@@ -118,7 +121,7 @@ class App extends React.Component {
                 location={location}
                 pictures={pictures}
                 setPictures={this.superFunction('pictures')}
-                sendSelectedPhotos={this.postSelectedTags}
+                sendSelectedPhotos={this.sendSelectedPhotos}
               />)}
           />
           <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
