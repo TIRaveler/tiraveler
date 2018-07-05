@@ -72,7 +72,9 @@ class Review extends React.Component {
         </Modal.Header>
         <Modal.Content>
           <div>
-            {entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)}
+            {
+              entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
+            }
           </div>
           <Button onClick={this.finalize}>
             FINALIZE!
