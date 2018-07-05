@@ -137,14 +137,28 @@ Photos.propTypes = {
   /**
    *  Holds all pictures
    */
-  pictures: PropTypes.arrayOf({
+  pictures: PropTypes.arrayOf(PropTypes.shape({
     /** Unique ID of picture */
-    id: PropTypes.number,
-    /** Whether user has selected picture */
-    isSelected: PropTypes.bool,
+    id: PropTypes.string,
+
     /** Title of picture */
     title: PropTypes.string,
-  }).isRequired,
+
+    /** Description of photo */
+    description: PropTypes.string,
+
+    /** Location of photo */
+    location: PropTypes.shape({
+      lat: PropTypes.string,
+      lon: PropTypes.string,
+    }),
+
+    /** Tags associated with photo */
+    tags: PropTypes.arrayOf(PropTypes.string),
+
+    /** URL image source */
+    srcPath: PropTypes.string,
+  })).isRequired,
   /**
    * Function to send selected photos
    * @param input: Event of submit button
