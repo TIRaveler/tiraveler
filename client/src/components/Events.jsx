@@ -38,7 +38,7 @@ const Event = ({ budget, event, setEvent }) => (
         {event.name}
       </Card.Header>
     </Card.Content>
-    <Card.Content extra>
+    <Card.Content extra style={{ backgroundColor: event.userRating === 1 ? 'green' : undefined }}>
       <Button positive onClick={getKeySetter(setEvent, event, 'userRating', 1)}>
         <Icon name="thumbs up" />
         Like
