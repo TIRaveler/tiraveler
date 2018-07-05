@@ -19,7 +19,7 @@ const getEvents = (location, tags) => axios.get(
     },
   },
 )
-  .then(data => data.businesses)
+  .then(resp => resp.data.businesses)
   .catch(Console.err);
 
 /**
@@ -48,8 +48,6 @@ module.exports.search = async (req, res) => {
     res.status(400);
     res.statusMessage = 'Missing location or pictures parameter';
     res.send({ error: 'Must specify location and pictures' });
-
-    Console.log('Bad request to events search service');
     return;
   }
 
