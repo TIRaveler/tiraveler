@@ -21,10 +21,10 @@ exports.search = (req, res) => {
   const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
 
   // for food search
-  const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=%2Cfood%2Crestaurant%2Cdish%2Cmeal&tag_mode=all&text=${location}+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
+  const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}%2Cfood&tag_mode=all&text=food+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
 
   // for search museum
-  const flickrPhotos3 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=Museum%2Cancient&tag_mode=all&text=${location}+&sort=interestingness-desc&accuracy=6&has_geo=1&per_page=1&safe_search=1&page=1&format=json&nojsoncallback=1`;
+  const flickrPhotos3 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}%2CMuseum&tag_mode=all&text=museum+&sort=interestingness-desc&accuracy=6&has_geo=1&per_page=1&safe_search=1&page=1&format=json&nojsoncallback=1`;
 
 
   // make three requests for general travel info, food info and museum info
@@ -36,7 +36,9 @@ exports.search = (req, res) => {
     .then(axios.spread((data1, data2, data3) => {
       const photos1 = data1.data.photos.photo;
       const photos2 = data2.data.photos.photo;
+      console.log('photos2',photos2);
       const photos3 = data3.data.photos.photo;
+      console.log('photos3',photos3);
       const photos = Object.assign(photos1, photos2, photos3);
       const photosInfo = Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
       return photosInfo;
