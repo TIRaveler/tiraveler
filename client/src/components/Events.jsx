@@ -28,9 +28,9 @@ const getKeySetter = (setEvent, event, key, value) => (
 );
 
 /**
- * Displays and indivisual event
+ * Displays and individual event
 */
-const Event = ({ budget, event, setEvent }) => (
+const Event = ({ event, setEvent }) => (
   <Card>
     <Image size="medium" src={event.image_url} />
     <Card.Content>
@@ -52,16 +52,11 @@ const Event = ({ budget, event, setEvent }) => (
 );
 
 Event.propTypes = {
-  budget: PropTypes.number,
   event: PropTypes.shape({
     image_url: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
   setEvent: PropTypes.func.isRequired,
-};
-
-Event.defaultProps = {
-  budget: 0,
 };
 
 /**

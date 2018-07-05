@@ -13,6 +13,8 @@ exports.save = (req, res) => {
 
 
 // Promise.all(req.body.events.map(Event.saveEvent))
-//   .then(results  => Pormise.all(results.map(result => Itinerary.saveItinerary(req.body.itin, result))))
+//   .then(results  => Pormise.all(results.map(result => (
+//     Itinerary.saveItinerary(req.body.itin, result
+//   )))))
 //   .then(results => Promise.all(...ItinEvents.saveItem...))
 //   .then(console log sthn here)

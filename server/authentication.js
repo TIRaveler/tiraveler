@@ -1,5 +1,5 @@
 const passport = require('passport');
-const Strategy = require('passport-twitter').Strategy;
+const { Strategy } = require('passport-twitter');
 
 passport.use(new Strategy({
   consumerKey: process.env.TWITTER_API,

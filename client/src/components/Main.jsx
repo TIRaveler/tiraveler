@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Parallax } from 'react-parallax';
 import { Button } from 'semantic-ui-react';
 import Navbar from './Navbar';
@@ -46,5 +47,10 @@ const Main = ({ isAuthenticated, twitterLogin }) => (
     </Parallax>
   </div>
 );
+
+Main.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+  twitterLogin: PropTypes.func.isRequired,
+};
 
 export default Main;
