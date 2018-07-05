@@ -138,7 +138,7 @@ class App extends React.Component {
               />)}
           />
           <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
-          <Route path="/review" exact render={props => <Review {...props} entry={this.getLikedEvents()} />} />
+          <Route path="/review" exact render={props => <Review {...props} entries={this.getLikedEvents()} />} />
           <Route path="/finalized" exact render={props => <Finalized {...props} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
         </Switch>

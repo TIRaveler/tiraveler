@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
 import ItineraryEntry from './ItineryEntry';
 
@@ -52,6 +53,9 @@ class Review extends React.Component {
   }
 
   render() {
+    const { entries } = this.props;
+    const { isOpen } = this.state;
+
     return (
       <Modal
         trigger={(
@@ -59,7 +63,7 @@ class Review extends React.Component {
             Review
           </Button>
         )}
-        open={this.state.isOpen}
+        open={isOpen}
         onClose={this.close}
         basic
       >
@@ -68,7 +72,7 @@ class Review extends React.Component {
         </Modal.Header>
         <Modal.Content>
           <div>
-            {entries.map(entry => <ItineraryEntry entry={entry} />)}
+            {entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)}
           </div>
           <Button onClick={this.finalize}>
             FINALIZE!
@@ -78,5 +82,12 @@ class Review extends React.Component {
     );
   }
 }
+
+Review.propTypes = {
+  entries: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    image_url: PropTypes.string,
+  })).isRequired,
+};
 
 export default Review;
