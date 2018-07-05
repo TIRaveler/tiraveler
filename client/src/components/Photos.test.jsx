@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { stub } from 'sinon';
@@ -67,14 +67,14 @@ describe('Photos', () => {
 
     // Mount Photos with Browser Router
     wrapBrowser = mount(
-      <BrowserRouter>
+      <MemoryRouter>
         <Photos
           location={defaultLocationState}
           pictures={samplePhotos}
           setPictures={mockSetPictures}
           sendSelectedPhotos={mockSendSelectedPhotos}
         />
-      </BrowserRouter>,
+      </MemoryRouter>,
     );
 
     // Get photos object
@@ -119,6 +119,14 @@ describe('Photos', () => {
     aCheckBox.simulate('change', { target: { checked: true } });
 
     expect(picturesState[0].isSelected).toEqual(true);
+  });
+
+  test('can submit pictures', () => {
+    const submitButton = wrapPhotos.find('#submit button');
+
+    submitButton.simulate('click');
+
+    expect(picturesState).toEqual(samplePhotos);
   });
 
   afterAll(() => {
