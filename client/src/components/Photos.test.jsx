@@ -113,6 +113,14 @@ describe('Photos', () => {
     });
   });
 
+  test('can toggle pictures', () => {
+    const aCheckBox = wrapPhotos.find('input[type="checkbox"]').at(0);
+
+    aCheckBox.simulate('change', { target: { checked: true } });
+
+    expect(picturesState[0].isSelected).toEqual(true);
+  });
+
   afterAll(() => {
     window.fetch.restore();
   });
