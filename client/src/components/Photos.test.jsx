@@ -82,7 +82,7 @@ describe('Photos', () => {
   });
 
   beforeEach(() => {
-    picturesState = samplePhotos;
+    picturesState = [];
   });
 
   test('it sets props', () => {
@@ -119,14 +119,6 @@ describe('Photos', () => {
     aCheckBox.simulate('change', { target: { checked: true } });
 
     expect(picturesState[0].isSelected).toEqual(true);
-  });
-
-  test('can submit pictures', () => {
-    const submitButton = wrapPhotos.find('#submit button');
-
-    submitButton.simulate('click');
-
-    expect(picturesState).toEqual(samplePhotos);
   });
 
   afterAll(() => {
