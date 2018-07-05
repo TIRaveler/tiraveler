@@ -5,6 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { stub } from 'sinon';
 
 import Photos from './Photos';
+import { getDifferentKeysAndTypes } from '../../../testUtils/objectUtils';
 import sampleServerPhotos from '../../../server/controllers/sample_data/photos';
 import samplePhotos from './sample_data/photos';
 
@@ -19,15 +20,10 @@ describe('Photos', () => {
   const defaultLocationState = 'Los Angles';
 
   /**
-   * Mock of the location state
-   */
-  let locationState;
-
-  /**
    * Mock of the picture state
    * @type {[*]}
    */
-  let picturesState;
+  let picturesState = [];
 
   /**
    * Mock setting location state
@@ -49,9 +45,11 @@ describe('Photos', () => {
     picturesState = event.target.value;
   };
 
+  let wrapBrowser;
   let wrapPhotos;
 
   beforeAll(() => {
+    // Stub fetch API
     window.fetch = stub().callsFake((url, { method, body }) => (
       new Promise((resolve, reject) => {
         if (url === '/photos/search' && method === 'POST') {
@@ -67,7 +65,8 @@ describe('Photos', () => {
       })
     ));
 
-    wrapPhotos = mount(
+    // Mount Photos with Browser Router
+    wrapBrowser = mount(
       <BrowserRouter>
         <Photos
           location={defaultLocationState}
@@ -76,11 +75,13 @@ describe('Photos', () => {
           sendSelectedPhotos={mockSendSelectedPhotos}
         />
       </BrowserRouter>,
-    ).find(Photos);
+    );
+
+    // Get photos object
+    wrapPhotos = wrapBrowser.find(Photos);
   });
 
   beforeEach(() => {
-    locationState = defaultLocationState;
     picturesState = samplePhotos;
   });
 
@@ -96,6 +97,20 @@ describe('Photos', () => {
     expect(pictures).toEqual(samplePhotos);
     expect(setPictures).toEqual(mockSetPictures);
     expect(sendSelectedPhotos).toEqual(mockSendSelectedPhotos);
+  });
+
+  test('mounting fetches and parses photos', () => {
+    // A sample photo
+    const samplePhoto = samplePhotos[0];
+
+    // Call componentDidMount and update picture state
+    wrapBrowser.mount();
+
+    // Compare picture with sample data
+    picturesState.forEach((picture) => {
+      // Compare has same keys and data types
+      expect(getDifferentKeysAndTypes(samplePhoto, picture)).toEqual({});
+    });
   });
 
   afterAll(() => {
