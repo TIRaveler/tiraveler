@@ -9,7 +9,6 @@ import Time from './Time';
 import Photos from './Photos';
 import Events from './Events';
 import Review from './Review';
-import Finalized from './Finalized';
 import Itinerary from './Itinerary';
 
 /**
@@ -29,17 +28,8 @@ class App extends React.Component {
     };
 
     // Events
-    this.getLikedEvents = this.getLikedEvents.bind(this);
     this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.twitterLogin = this.twitterLogin.bind(this);
-  }
-
-  /**
-   * Filter Events for liked events
-   */
-  getLikedEvents() {
-    const { events } = this.state;
-    return events.filter(event => event.userRating > 0);
   }
 
   /**
@@ -139,7 +129,6 @@ class App extends React.Component {
           />
           <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
           <Route path="/review" exact render={props => <Review {...props} entries={this.getLikedEvents()} />} />
-          <Route path="/finalized" exact render={props => <Finalized {...props} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
         </Switch>
       </BrowserRouter>

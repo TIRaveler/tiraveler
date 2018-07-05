@@ -45,29 +45,6 @@ describe('App page', () => {
     expect(app.state().events).toEqual(events);
   });
 
-  test('can get like events', () => {
-    // Get state
-    app.setState({
-      events: [
-        {
-          name: 'A liked event',
-          userRating: 1,
-        },
-        {
-          name: 'A neutral event',
-        },
-        {
-          name: 'A disliked event',
-          userRating: -1,
-        },
-      ],
-    });
-
-    // Get liked photos
-    const likedEvents = app.instance().getLikedEvents();
-    expect(likedEvents).toEqual(app.state().events.slice(0, 1));
-  });
-
   afterAll(() => {
     $.ajax.restore();
   });
