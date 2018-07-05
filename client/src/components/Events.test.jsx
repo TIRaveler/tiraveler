@@ -19,7 +19,7 @@ describe('Events page', () => {
 
   /**
    * Stub for setting events
-   * @type {(events: [*]) => undefined}
+   * @type {(events: [{target: {value: *}}]) => undefined}
    */
   let setEventsStub;
 
@@ -36,8 +36,8 @@ describe('Events page', () => {
   let firstDislikeButton;
 
   beforeAll(() => {
-    setEventsStub = (currentEvents) => {
-      eventsState = currentEvents;
+    setEventsStub = (event) => {
+      eventsState = event.target.value;
     };
 
     wrapBrowser = mount(
