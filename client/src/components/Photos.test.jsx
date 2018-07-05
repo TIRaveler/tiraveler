@@ -31,9 +31,7 @@ describe('Photos', () => {
    * @param {*}   event.taget        Target object
    * @param {[*]} event.target.value New pictures
    */
-  const mockSendSelectedPhotos = (event) => {
-    picturesState = event.target.value;
-  };
+  const mockSendSelectedPhotos = stub();
 
   /**
    * Mock sending selected photos
@@ -83,6 +81,8 @@ describe('Photos', () => {
 
   beforeEach(() => {
     picturesState = [];
+    // Reset stub
+    mockSendSelectedPhotos.reset();
   });
 
   test('it sets props', () => {
@@ -119,6 +119,18 @@ describe('Photos', () => {
     aCheckBox.simulate('change', { target: { checked: true } });
 
     expect(picturesState[0].isSelected).toEqual(true);
+  });
+
+  test('can submit pictures', () => {
+    const submitButton = wrapPhotos.find('#submit').at(0);
+
+    expect(submitButton.length).toEqual(1);
+
+    // Click button
+    submitButton.simulate('click');
+
+    // Test send pictures called once
+    expect(mockSendSelectedPhotos.callCount).toEqual(1);
   });
 
   afterAll(() => {
