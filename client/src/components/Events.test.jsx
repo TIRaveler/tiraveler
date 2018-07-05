@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
 import Events from './Events';
+import Review from './Review';
 import sampleEvents from '../../../server/controllers/sample_data/events';
 
 const { mount } = Enzyme;
@@ -96,5 +97,40 @@ describe('Events page', () => {
 
     // Expect user rating is -1
     expect(eventsState[0].userRating).toEqual(-1);
+  });
+
+  test('can get liked events', () => {
+    // Get state
+    const events = [
+      {
+        name: 'A liked event',
+        userRating: 1,
+        image_url: '',
+      },
+      {
+        name: 'A neutral event',
+        image_url: '',
+      },
+      {
+        name: 'A disliked event',
+        userRating: -1,
+        image_url: '',
+      },
+    ];
+
+    // Set props of events
+    wrapEvents = mount(
+      <MemoryRouter>
+        <Events
+          budget={budgetProp}
+          events={events}
+          setEvents={setEventsStub}
+        />
+      </MemoryRouter>,
+    ).find(Events);
+
+    // Get liked photos
+    const likedEvents = wrapEvents.find(Review).props().entries;
+    expect(likedEvents).toEqual(events.slice(0, 1));
   });
 });
