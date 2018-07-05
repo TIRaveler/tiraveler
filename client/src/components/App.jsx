@@ -18,6 +18,8 @@ import Itinerary from './Itinerary';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // Set state
     this.state = {
       budget: 0,
       events: [],
@@ -25,8 +27,19 @@ class App extends React.Component {
       location: '',
       pictures: [],
     };
+
+    // Events
+    this.getLikedEvents = this.getLikedEvents.bind(this);
     this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.twitterLogin = this.twitterLogin.bind(this);
+  }
+
+  /**
+   * Filter Events for liked events
+   */
+  getLikedEvents() {
+    const { events } = this.state;
+    return events.filter(event => event.userRating > 0);
   }
 
   /**
@@ -125,7 +138,7 @@ class App extends React.Component {
               />)}
           />
           <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
-          <Route path="/review" exact render={props => <Review {...props} />} />
+          <Route path="/review" exact render={props => <Review {...props} entry={this.getLikedEvents()} />} />
           <Route path="/finalized" exact render={props => <Finalized {...props} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
         </Switch>
