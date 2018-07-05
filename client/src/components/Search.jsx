@@ -1,10 +1,10 @@
-import $ from 'jquery';
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button, Divider, Input, Header, Container, Grid,
 } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
-import LoggedInNav from './LoggedInNav.jsx';
+import LoggedInNav from './LoggedInNav';
 
 const styles = {
   bordered: {
@@ -24,6 +24,23 @@ const searchService = ({ location, budget }) => {
   //   });
 };
 
+/**
+ * Convert budget to number and update
+ * @param {*}      event              Calling event
+ * @param {*}      event.target       Calling object
+ * @param {string} event.target.value Budget value
+ * @param {*}      callback           Function to update budget state
+ */
+const convertBudgetToNumberAndUpdate = (event, callback) => {
+  const numberEvent = Object.assign({}, event);
+  numberEvent.target.value = Number(event.target.value);
+  callback(numberEvent);
+};
+
+/**
+ * Search For events in area and budget
+ * @param {{handleBudget: {*}, handleLocation: {*}, appState: {*}}}
+ */
 const Search = ({ handleBudget, handleLocation, appState }) => (
   <div>
     <LoggedInNav />
@@ -44,7 +61,7 @@ const Search = ({ handleBudget, handleLocation, appState }) => (
         <Container>
           <Grid>
             <div className="eight column centered row">
-              <Input fluid size="huge" placeholder="Paradise..." onChange={handleLocation} />
+              <Input id="input-location" fluid size="huge" placeholder="Paradise..." onChange={handleLocation} />
             </div>
             <div className="equal width row">
               <div className="column">
@@ -53,7 +70,15 @@ const Search = ({ handleBudget, handleLocation, appState }) => (
                 </Header>
               </div>
               <div className="column">
-                <Input fluid size="big" onChange={handleBudget} icon="dollar sign" iconPosition="left" />
+                <Input
+                  id="input-budget"
+                  type="number"
+                  fluid
+                  size="big"
+                  onChange={e => convertBudgetToNumberAndUpdate(e, handleBudget)}
+                  icon="dollar sign"
+                  iconPosition="left"
+                />
               </div>
             </div>
           </Grid>
@@ -78,5 +103,29 @@ const Search = ({ handleBudget, handleLocation, appState }) => (
     </div>
   </div>
 );
+
+Search.propTypes = {
+  /**
+   * Current app state
+   * @prop {number} budget   Current budget
+   * @prop {string} location Current location
+   */
+  appState: PropTypes.shape({
+    budget: PropTypes.number.isRequired,
+    location: PropTypes.string.isRequired,
+  }).isRequired,
+
+  /**
+   * Update budget information
+   * @param {{target: {value: {number}}}} event Event object
+   */
+  handleBudget: PropTypes.func.isRequired,
+
+  /**
+   * Update location information
+   * @param {{target: {value: {string}}}} event Event object
+   */
+  handleLocation: PropTypes.func.isRequired,
+};
 
 export default Search;

@@ -1,5 +1,6 @@
 import React from 'react';
-import GetStarted from './GetStarted.jsx';
+import PropTypes from 'prop-types';
+import GetStarted from './GetStarted';
 
 const signinBtn = (
   <button type="button" className="ui basic button">
@@ -19,5 +20,9 @@ const Navbar = ({ twitterLogin }) => (
     </div>
   </div>
 );
+
+Navbar.propTypes = {
+  twitterLogin: PropTypes.func.isRequired,
+};
 
 export default Navbar;

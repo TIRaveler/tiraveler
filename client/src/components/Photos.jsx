@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
@@ -9,9 +10,10 @@ import {
 } from 'semantic-ui-react';
 
 
-// Toggle isSelected in photo and returns new array
-// pictures: Array of picture objects (See Photos proptypes)
-// index: Index of photo to toggle
+/** Toggle isSelected in photo and returns new array
+ * @param {[]}     pictures Array of picture objects (See Photos proptypes)
+ * @param {number} index    Index of photo to toggle
+ */
 const toggleSelectedPhoto = (pictures, index) => {
   const newPictures = pictures.slice();
 
@@ -20,10 +22,12 @@ const toggleSelectedPhoto = (pictures, index) => {
   return newPictures;
 };
 
-// Toggle selected photo and update state
-// pictures: Array of pictures
-// index: Index of photo in array to toggle
-// setPictures: Function to set picture state using event.target.value
+/**
+ * Toggle selected photo and update state
+ * @param {[]} pictures                         Array of pictures
+ * @param {number} index                        Index of photo in array to toggle
+ * @param {(event: *) => undefined} setPictures Set picture state using event.target.value
+ */
 const toggleSelectedPhotoAndUpdate = (pictures, index, setPictures) => {
   setPictures({
     target: {
@@ -32,28 +36,31 @@ const toggleSelectedPhotoAndUpdate = (pictures, index, setPictures) => {
   });
 };
 
-// Create picture toggle event
-// pictures: Array of pictures
-// index: index of picture in array
-// setPictures: fuction to set pictures state
+/**
+ * Create picture toggle event
+ * @param pictures    Array of pictures
+ * @param index       index of picture in array
+ * @param setPictures fuction to set pictures state
+ */
 const getToggleEvent = (pictures, index, setPictures) => (
   () => {
     toggleSelectedPhotoAndUpdate(pictures, index, setPictures);
   }
 );
 
-// Select photos to determine itinerary
+/** Select photos to determine itinerary */
 class Photos extends React.Component {
   componentDidMount() {
-    const { setPictures,location } = this.props;
+    const { setPictures, location } = this.props;
 
-    fetch('/photos/search', { method: 'POST',
+    fetch('/photos/search', {
+      method: 'POST',
       headers: {
-     'Accept': 'application/json',
-     'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({location})
-     })
+      body: JSON.stringify({ location }),
+    })
       .then(response => response.json())
       .then((data) => {
         const event = {
@@ -80,7 +87,7 @@ class Photos extends React.Component {
 
     return (
       <div>
-        <h1 className="ui big header" centered>
+        <h1 className="ui big header center aligned page">
           Select 5 places you want to go!
           {' '}
         </h1>
@@ -105,11 +112,12 @@ class Photos extends React.Component {
         </Card.Group>
         <Route render={({ history }) => (
           <Button
+            id="submit"
             floated="right"
             className="blue"
-            onClick={(event) => {
+            onClick={() => {
               history.push('/events');
-              sendSelectedPhotos(event);
+              sendSelectedPhotos();
             }}
           >
             Submit
@@ -123,21 +131,46 @@ class Photos extends React.Component {
 
 
 Photos.propTypes = {
-  // Holds all pictures
-  pictures: PropTypes.arrayOf({
-    // Unique ID of picture
-    id: PropTypes.number,
-    // Whether user has selected picture
-    isSelected: PropTypes.bool,
-    // Title of picture
+  /**
+   * Location to search for photos
+   */
+  location: PropTypes.string.isRequired,
+  /**
+   *  Holds all pictures
+   */
+  pictures: PropTypes.arrayOf(PropTypes.shape({
+    /** Unique ID of picture */
+    id: PropTypes.string,
+
+    /** Title of picture */
     title: PropTypes.string,
-  }).isRequired,
-  // Function to send selected photos
-  // Input: Event of submit button
-  sendSelectedPhotos: PropTypes.func.isRequired,
-  // Function to update App picture state
-  // Input: Array of pictures (See Photos pictures prop-type)
+
+    /** Description of photo */
+    description: PropTypes.string,
+
+    /** Location of photo */
+    location: PropTypes.shape({
+      lat: PropTypes.string,
+      lon: PropTypes.string,
+    }),
+
+    /** Tags associated with photo */
+    tags: PropTypes.arrayOf(PropTypes.string),
+
+    /** URL image source */
+    srcPath: PropTypes.string,
+  })).isRequired,
+
+  /**
+   * Function to update App picture state
+   * @param Input: Array of pictures (See Photos pictures prop-type)
+   */
   setPictures: PropTypes.func.isRequired,
+
+  /**
+   * Function to submit pictures
+   */
+  sendSelectedPhotos: PropTypes.func.isRequired,
 };
 
 export default Photos;

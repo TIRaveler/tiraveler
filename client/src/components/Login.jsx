@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Icon } from 'semantic-ui-react';
 
 class Login extends React.Component {
@@ -71,5 +72,9 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  twitterLogin: PropTypes.func.isRequired,
+};
 
 export default Login;

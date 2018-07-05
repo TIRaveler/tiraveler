@@ -15,17 +15,19 @@ describe('App page', () => {
   let app;
 
   beforeAll(() => {
-    const handleRoutes = (url, success) => {
+    const handleRoutes = (url, data, success) => {
       if (url === '/events/search') {
-        success(events);
+        if (typeof data.location === 'string' && Array.isArray(data.pictures)) {
+          success(events);
+        }
       }
     };
 
-    sinon.stub($, 'ajax').callsFake(({ success, url }) => {
-      handleRoutes(url, success);
+    sinon.stub($, 'ajax').callsFake(({ data, url, success }) => {
+      handleRoutes(url, data, success);
     });
     sinon.stub($, 'post').callsFake((url, data, success) => {
-      handleRoutes(url, success);
+      handleRoutes(url, data, success);
     });
 
     app = shallow(<App />);
@@ -39,8 +41,31 @@ describe('App page', () => {
 
   test('can post selected photos and set events', () => {
     app.setState({ location: 'San Francisco', pictures: [] });
-    app.instance().postSelectedTags();
+    app.instance().sendSelectedPhotos();
     expect(app.state().events).toEqual(events);
+  });
+
+  test('can get like events', () => {
+    // Get state
+    app.setState({
+      events: [
+        {
+          name: 'A liked event',
+          userRating: 1,
+        },
+        {
+          name: 'A neutral event',
+        },
+        {
+          name: 'A disliked event',
+          userRating: -1,
+        },
+      ],
+    });
+
+    // Get liked photos
+    const likedEvents = app.instance().getLikedEvents();
+    expect(likedEvents).toEqual(app.state().events.slice(0, 1));
   });
 
   afterAll(() => {

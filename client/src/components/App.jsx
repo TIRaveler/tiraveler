@@ -18,19 +18,36 @@ import Itinerary from './Itinerary';
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // Set state
     this.state = {
-      isAuthenticated: false,
       budget: 0,
+      events: [],
+      isAuthenticated: false,
       location: '',
       pictures: [],
     };
-    this.postSelectedTags = this.postSelectedTags.bind(this);
+
+    // Events
+    this.getLikedEvents = this.getLikedEvents.bind(this);
+    this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.twitterLogin = this.twitterLogin.bind(this);
   }
 
+  /**
+   * Filter Events for liked events
+   */
+  getLikedEvents() {
+    const { events } = this.state;
+    return events.filter(event => event.userRating > 0);
+  }
+
+  /**
+   * Closure to edit state
+   * @param {*} key State element to alter
+   */
   superFunction(key) {
     return (event) => {
-      console.log(event);
       this.setState({ [key]: event.target.value });
     };
   }
@@ -39,16 +56,16 @@ class App extends React.Component {
    * Post selected photos to server
    * Sets events state to result
    */
-  postSelectedTags() {
+  sendSelectedPhotos() {
     const { location, pictures } = this.state;
-    const selectedPics= pictures.filter(pic => pic.isSelected);
-    console.log('selectedPics', selectedPics);
+    const selectedPics = pictures.filter(pic => pic.isSelected);
+
     $.ajax({
       url: '/events/search',
 
       data: {
         location,
-        'pictures':selectedPics,
+        pictures: selectedPics,
       },
       type: 'POST',
       error: (xhr, status, err) => {
@@ -73,7 +90,14 @@ class App extends React.Component {
   }
 
   render() {
-    const { events, pictures, isAuthenticated } = this.state;
+    const {
+      budget,
+      events,
+      isAuthenticated,
+      location,
+      pictures,
+    } = this.state;
+
     return (
       <BrowserRouter>
         <Switch>
@@ -107,14 +131,14 @@ class App extends React.Component {
             render={props => (
               <Photos
                 {...props}
-                location={this.state.location}
+                location={location}
                 pictures={pictures}
                 setPictures={this.superFunction('pictures')}
-                sendSelectedPhotos={this.postSelectedTags}
+                sendSelectedPhotos={this.sendSelectedPhotos}
               />)}
           />
-          <Route path="/events" exact render={props => <Events {...props} events={events} setEvents={this.superFunction('events')} />} />
-          <Route path="/review" exact render={props => <Review {...props} />} />
+          <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
+          <Route path="/review" exact render={props => <Review {...props} entries={this.getLikedEvents()} />} />
           <Route path="/finalized" exact render={props => <Finalized {...props} />} />
           <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
         </Switch>

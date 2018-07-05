@@ -19,7 +19,7 @@ const getEvents = (location, tags) => axios.get(
     },
   },
 )
-  .then(data => data.businesses)
+  .then(resp => resp.data.businesses)
   .catch(Console.err);
 
 /**
@@ -43,12 +43,11 @@ const resolveTags = () => (
  */
 module.exports.search = async (req, res) => {
   const { location, pictures } = req.body;
-  console.log(pictures);
 
   if (!location || !pictures) {
     res.status(400);
-    res.send({ error: 'Must specify location and pictures' });
     res.statusMessage = 'Missing location or pictures parameter';
+    res.send({ error: 'Must specify location and pictures' });
     return;
   }
 
