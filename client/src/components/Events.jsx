@@ -9,6 +9,8 @@ import {
 } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 
+import Review from './Review';
+
 /**
  * Closure to update event key to a specific value
  * @param {(event: *) => undefined} setEvent Function to set event
@@ -78,6 +80,11 @@ const getEventSetter = (setEvents, events, index) => (
   }
 );
 
+  /**
+   * Filter Events for liked events
+   */
+const getLikedEvents = events => (events.filter(event => event.userRating > 0));
+
 /** Displays all events for user to check */
 const Events = ({ budget, events, setEvents }) => (
   <React.Fragment>
@@ -95,14 +102,9 @@ const Events = ({ budget, events, setEvents }) => (
         />
       ))
     }
-    <Route render={({ history }) => (
-      <Button id="#review" onClick={() => history.push('/review')}>
-        <Icon name="file alternate" />
-        Review and Finish
-      </Button>
-    )}
+    <Review
+      entries={getLikedEvents(events)}
     />
-
   </React.Fragment>
 );
 
