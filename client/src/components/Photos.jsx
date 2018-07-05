@@ -83,7 +83,7 @@ class Photos extends React.Component {
   }
 
   render() {
-    const { pictures, setPictures } = this.props;
+    const { pictures, setPictures, sendSelectedPhotos } = this.props;
 
     return (
       <div>
@@ -117,6 +117,7 @@ class Photos extends React.Component {
             className="blue"
             onClick={() => {
               history.push('/events');
+              sendSelectedPhotos();
             }}
           >
             Submit
@@ -165,6 +166,11 @@ Photos.propTypes = {
    * @param Input: Array of pictures (See Photos pictures prop-type)
    */
   setPictures: PropTypes.func.isRequired,
+
+  /**
+   * Function to submit pictures
+   */
+  sendSelectedPhotos: PropTypes.func.isRequired,
 };
 
 export default Photos;
