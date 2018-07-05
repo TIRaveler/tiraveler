@@ -79,7 +79,7 @@ const getEventSetter = (setEvents, events, index) => (
     newEvents[index] = event;
 
     // Update events
-    setEvents(newEvents);
+    setEvents({ target: { value: newEvents } });
   }
 );
 
