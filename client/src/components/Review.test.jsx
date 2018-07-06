@@ -9,43 +9,79 @@ import Review from './Review';
 import sampleEntries from '../../../server/controllers/sample_data/events';
 
 Enzyme.configure({ adapter: new Adapter() });
-const { mount } = Enzyme;
+const { shallow } = Enzyme;
 
 describe('Review', () => {
-  let wrapBrowser;
-  let wrapReview;
+  /** Sample itinerary information */
+  const sampleItin = {
+    name: 'Some test itin',
+  };
+  /**
+   * Events sent to server
+   */
+  let sentEvents = [];
+
+  /**
+   * Itinerary information sent to server
+   */
+  let sentItin = {};
+
+  const getShallowReviewWithRouter = aReview => (
+    shallow(
+      <MemoryRouter>
+        {aReview}
+      </MemoryRouter>,
+    ).find(Review)
+  );
 
   beforeAll(() => {
     // Stub Ajax post
-    stub($, 'post').callsFake((url, { itin }) => (
+    stub($, 'post').callsFake((url, { itin, events }) => (
       new Promise((resolve, reject) => {
         if (url === '/itinerary/save') {
-          if (Array.isArray(itin)) {
+          if (Array.isArray(events) && typeof itin === 'object') {
+            sentEvents = events;
+            sentItin = itin;
             resolve('Success');
           }
         }
 
+
         reject(new Error('Invalid request'));
       })
     ));
+  });
 
-    // Create router
-    wrapBrowser = mount(
-      <MemoryRouter>
-        <Review entries={sampleEntries} />
-      </MemoryRouter>,
-    );
-
-    // Get review
-    wrapReview = wrapBrowser.find(Review);
+  beforeEach(() => {
+    // Reset sent items
+    sentEvents = [];
+    sentItin = {};
   });
 
   test('can set props', () => {
+    // Shallow render review
+    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} />);
+
     // Get entries
     const { entries } = wrapReview.props();
 
     // Test is sample entries
     expect(entries).toEqual(sampleEntries);
+  });
+
+  test('finalize sends events', () => {
+    // Shallow render review
+    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} />).dive();
+
+    // Set itinerary
+    wrapReview.setState({ itin: sampleItin });
+
+    // Call finalize on state review
+    wrapReview.instance().finalize();
+
+    // Expect sent data
+    expect(sentEvents).toEqual(sampleEntries);
+    expect(sentItin).toEqual(sampleItin);
   });
 
   afterAll(() => {
