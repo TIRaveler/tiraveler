@@ -1,32 +1,63 @@
 import React from 'react';
-import { Segment } from 'semantic-ui-react';
+
 
 const Time = () => (
-  <div>
-    <Segment padded>
-      <Segment.Group>
-        <Segment textAlign="center" size="massive">
-          Time
-        </Segment>
-        <Segment.Group horizontal>
-          <Segment textAlign="center" size="massive">
-            Spring
-          </Segment>
-          <Segment textAlign="center" size="massive">
-            Summer
-          </Segment>
-          <Segment textAlign="center" size="massive">
-            Fall
-          </Segment>
-          <Segment textAlign="center" size="massive">
-            Winter
-          </Segment>
-          <Segment textAlign="center" size="massive">
-            Any
-          </Segment>
-        </Segment.Group>
-      </Segment.Group>
-    </Segment>
+  <div className="ui equal width center aligned padded grid">
+    <div className="row">
+      Time
+    </div>
+    <div className="stretched row">
+      <div className="column">
+        <div className="ui segment">
+          <div className="ui fade reveal image">
+            <img className="visible content" src="https://blog.beltone.com/wp-content/uploads/2017/11/pexels-photo-235621.jpg" alt="" />
+            <span className="hidden content" textalign="center">
+              WINTER
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="column">
+        <div className="ui segment">
+          <div className="ui fade reveal image">
+            <img className="visible content" src="https://blog.beltone.com/wp-content/uploads/2017/11/pexels-photo-235621.jpg" alt="" />
+            <span className="hidden content" textalign="center">
+              WINTER
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="column">
+        <div className="ui segment">
+          <div className="ui fade reveal image">
+            <img className="visible content" src="https://blog.beltone.com/wp-content/uploads/2017/11/pexels-photo-235621.jpg" alt="" />
+            <span className="hidden content" textalign="center">
+              WINTER
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="column">
+        <div className="ui segment">
+          <div className="ui fade reveal image">
+            <img className="visible content" src="https://blog.beltone.com/wp-content/uploads/2017/11/pexels-photo-235621.jpg" alt="" />
+            <span className="hidden content" textalign="center">
+              WINTER
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="column">
+        <div className="ui segment">
+          <div className="ui fade reveal image">
+            <img className="visible content" src="https://blog.beltone.com/wp-content/uploads/2017/11/pexels-photo-235621.jpg" alt="" />
+            <span className="hidden content" textalign="center">
+              WINTER
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 );
 
