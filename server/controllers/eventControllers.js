@@ -29,7 +29,8 @@ const getEvents = (location, tags) => axios.get(
  */
 const resolveTags = () => (
   // TODO: Resolve tags
-  ['hiking', 'fishing']
+  //['hiking', 'fishing']
+  ['museum', 'sightseeing']
 );
 
 /**
@@ -51,7 +52,9 @@ module.exports.search = async (req, res) => {
     return;
   }
 
+
   const tags = resolveTags(pictures);
+  console.log(tags);
   const events = await getEvents(location, tags);
   res.send(events);
 };
