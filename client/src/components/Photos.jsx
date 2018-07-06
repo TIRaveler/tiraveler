@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import {
   Button,
   Checkbox,
@@ -84,11 +84,11 @@ class Photos extends React.Component {
 
   render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
-
+    console.log(pictures);
     return (
       <div>
         <h1 className="ui big header center aligned page">
-          Select 5 places you want to go!
+          Please select at least 3 photos that you like!
           {' '}
         </h1>
         <Card.Group itemsPerRow={5}>
@@ -97,7 +97,7 @@ class Photos extends React.Component {
               <Card key={photo.id}>
                 <Card.Content>
                   <Image
-                    style={{ width: '220px', height: '220px' }}
+                    style={{ width: '190px', height: '190px' }}
                     src={photo.srcPath}
                   />
                   <Card.Description>
@@ -120,7 +120,20 @@ class Photos extends React.Component {
               sendSelectedPhotos();
             }}
           >
-            Submit
+            Let's travle!
+          </Button>
+        )}
+        />
+        <Route render={({ history }) => (
+          <Button
+            id="submit"
+            floated="left"
+            className="blue"
+            onClick={() => {
+              history.push('/search');
+            }}
+          >
+            Start Over!
           </Button>
         )}
         />
