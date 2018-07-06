@@ -71,7 +71,9 @@ class Photos extends React.Component {
               description: photo.description._content,
               location: { lat: photo.location.latitude, lon: photo.location.longitude },
               tags: photo.tags.tag.map(
-                ({ raw }) => raw,
+                ({ raw }) => {
+                  let rawL = raw.toLowerCase();
+                  return rawL}
               ),
               srcPath: `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`,
             })),
