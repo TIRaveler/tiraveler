@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Icon } from 'semantic-ui-react';
+import axios from 'axios';
 
 class Login extends React.Component {
   constructor(props) {
@@ -32,10 +33,19 @@ class Login extends React.Component {
 
   handleSubmit() {
     console.log(this.state.submittedEmail, this.state.submittedPassword);
+    let { submittedPassword, submittedEmail } = this.state;
     this.setState({
       password: '',
       email: '',
     });
+    axios.post('/user/login', {
+      email: submittedEmail,
+      password: submittedPassword
+    })
+    .then((signInSuccess) => {
+      console.log(signInSuccess);
+    })
+    .catch((err) => console.error(err) )
   }
 
   render() {

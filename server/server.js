@@ -12,10 +12,26 @@ app.use(require('express-session')({
   secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: 'auto' },
+  cookie: { secure: 'auto', expires: 6000000 },
 }));
 
-app.use('/', express.static(clientFolder));
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+    res.clearCookie('user_sid');
+  }
+  next();
+});
+
+const sessionChecker = (req, res) => {
+  if (req.session.user && req.cookies.user_sid) {
+    res.redirect('/search');
+  } else {
+    res.redirect('/');
+  }
+};
+
+app.use('/', sessionChecker);
+// app.use('/', express.static(clientFolder));
 app.use('/', routes);
 // Last endpoint, wild card
 const reactRouterRoutes = ['/', '/search', '/time', '/photos', '/events',
