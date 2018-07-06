@@ -15,7 +15,8 @@ const getEvents = (location, tags) => axios.get(
     },
     params: {
       location,
-      term: tags,
+      //term: tags,
+      term: 'museum'
     },
   },
 )
@@ -29,8 +30,8 @@ const getEvents = (location, tags) => axios.get(
  */
 const resolveTags = () => (
   // TODO: Resolve tags
-  //['hiking', 'fishing']
-  ['museum', 'sightseeing']
+  ['hiking', 'fishing']
+  //let travelTags=['museum', 'sightseeing','food','adventure']
 );
 
 /**
