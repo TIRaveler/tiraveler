@@ -76,6 +76,9 @@ class Review extends React.Component {
               entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
             }
           </div>
+          <Button onClick={this.close}>
+            EDIT ITINERARY
+          </Button>
           <Button onClick={this.finalize}>
             FINALIZE!
           </Button>
