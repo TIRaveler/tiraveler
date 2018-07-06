@@ -69,7 +69,7 @@ class Photos extends React.Component {
               id: photo.id,
               title: photo.title._content,
               description: photo.description._content,
-              location: { lat: photo.location.longitude, lon: photo.location.longitude },
+              location: { lat: photo.location.latitude, lon: photo.location.longitude },
               tags: photo.tags.tag.map(
                 ({ raw }) => raw,
               ),
