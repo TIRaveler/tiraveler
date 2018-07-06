@@ -6,52 +6,65 @@ import ItineraryEntry from './ItineryEntry';
 
 
 class Review extends React.Component {
+  /**
+   * Create new Review button and associated modal
+   * @param {Object} props Review properties
+   * @param {Object} props.entries Current itinerary entries
+   */
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
+      itin: {
+        name: 'sampleName',
+      },
     };
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.finalize = this.finalize.bind(this);
   }
 
+  /**
+   * Open review modal
+   */
   open() {
     this.setState({
       isOpen: true,
     });
   }
 
+  /**
+   * Close review modal
+   */
   close() {
     this.setState({
       isOpen: false,
     });
   }
 
+  /**
+   * Save itinerary
+   */
   finalize() {
+    // Get prop values
+    const { entries } = this.props;
+
+    // Get state values
+    const { itin } = this.state;
+
+    // Save itinerary
     $.post('/itinerary/save', {
-      itin: { name: 'sampleName' },
-      events: [{
-        name: 'eventName1',
-        location: 'here',
-        yelplink: 'yelpdotcom',
-        tags: 'tagtagtag',
-        price: 100.00,
-        photoUrl: 'photoUrl',
-      }, {
-        name: 'eventName2',
-        location: 'there',
-        yelplink: 'yelpdotcom',
-        tags: 'tagtagtag',
-        price: 200.00,
-        photoUrl: 'photoUrl',
-      }],
+      itin,
+      events: entries,
     })
       .then(response => console.log(response))
       .catch(error => console.log(error, 'problem sending itinerary'));
     this.close();
   }
 
+  /**
+   * Render review button and pop-up
+   */
   render() {
     const { entries } = this.props;
     const { isOpen } = this.state;
