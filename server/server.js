@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('client-sessions');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes');
@@ -8,30 +9,17 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('express-session')({
+app.use(session({
+  cookieName: 'session',
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: 'auto', expires: 6000000 },
+  duration: 30 * 60 * 100000,
+  activeDuration: 5 * 60 * 100000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
 }));
 
-app.use((req, res, next) => {
-  if (req.cookies.user_sid && !req.session.user) {
-    res.clearCookie('user_sid');
-  }
-  next();
-});
-
-const sessionChecker = (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.redirect('/search');
-  } else {
-    res.redirect('/');
-  }
-};
-
-app.use('/', sessionChecker);
-// app.use('/', express.static(clientFolder));
+app.use('/', express.static(clientFolder));
 app.use('/', routes);
 // Last endpoint, wild card
 const reactRouterRoutes = ['/', '/search', '/time', '/photos', '/events',

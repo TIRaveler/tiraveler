@@ -16,15 +16,13 @@ router.route('/user/login')
  * Logout user
  */
 router.route('/user/logout')
-  .post(userCtrl.logout);
+  .get(userCtrl.logout);
 
 /**
  * Register user
  * @param {string} username - The username
  * @param {string} password - The user's password
  */
-router.route('/user/register')
-  .post(userCtrl.register);
 
 /**
  * Search photos

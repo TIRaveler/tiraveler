@@ -3,37 +3,42 @@ const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
   let pw = req.body.password;
-  let email = req.body.email;
+  let name = req.body.name;
 
   User.findOne({
-    where: { username: email },
+    where: { username: name },
   }).then((user) => {
     if (user) {
       let isMatch = bcrypt.compareSync(pw, user.password);
       if (isMatch) {
-        res.status(200).send(isMatch);
+        req.session.user = user;
+        res.status(200).send('Successful login!');
+      } else {
+        console.log('pw is not a match: ', isMatch);
       }
     } else {
       let hash = bcrypt.hashSync(pw, 10);
-      User.create({ username: email, password: hash }).then(() => {
-        res.status(200).send('Created');
+      User.create({ username: name, password: hash }).then(() => {
+        req.session.user = user;
+        res.status(201).send('Created');
       }).catch(() => {
         res.status(404).send('Not created');
       })
     }
   }).catch((err) => {
     console.error(err);
-    res.status(404).send('Invalid password/email');
+    res.status(404).send('Invalid password/name');
   })
-
 };
 
 exports.logout = (req, res) => {
-  if (req.session.user && req.cookies.user_sid) {
-    res.clearCookie('user_sid');
-    res.redirect('/');
+  console.log('inside of logout in userCtrl', req.session)
+  req.session.reset();
+  res.status(200).send('Logged out!');
 };
 
-exports.register = (req, res) => {
-  res.send('WELCOME!');
-};
+exports.checkUser = (req, res) => {
+  if (req.session && req.user) {
+    res.send('Logged in');
+  }
+}

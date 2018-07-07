@@ -7,7 +7,7 @@ const signinBtn = (
 Sign In
   </button>
 );
-const Navbar = ({ twitterLogin }) => (
+const Navbar = ({ name, displayUsername }) => (
 
   <div className="ui top fixed menu secondary pointing menu" style={{ background: 'white' }}>
     <div className="item">
@@ -15,14 +15,15 @@ const Navbar = ({ twitterLogin }) => (
     </div>
     <div className="right menu">
       <div className="item" style={{ marginBottom: '10px' }}>
-        <GetStarted signin={signinBtn} twitterLogin={twitterLogin} />
+        <GetStarted signin={signinBtn} name={name} displayUsername={displayUsername} />
       </div>
     </div>
   </div>
 );
 
 Navbar.propTypes = {
-  twitterLogin: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  displayUsername: PropTypes.func.isRequired,
 };
 
 export default Navbar;
