@@ -3,13 +3,12 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
 class LoggedInNav extends React.Component {
-
   logoutUser() {
     axios.get('/user/logout')
-    .then(() => {
-      console.log('history props: ', this.props.history)
-      this.props.history.push('/');
-    })
+      .then(() => {
+        console.log('history props: ', this.props.history);
+        this.props.history.push('/');
+      });
   }
 
   render() {
@@ -20,14 +19,14 @@ class LoggedInNav extends React.Component {
         </div>
         <div className="right menu">
           <div className="item" style={{ marginBottom: '10px' }}>
-            <button type="button" className="ui basic button" onClick={this.logoutUser.bind(this)} >
+            <button type="button" className="ui basic button" onClick={this.logoutUser.bind(this)}>
               Logout
             </button>
           </div>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default withRouter(LoggedInNav);

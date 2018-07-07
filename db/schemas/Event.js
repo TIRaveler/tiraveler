@@ -8,19 +8,17 @@ module.exports = (database, DataTypes) => {
     name: DataTypes.STRING,
     location: DataTypes.STRING,
     yelplink: DataTypes.STRING,
-    tags: DataTypes.STRING,
-    price: DataTypes.DECIMAL,
+    price: DataTypes.STRING,
     photoUrl: DataTypes.STRING,
   });
 
-  Event.saveEvent = event => Event.create({
+  Event.saveEvent = (event, itinId) => Event.create({
     name: event.name,
-    location: event.location,
-    yelplink: event.yelplink,
-    tags: event.tags,
+    location: event.location.display_address.join(','),
+    yelplink: event.url,
     price: event.price,
-    photoUrl: event.photoUrl,
-  }).then(result => result.dataValues.id);
+    photoUrl: event.image_url,
+  }).then(result => [result.dataValues.id, itinId]);
 
   return Event;
 };

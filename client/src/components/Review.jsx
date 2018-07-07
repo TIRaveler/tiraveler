@@ -51,7 +51,7 @@ class Review extends React.Component {
 
     // Get state values
     const { itin } = this.state;
-
+    console.log(entries, 'ENTRIES');
     // Save itinerary
     $.post('/itinerary/save', {
       itin,

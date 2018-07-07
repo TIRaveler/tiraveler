@@ -17,6 +17,7 @@ const GetStarted = ({ signin, name, displayUsername }) => (
 );
 
 GetStarted.propTypes = {
+  signin: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   displayUsername: PropTypes.func.isRequired,
 };

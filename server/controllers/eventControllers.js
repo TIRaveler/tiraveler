@@ -28,18 +28,14 @@ const getEvents = (location, tags) => axios.get(
  * @return {String} Tags to search
  */
 const resolveTags = (pictures) => {
-  // TODO: Resolve tags
-  //['hiking', 'fishing']
-  let travelTags=['museum', 'sightseeing','food','adventure','tour','ancient','architecture','boat','bike','nature','river','beach','night'];
-  let selectedTags=['sightseeing'];
-  travelTags.forEach(tag =>
-      pictures.forEach(pic => {
-        if (pic.tags.indexOf(tag)!==-1){
-          selectedTags.push(tag);
-      }
-  }))
-  let tags=selectedTags.join('+');
-  console.log('Event Tags',tags)
+  const travelTags = ['museum', 'sightseeing', 'food', 'adventure', 'tour', 'ancient', 'architecture', 'boat', 'bike', 'nature', 'river', 'beach', 'night'];
+  const selectedTags = ['sightseeing', 'travel'];
+  travelTags.forEach(tag => pictures.forEach((pic) => {
+    if (pic.tags.indexOf(tag) !== -1) {
+      selectedTags.push(tag);
+    }
+  }));
+  const tags = selectedTags.join('+');
   return tags;
 };
 
@@ -59,13 +55,12 @@ module.exports.search = async (req, res) => {
   if (!location || !pictures) {
     res.status(400);
     res.statusMessage = 'Missing location or pictures parameter';
-    res.send({ error: 'Must specify location and pictures' });
+    res.send(new Error('Missing location or pictures'));
     return;
   }
 
 
   const tags = resolveTags(pictures);
-  //console.log(tags);
   const events = await getEvents(location, tags);
   res.send(events);
 };
