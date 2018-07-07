@@ -16,7 +16,7 @@ app.use(session({
   activeDuration: 5 * 60 * 100000,
   httpOnly: true,
   secure: true,
-  ephemeral: true
+  ephemeral: true,
 }));
 
 app.use('/', express.static(clientFolder));

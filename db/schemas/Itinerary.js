@@ -8,7 +8,6 @@ module.exports = (database, DataTypes) => {
     name: DataTypes.STRING,
   });
 
-
   Itinerary.associate = (models) => {
     Itinerary.hasOne(models, { foreignKey: models.id });
   };
@@ -17,8 +16,8 @@ module.exports = (database, DataTypes) => {
     Itinerary.hasMany(models, { foreignKey: models.id });
   };
 
-  Itinerary.saveItinerary = (Itin, EventId) => Itinerary.create({ name: Itin.name })
-    .then(result => [EventId, result.dataValues.id]);
+  Itinerary.saveItinerary = Itin => Itinerary.create({ name: Itin.name })
+    .then(result => result.dataValues.id);
 
   return Itinerary;
 };
