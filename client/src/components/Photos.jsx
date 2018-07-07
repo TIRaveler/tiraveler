@@ -8,7 +8,7 @@ import {
   Image,
   Card,
 } from 'semantic-ui-react';
-
+import LoggedInNav from './LoggedInNav';
 
 /** Toggle isSelected in photo and returns new array
  * @param {[]}     pictures Array of picture objects (See Photos proptypes)
@@ -89,6 +89,9 @@ class Photos extends React.Component {
     console.log(pictures);
     return (
       <div>
+        <div style={{ marginBottom: '80px' }}>
+          <LoggedInNav />
+        </div>
         <h1 className="ui big header center aligned page">
           Please select at least 3 photos that you like!
           {' '}

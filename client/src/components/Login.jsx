@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Icon } from 'semantic-ui-react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       password: '',
-      email: '',
+      name: '',
       submittedPassword: '',
-      submittedEmail: '',
+      submittedName: '',
     };
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -23,29 +26,40 @@ class Login extends React.Component {
     });
   }
 
-  handleEmailChange(e) {
+  handleNameChange(e) {
     this.setState({
-      email: e.target.value,
-      submittedEmail: e.target.value,
+      name: e.target.value,
+      submittedName: e.target.value,
     });
   }
 
-  handleSubmit() {
-    console.log(this.state.submittedEmail, this.state.submittedPassword);
+  handleSubmit(e) {
+    const { displayUsername } = this.props;
+    e.preventDefault();
+    const { submittedPassword, submittedName } = this.state;
     this.setState({
       password: '',
-      email: '',
+      name: '',
     });
+    axios.post('/user/login', {
+      name: submittedName,
+      password: submittedPassword
+    })
+    .then(() => {
+      displayUsername(this.state.submittedName);
+      this.props.history.push('/search');
+    })
+    .catch((err) => console.error(err) )
   }
 
   render() {
-    const { password, email } = this.state;
+    const { password, name } = this.state;
     return (
       <div>
         <div className="ui center aligned basic segment">
           <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
             <Form.Group>
-              <Form.Input placeholder="Email" name="email" value={email} onChange={this.handleEmailChange} />
+              <Form.Input placeholder="Name" name="name" value={name} onChange={this.handleNameChange} />
             </Form.Group>
             <Form.Group>
               <Form.Input
@@ -58,15 +72,6 @@ class Login extends React.Component {
             </Form.Group>
             <Form.Button content="Submit" />
           </Form>
-          <div className="ui horizontal divider">
-            Or
-          </div>
-          <a href="/login/twitter" onClick={this.props.twitterLogin}>
-            <div className="ui big blue labeled icon button">
-              <Icon className="twitter" />
-              Sign in with Twitter
-            </div>
-          </a>
         </div>
       </div>
     );
@@ -74,7 +79,7 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  twitterLogin: PropTypes.func.isRequired,
+  displayUsername: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default withRouter(Login);
