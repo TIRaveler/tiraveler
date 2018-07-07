@@ -25,7 +25,7 @@ const getEvents = (location, tags) => axios.get(
 /**
  * Get event tags to search
  * @param {Array} pictures all pictures to analyze
- * @return {Array} Tags to search
+ * @return {String} Tags to search
  */
 const resolveTags = (pictures) => {
   // TODO: Resolve tags

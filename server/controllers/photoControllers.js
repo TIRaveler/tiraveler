@@ -18,8 +18,6 @@ exports.search = (req, res) => {
   const { location } = req.body;
 
   // for general travel info search
-  // const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&min_taken_date=01%2F01%2F2017&max_taken_date=05%2F31%2F2017&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
-
    const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
 
   // for food search
