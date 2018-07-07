@@ -7,9 +7,15 @@ import $ from 'jquery';
 import App from './App';
 import events from '../../../server/controllers/sample_data/events';
 
+jest.useFakeTimers();
+
 const { shallow } = Enzyme;
 
+// Configure enzyme
 Enzyme.configure({ adapter: new Adapter() });
+
+// Use fake timers
+jest.useFakeTimers();
 
 describe('App page', () => {
   let app;
@@ -43,6 +49,28 @@ describe('App page', () => {
     app.setState({ location: 'San Francisco', pictures: [] });
     app.instance().sendSelectedPhotos();
     expect(app.state().events).toEqual(events);
+  });
+
+  test('can set and remove pop-up message', (done) => {
+    // Add popup message
+    app.instance().logPopUpMessage('Test');
+
+    // Expect message added
+    expect(app.state().popUpMessages).toEqual(['Test']);
+
+    // Time to wait for message to clear
+    const waitTime = app.instance().popUpInterval + 1000;
+
+    setTimeout(() => {
+      // Expect message was cleared
+      expect(app.state().popUpMessages).toEqual([]);
+
+      // Resolve promise
+      done();
+    }, waitTime);
+
+    // Run advance till done
+    jest.advanceTimersByTime(waitTime);
   });
 
   afterAll(() => {
