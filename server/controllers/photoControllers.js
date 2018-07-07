@@ -18,10 +18,13 @@ exports.search = (req, res) => {
   const { location } = req.body;
 
   // for general travel info search
-  const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
+  // const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&min_taken_date=01%2F01%2F2017&max_taken_date=05%2F31%2F2017&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
+
+   const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
 
   // for food search
-  const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}%2Cfood%2Cdish%2Cmeal&tag_mode=all&text=food+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
+const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=dish%2Cmeal&tag_mode=any&text=${location}+food+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
+
 
   // for search museum
   const flickrPhotos3 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=${location}%2CMuseum%2Cancient&tag_mode=all&text=museum+&sort=interestingness-desc&accuracy=6&has_geo=1&per_page=1&safe_search=1&page=1&format=json&nojsoncallback=1`;
