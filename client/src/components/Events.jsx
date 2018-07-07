@@ -91,7 +91,7 @@ const Events = ({ budget, events, setEvents }) => (
     <Header>
       Select an Event
     </Header>
-    <Card.Group itemsPerRow={6}>
+    <Card.Group itemsPerRow={5}>
     {
       events.map((event, index) => (
         <Event
