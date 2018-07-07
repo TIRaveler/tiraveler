@@ -31,7 +31,7 @@ const resolveTags = (pictures) => {
   // TODO: Resolve tags
   //['hiking', 'fishing']
   let travelTags=['museum', 'sightseeing','food','adventure','tour','ancient','architecture','boat','bike','nature','river','beach','night'];
-  let selectedTags=['sightseeing','trip'];
+  let selectedTags=['sightseeing','travel'];
   travelTags.forEach(tag =>
       pictures.forEach(pic => {
         if (pic.tags.indexOf(tag)!==-1){
