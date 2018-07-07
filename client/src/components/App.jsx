@@ -20,12 +20,45 @@ class App extends React.Component {
       events: [],
       location: '',
       pictures: [],
+      popUpMessages: [],
       name: '',
     };
+
+    // Add popUpMessage update
+    this.popUpInterval = 5000; // ms
+    this.popupMessageUpdateID = setInterval(() => {
+      // Get messages
+      const { popUpMessages } = this.state;
+
+      if (popUpMessages.length > 0) {
+        // If messages, Remove message
+        this.setState({
+          popUpMessages: popUpMessages.slice(1),
+        });
+      }
+    }, this.popUpInterval);
 
     // Events
     this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.displayUsername = this.displayUsername.bind(this);
+    this.logPopUpMessage = this.logPopUpMessage.bind(this);
+  }
+
+  /**
+   * Log message as a pop up
+   * @param {string} message Message to display
+   */
+  logPopUpMessage(message) {
+    // Get current messages
+    const { popUpMessages } = this.state;
+
+    // Add message to end
+    popUpMessages.push(message);
+
+    // Update state
+    this.setState({
+      popUpMessages,
+    });
   }
 
   /**
@@ -70,7 +103,7 @@ class App extends React.Component {
    */
   displayUsername(name) {
     this.setState({
-      name: name,
+      name,
     });
   }
 
@@ -108,6 +141,7 @@ class App extends React.Component {
                 name={name}
               />)}
           />
+          <Route exact path="/time" render={props => <Time {...props} />} />
           <Route
             exact
             path="/photos"
