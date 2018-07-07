@@ -27,10 +27,22 @@ const getEvents = (location, tags) => axios.get(
  * @param {Array} pictures all pictures to analyze
  * @return {Array} Tags to search
  */
-const resolveTags = () => (
+const resolveTags = (pictures) => {
   // TODO: Resolve tags
-  ['hiking', 'fishing']
-);
+  //['hiking', 'fishing']
+  let travelTags=['museum', 'sightseeing','food','adventure','tour','ancient','architecture','boat','bike','nature','river','beach','night'];
+  let selectedTags=['sightseeing','travel'];
+  travelTags.forEach(tag =>
+      pictures.forEach(pic => {
+        if (pic.tags.indexOf(tag)!==-1){
+          selectedTags.push(tag);
+      }
+  }))
+  let tags=selectedTags.join('+');
+  console.log('Event Tags',tags)
+  return tags;
+};
+
 
 /**
  * Search for events
@@ -51,7 +63,9 @@ module.exports.search = async (req, res) => {
     return;
   }
 
+
   const tags = resolveTags(pictures);
+  //console.log(tags);
   const events = await getEvents(location, tags);
   res.send(events);
 };
