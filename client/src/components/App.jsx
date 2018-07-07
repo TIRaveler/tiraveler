@@ -6,6 +6,7 @@ import Search from './Search';
 import Photos from './Photos';
 import Events from './Events';
 import Itinerary from './Itinerary';
+import Navbar from './Navbar';
 
 /**
  * TIRavler travel app
@@ -20,12 +21,45 @@ class App extends React.Component {
       events: [],
       location: '',
       pictures: [],
+      popUpMessages: [],
       name: '',
     };
+
+    // Add popUpMessage update
+    this.popUpInterval = 5000; // ms
+    this.popupMessageUpdateID = setInterval(() => {
+      // Get messages
+      const { popUpMessages } = this.state;
+
+      if (popUpMessages.length > 0) {
+        // If messages, Remove message
+        this.setState({
+          popUpMessages: popUpMessages.slice(1),
+        });
+      }
+    }, this.popUpInterval);
 
     // Events
     this.sendSelectedPhotos = this.sendSelectedPhotos.bind(this);
     this.displayUsername = this.displayUsername.bind(this);
+    this.logPopUpMessage = this.logPopUpMessage.bind(this);
+  }
+
+  /**
+   * Log message as a pop up
+   * @param {string} message Message to display
+   */
+  logPopUpMessage(message) {
+    // Get current messages
+    const { popUpMessages } = this.state;
+
+    // Add message to end
+    popUpMessages.push(message);
+
+    // Update state
+    this.setState({
+      popUpMessages,
+    });
   }
 
   /**
@@ -55,7 +89,7 @@ class App extends React.Component {
       },
       type: 'POST',
       error: (xhr, status, err) => {
-        console.error(err);
+        this.logPopUpMessage(`Error: ${err.message}`);
       },
       success: (data) => {
         this.setState({
@@ -70,7 +104,7 @@ class App extends React.Component {
    */
   displayUsername(name) {
     this.setState({
-      name: name,
+      name,
     });
   }
 
@@ -81,49 +115,59 @@ class App extends React.Component {
       name,
       location,
       pictures,
+      popUpMessages,
     } = this.state;
 
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <Main
-                {...props}
-                name={name}
-                displayUsername={this.displayUsername}
-              />)}
+      <React.Fragment>
+        <BrowserRouter>
+          <Navbar
+            name={name}
+            displayUsername={this.displayUsername}
+            popUpMessage={popUpMessages[0]}
           />
-          <Route
-            exact
-            path="/search"
-            render={props => (
-              <Search
-                {...props}
-                handleBudget={this.superFunction('budget')}
-                handleLocation={this.superFunction('location')}
-                appState={this.state}
-                name={name}
-              />)}
-          />
-          <Route
-            exact
-            path="/photos"
-            render={props => (
-              <Photos
-                {...props}
-                location={location}
-                pictures={pictures}
-                setPictures={this.superFunction('pictures')}
-                sendSelectedPhotos={this.sendSelectedPhotos}
-              />)}
-          />
-          <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
-          <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
-        </Switch>
-      </BrowserRouter>
+        </BrowserRouter>
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Main
+                  {...props}
+                  name={name}
+                  displayUsername={this.displayUsername}
+                />)}
+            />
+            <Route
+              exact
+              path="/search"
+              render={props => (
+                <Search
+                  {...props}
+                  handleBudget={this.superFunction('budget')}
+                  handleLocation={this.superFunction('location')}
+                  appState={this.state}
+                  name={name}
+                />)}
+            />
+            <Route
+              exact
+              path="/photos"
+              render={props => (
+                <Photos
+                  {...props}
+                  location={location}
+                  pictures={pictures}
+                  setPictures={this.superFunction('pictures')}
+                  sendSelectedPhotos={this.sendSelectedPhotos}
+                />)}
+            />
+            <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
+            <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
+          </Switch>
+        </BrowserRouter>
+      </React.Fragment>
     );
   }
 }

@@ -45,7 +45,7 @@ describe('Event controller', () => {
 
     await eventController.search(reqMissing, res);
     expect(res.statusCode).toEqual(400);
-    expect(res.data.error).toBeDefined();
+    expect(res.data).toBeInstanceOf(Error);
   });
 
   test('returns 400 if missing pictures', async () => {
@@ -54,7 +54,7 @@ describe('Event controller', () => {
 
     await eventController.search(reqMissing, res);
     expect(res.statusCode).toEqual(400);
-    expect(res.data.error).toBeDefined();
+    expect(res.data).toBeInstanceOf(Error);
   });
 
   afterAll(() => {

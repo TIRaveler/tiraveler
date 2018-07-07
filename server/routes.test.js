@@ -28,15 +28,7 @@ describe('Server API routes', () => {
 
   test('can logout user', () => {
     supertest(app)
-      .post('/user/logout')
-      .expect(200)
-      .set('Accept', 'text/html')
-      .then(res => expect(res.text).toEqual('Success'));
-  });
-
-  test('can register user', () => {
-    supertest(app)
-      .post('/user/register')
+      .get('/user/logout')
       .expect(200)
       .set('Accept', 'text/html')
       .then(res => expect(res.text).toEqual('Success'));

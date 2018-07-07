@@ -43,13 +43,13 @@ class Login extends React.Component {
     });
     axios.post('/user/login', {
       name: submittedName,
-      password: submittedPassword
+      password: submittedPassword,
     })
-    .then(() => {
-      displayUsername(this.state.submittedName);
-      this.props.history.push('/search');
-    })
-    .catch((err) => console.error(err) )
+      .then(() => {
+        displayUsername(this.state.submittedName);
+        this.props.history.push('/search');
+      })
+      .catch(err => console.error(err));
   }
 
   render() {

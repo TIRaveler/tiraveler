@@ -23,7 +23,7 @@ const Itinerary = () => (
             </Item.Content>
           </Item>
         ))
-        } 
+        }
       </Item.Group>
     </Container>
   </div>
