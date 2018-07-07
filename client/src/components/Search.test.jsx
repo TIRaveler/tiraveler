@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -60,13 +60,13 @@ describe('Search', () => {
   beforeAll(() => {
     // Uses routing, must wrap in router
     wrapSearch = mount(
-      <BrowserRouter>
+      <MemoryRouter>
         <Search
           appState={mockAppState}
           handleBudget={mockHandleBudget}
           handleLocation={mockHandleLocation}
         />
-      </BrowserRouter>,
+      </MemoryRouter>,
     ).find(Search);
   });
 
