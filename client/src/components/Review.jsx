@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
-import ItineraryEntry from './ItineryEntry';
+import ItineraryEntry from './ItineraryEntry';
 
 
 class Review extends React.Component {
