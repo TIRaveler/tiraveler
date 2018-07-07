@@ -3,10 +3,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import $ from 'jquery';
 import Main from './Main';
 import Search from './Search';
-import Time from './Time';
 import Photos from './Photos';
 import Events from './Events';
-import Review from './Review';
 import Itinerary from './Itinerary';
 
 /**
@@ -73,7 +71,7 @@ class App extends React.Component {
   displayUsername(name) {
     this.setState({
       name: name,
-    })
+    });
   }
 
   render() {
@@ -109,8 +107,7 @@ class App extends React.Component {
                 appState={this.state}
                 name={name}
               />)}
-            />
-          <Route exact path="/time" render={props => <Time {...props} />} />
+          />
           <Route
             exact
             path="/photos"

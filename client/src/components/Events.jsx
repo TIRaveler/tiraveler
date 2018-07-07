@@ -7,7 +7,6 @@ import {
   Icon,
   Image,
 } from 'semantic-ui-react';
-import { Route } from 'react-router-dom';
 
 import Review from './Review';
 
