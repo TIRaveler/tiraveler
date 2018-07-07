@@ -41,7 +41,9 @@ const convertBudgetToNumberAndUpdate = (event, callback) => {
  * Search For events in area and budget
  * @param {{handleBudget: {*}, handleLocation: {*}, appState: {*}}}
  */
-const Search = ({ handleBudget, handleLocation, appState, name }) => (
+const Search = ({
+  handleBudget, handleLocation, appState, name,
+}) => (
   <div>
     <LoggedInNav />
     <div className="ui equal width center aligned padded grid" style={styles.all}>
@@ -49,7 +51,10 @@ const Search = ({ handleBudget, handleLocation, appState, name }) => (
         <div className="row">
           <Header size="large">
             <Divider horizontal>
-            Hello { name }!
+            Hello
+              {' '}
+              { name }
+!
             </Divider>
           </Header>
         </div>
