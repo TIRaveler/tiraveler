@@ -16,7 +16,6 @@ const getEvents = (location, tags) => axios.get(
     params: {
       location,
       term: tags,
-      //term: 'tour+museum+sightseeing+food'
     },
   },
 )
@@ -31,8 +30,8 @@ const getEvents = (location, tags) => axios.get(
 const resolveTags = (pictures) => {
   // TODO: Resolve tags
   //['hiking', 'fishing']
-  let travelTags=['museum', 'sightseeing','food','adventure','tour','ancient','architecture','boat','bike','nature','river','beach'];
-  let selectedTags=['sightseeing'];
+  let travelTags=['museum', 'sightseeing','food','adventure','tour','ancient','architecture','boat','bike','nature','river','beach','night'];
+  let selectedTags=['sightseeing','trip'];
   travelTags.forEach(tag =>
       pictures.forEach(pic => {
         if (pic.tags.indexOf(tag)!==-1){

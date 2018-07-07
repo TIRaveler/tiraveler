@@ -36,9 +36,7 @@ exports.search = (req, res) => {
     .then(axios.spread((data1, data2, data3) => {
       const photos1 = data1.data.photos.photo;
       const photos2 = data2.data.photos.photo;
-      console.log('photos2',photos2);
       const photos3 = data3.data.photos.photo;
-      console.log('photos3',photos3);
       const photos = Object.assign(photos1, photos2, photos3);
       const photosInfo = Promise.all(photos.map(async photo => getPhotoInfo(photo.id)));
       return photosInfo;
