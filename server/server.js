@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('client-sessions');
 const bodyParser = require('body-parser');
 const path = require('path');
 const routes = require('./routes');
@@ -8,11 +9,14 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('express-session')({
+app.use(session({
+  cookieName: 'session',
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: 'auto' },
+  duration: 30 * 60 * 100000,
+  activeDuration: 5 * 60 * 100000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
 }));
 
 app.use('/', express.static(clientFolder));

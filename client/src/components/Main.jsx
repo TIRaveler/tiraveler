@@ -12,9 +12,9 @@ const signInBtn = (
 Get Started
   </Button>
 );
-const Main = ({ isAuthenticated, twitterLogin }) => (
+const Main = ({ name, displayUsername }) => (
   <div>
-    <Navbar isAuthenticated={isAuthenticated} twitterLogin={twitterLogin} />
+    <Navbar name={name} displayUsername={displayUsername} />
     <Parallax
       bgImage="https://image.ibb.co/nN3bjy/adult_book_business_297755_1.jpg"
       bgImageAlt="welcome"
@@ -22,7 +22,7 @@ const Main = ({ isAuthenticated, twitterLogin }) => (
     >
       <div style={{ height: '550px' }} />
       <div className="ui center aligned segment" style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
-        <GetStarted signin={signInBtn} twitterLogin={twitterLogin} />
+        <GetStarted signin={signInBtn} name={name} displayUsername={displayUsername} />
       </div>
     </Parallax>
     <Parallax
@@ -49,8 +49,8 @@ const Main = ({ isAuthenticated, twitterLogin }) => (
 );
 
 Main.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  twitterLogin: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  displayUsername: PropTypes.func.isRequired,
 };
 
 export default Main;
