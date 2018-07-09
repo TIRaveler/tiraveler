@@ -8,7 +8,7 @@ const { Event, Itinerary, ItinEvents } = require('../../db/index');
 exports.save = (req, res) => {
   // Save itinerary
   console.log(req.body.events[0].location, 'OMG');
-  Itinerary.saveItinerary(req.body.itin)
+  Itinerary.saveItinerary(req.body.itin, req.body.userId)
     .then((itinId) => {
       // Save all itineraries
       for (let i = 0; i < req.body.events.length; i += 1) {

@@ -10,9 +10,6 @@ const Itinerary = require('./schemas/Itinerary')(database, Sequelize);
 const User = require('./schemas/User')(database, Sequelize);
 const ItinEvents = require('./schemas/ItinEvents')(database, Sequelize);
 
-Itinerary.belongsTo(User);
-User.hasMany(Itinerary);
-
 database.sync({ force: false });
 
 module.exports = {

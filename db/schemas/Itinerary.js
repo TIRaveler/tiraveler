@@ -6,6 +6,7 @@ module.exports = (database, DataTypes) => {
       primaryKey: true,
     },
     name: DataTypes.STRING,
+    userId: DataTypes.STRING,
   });
 
   Itinerary.associate = (models) => {
@@ -16,8 +17,14 @@ module.exports = (database, DataTypes) => {
     Itinerary.hasMany(models, { foreignKey: models.id });
   };
 
-  Itinerary.saveItinerary = Itin => Itinerary.create({ name: Itin.name })
+  Itinerary.saveItinerary = (Itin, userId) => Itinerary.create({ userId, name: Itin.name })
     .then(result => result.dataValues.id);
+
+  Itinerary.findByUser = userId => Itinerary.findAll({
+    where: {
+      userId,
+    },
+  });
 
   return Itinerary;
 };
