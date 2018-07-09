@@ -12,7 +12,7 @@ const signInBtn = (
 Get Started
   </Button>
 );
-const Main = ({ name, displayUsername }) => (
+const Main = ({ name, displayUsername,setItineraries }) => (
   <div>
     <Navbar name={name} displayUsername={displayUsername} />
     <Parallax
@@ -22,7 +22,7 @@ const Main = ({ name, displayUsername }) => (
     >
       <div style={{ height: '550px' }} />
       <div className="ui center aligned segment" style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
-        <GetStarted signin={signInBtn} name={name} displayUsername={displayUsername} />
+        <GetStarted signin={signInBtn} name={name} displayUsername={displayUsername} setItineraries={setItineraries}/>
       </div>
     </Parallax>
     <Parallax

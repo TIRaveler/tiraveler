@@ -23,6 +23,7 @@ class App extends React.Component {
       pictures: [],
       popUpMessages: [],
       name: '',
+      Itinerares:[]
     };
 
     // Add popUpMessage update
@@ -137,6 +138,7 @@ class App extends React.Component {
                   {...props}
                   name={name}
                   displayUsername={this.displayUsername}
+                  setItineraries={this.superFunction('Itinerares')}
                 />)}
             />
             <Route

@@ -45,7 +45,8 @@ class Login extends React.Component {
       name: submittedName,
       password: submittedPassword,
     })
-      .then(() => {
+      .then((res) => {
+        this.props.setItineraries({target: {value:res.data}});
         displayUsername(this.state.submittedName);
         this.props.history.push('/search');
       })
