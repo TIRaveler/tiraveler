@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import Review from './Review';
+import LoggedInNav from './LoggedInNav';
 
 /**
  * Closure to update event key to a specific value
@@ -93,6 +94,9 @@ const Events = ({
   setEvents,
 }) => (
   <React.Fragment>
+    <div style={{ marginBottom: '100px' }}>
+      <LoggedInNav />
+    </div>
     <Header>
       Select an Event
     </Header>
