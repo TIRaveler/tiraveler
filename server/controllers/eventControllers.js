@@ -25,7 +25,7 @@ const getEvents = (location, tags) => axios.get(
 /**
  * Get event tags to search
  * @param {Array} pictures all pictures to analyze
- * @return {Array} Tags to search
+ * @return {String} Tags to search
  */
 const resolveTags = (pictures) => {
   const travelTags = ['museum', 'sightseeing', 'food', 'adventure', 'tour', 'ancient', 'architecture', 'boat', 'bike', 'nature', 'river', 'beach', 'night'];

@@ -33,7 +33,7 @@ const getKeySetter = (setEvent, event, key, value) => (
 */
 const Event = ({ event, setEvent }) => (
   <Card>
-    <Image size="medium" src={event.image_url} />
+    <Image style={{ width: '160px', height: '160px' }} src={event.image_url} />
     <Card.Content>
       <Card.Header>
         {event.name}
@@ -90,6 +90,7 @@ const Events = ({ budget, events, setEvents }) => (
     <Header>
       Select an Event
     </Header>
+    <Card.Group itemsPerRow={5}>
     {
       events.map((event, index) => (
         <Event
@@ -101,6 +102,7 @@ const Events = ({ budget, events, setEvents }) => (
         />
       ))
     }
+    </Card.Group>
     <Review
       entries={getLikedEvents(events)}
     />
