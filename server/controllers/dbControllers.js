@@ -22,10 +22,3 @@ exports.save = (req, res) => {
   // Send result
   res.status(200).send('Success!');
 };
-
-// Promise.all(req.body.events.map(Event.saveEvent))
-//   .then(results  => Pormise.all(results.map(result => (
-//     Itinerary.saveItinerary(req.body.itin, result
-//   )))))
-//   .then(results => Promise.all(...ItinEvents.saveItem...))
-//   .then(console log sthn here)
