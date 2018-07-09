@@ -16,7 +16,7 @@ class Review extends React.Component {
     this.state = {
       isOpen: false,
       itin: {
-        name: 'sampleName',
+        name: `${props.place} trip`
       },
     };
     this.open = this.open.bind(this);

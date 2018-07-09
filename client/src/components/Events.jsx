@@ -85,7 +85,7 @@ const getEventSetter = (setEvents, events, index) => (
 const getLikedEvents = events => (events.filter(event => event.userRating > 0));
 
 /** Displays all events for user to check */
-const Events = ({ budget, events, setEvents }) => (
+const Events = ({ budget, events, setEvents,place }) => (
   <React.Fragment>
     <Header>
       Select an Event
@@ -105,6 +105,7 @@ const Events = ({ budget, events, setEvents }) => (
     </Card.Group>
     <Review
       entries={getLikedEvents(events)}
+      place={place}
     />
   </React.Fragment>
 );

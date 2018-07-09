@@ -163,7 +163,7 @@ class App extends React.Component {
                   sendSelectedPhotos={this.sendSelectedPhotos}
                 />)}
             />
-            <Route path="/events" exact render={props => <Events {...props} budged={budget} events={events} setEvents={this.superFunction('events')} />} />
+            <Route path="/events" exact render={props => <Events {...props} budged={budget} place ={this.state.location} events={events} setEvents={this.superFunction('events')} />} />
             <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
           </Switch>
         </BrowserRouter>
