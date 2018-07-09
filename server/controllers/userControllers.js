@@ -1,5 +1,5 @@
-const { User } = require('../../db/index');
 const bcrypt = require('bcrypt');
+const { User, Itinerary } = require('../../db/index');
 
 exports.login = (req, res) => {
   const pw = req.body.password;
@@ -12,7 +12,12 @@ exports.login = (req, res) => {
       const isMatch = bcrypt.compareSync(pw, user.password);
       if (isMatch) {
         req.session.user = user;
-        res.status(200).send('Successful login!');
+        Itinerary.findAll({
+          where: {
+            userId: user.id,
+          },
+        })
+          .then(Itineraries => res.status(200).send(Itineraries));
       } else {
         console.log('pw is not a match: ', isMatch);
       }
