@@ -31,4 +31,5 @@ module.exports = {
   User,
   ItinEvents,
   Sequelize: database,
+  db
 };
