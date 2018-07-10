@@ -88,8 +88,9 @@ const getLikedEvents = events => (events.filter(event => event.userRating > 0));
 const Events = ({
   budget,
   events,
-  setEvents,
+  log,
   place,
+  setEvents,
 }) => (
   <React.Fragment>
     <Header>
@@ -110,6 +111,7 @@ const Events = ({
     </Card.Group>
     <Review
       entries={getLikedEvents(events)}
+      log={log}
       place={place}
     />
   </React.Fragment>
@@ -123,6 +125,7 @@ Events.propTypes = {
       image_url: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  log: PropTypes.func.isRequired,
   place: PropTypes.string.isRequired,
   setEvents: PropTypes.func.isRequired,
 };

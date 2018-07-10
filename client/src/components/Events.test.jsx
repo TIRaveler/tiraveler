@@ -21,6 +21,13 @@ describe('Events page', () => {
   /** Array holding all events */
   let eventsState = [];
 
+  /** Array of all elements logged */
+  let logArray = [];
+
+  const mockLog = (...args) => {
+    logArray.push(args);
+  };
+
   /**
    * Stub for setting events
    * @type {(events: [{target: {value: *}}]) => undefined}
@@ -49,6 +56,7 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={sampleEvents}
+          log={mockLog}
           place={samplePlace}
           setEvents={setEventsStub}
         />
@@ -66,7 +74,9 @@ describe('Events page', () => {
   });
 
   beforeEach(() => {
+    // Reset values
     eventsState = [];
+    logArray = [];
   });
 
   test('updates events on like and dislike', () => {
@@ -128,6 +138,7 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={events}
+          log={mockLog}
           place={samplePlace}
           setEvents={setEventsStub}
         />
