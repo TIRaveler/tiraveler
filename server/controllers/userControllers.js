@@ -13,25 +13,25 @@ exports.login = (req, res) => {
       const isMatch = bcrypt.compareSync(pw, user.password);
       if (isMatch) {
         req.session.user = user;
-        const userId=user.id;
+        const userId = user.id;
         // Itinerary.findAll({
         //   where: {
         //     userId: user.id,
         //   },
-        //})
-        const sql= `select e.name eventName, e.location Address, price, i.name IternarariesName,i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`
-        db.query(sql,(err,events) => {
+        // })
+        const sql = `select e.name eventName, e.location Address, price, i.name IternarariesName,i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
+        db.query(sql, (err, events) => {
           if (err) throw err;
-          const result = events.reduce((itineraries,event)=> {
-            if (itineraries[event.IternarariesName] === undefined){
-                itineraries[event.IternarariesName] = [event]
-            }else{
+          const result = events.reduce((itineraries, event) => {
+            if (itineraries[event.IternarariesName] === undefined) {
+              itineraries[event.IternarariesName] = [event];
+            } else {
               itineraries[event.IternarariesName].push(event);
             }
             return itineraries;
-          },{})
+          }, {});
           res.status(200).send(result);
-        })
+        });
       } else {
         console.log('pw is not a match: ', isMatch);
       }

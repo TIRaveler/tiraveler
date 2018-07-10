@@ -85,23 +85,28 @@ const getEventSetter = (setEvents, events, index) => (
 const getLikedEvents = events => (events.filter(event => event.userRating > 0));
 
 /** Displays all events for user to check */
-const Events = ({ budget, events, setEvents,place }) => (
+const Events = ({
+  budget,
+  events,
+  setEvents,
+  place,
+}) => (
   <React.Fragment>
     <Header>
       Select an Event
     </Header>
     <Card.Group itemsPerRow={5}>
-    {
-      events.map((event, index) => (
-        <Event
-          event={event}
-          key={event.name}
-          index={index}
-          budget={budget}
-          setEvent={getEventSetter(setEvents, events, index)}
-        />
-      ))
-    }
+      {
+        events.map((event, index) => (
+          <Event
+            event={event}
+            key={event.name}
+            index={index}
+            budget={budget}
+            setEvent={getEventSetter(setEvents, events, index)}
+          />
+        ))
+      }
     </Card.Group>
     <Review
       entries={getLikedEvents(events)}
@@ -118,6 +123,7 @@ Events.propTypes = {
       image_url: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
+  place: PropTypes.string.isRequired,
   setEvents: PropTypes.func.isRequired,
 };
 
