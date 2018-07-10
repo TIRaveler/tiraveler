@@ -15,6 +15,9 @@ describe('Events page', () => {
   /** The current budget */
   const budgetProp = 100;
 
+  /** Sample place to search */
+  const samplePlace = 'Here';
+
   /** Array holding all events */
   let eventsState = [];
 
@@ -46,6 +49,7 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={sampleEvents}
+          place={samplePlace}
           setEvents={setEventsStub}
         />
       </MemoryRouter>,
@@ -124,6 +128,7 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={events}
+          place={samplePlace}
           setEvents={setEventsStub}
         />
       </MemoryRouter>,
