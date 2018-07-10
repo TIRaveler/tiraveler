@@ -45,7 +45,6 @@ const Search = ({
   handleBudget, handleLocation, appState, name,
 }) => (
   <div>
-    <LoggedInNav />
     <div className="ui equal width center aligned padded grid" style={styles.all}>
       <div className="ui twelve column centered grid">
         <div className="row">
@@ -112,8 +111,6 @@ const Search = ({
 Search.propTypes = {
   /**
    * Current app state
-   * @prop {number} budget   Current budget
-   * @prop {string} location Current location
    */
   appState: PropTypes.shape({
     budget: PropTypes.number.isRequired,
@@ -131,6 +128,12 @@ Search.propTypes = {
    * @param {{target: {value: {string}}}} event Event object
    */
   handleLocation: PropTypes.func.isRequired,
+
+  /**
+   * Name of user
+   * @param {string}
+   */
+  name: PropTypes.string.isRequired,
 };
 
 export default Search;

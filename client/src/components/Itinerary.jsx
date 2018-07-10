@@ -9,35 +9,35 @@ const Itinerary = () => (
     </Header>
     <Container text>
       <Item.Group divided>
-          <Item>
-            <Item.Content>
-              <Item.Header>
+        <Item>
+          <Item.Content>
+            <Item.Header>
                 event.title
-              </Item.Header>
-              <Item.Meta>
+            </Item.Header>
+            <Item.Meta>
                 From object
-              </Item.Meta>
-              <Item.Description>
+            </Item.Meta>
+            <Item.Description>
                 From object
-              </Item.Description>
-            </Item.Content>
-            <ItineraryModal />
-          </Item>
+            </Item.Description>
+          </Item.Content>
+          <ItineraryModal />
+        </Item>
 
-          <Item>
-            <Item.Content>
-              <Item.Header>
+        <Item>
+          <Item.Content>
+            <Item.Header>
                 event.title
-              </Item.Header>
-              <Item.Meta>
+            </Item.Header>
+            <Item.Meta>
                 From object
-              </Item.Meta>
-              <Item.Description>
+            </Item.Meta>
+            <Item.Description>
                 From object
-              </Item.Description>
-            </Item.Content>
-            <ItineraryModal />
-          </Item>
+            </Item.Description>
+          </Item.Content>
+          <ItineraryModal />
+        </Item>
 
       </Item.Group>
     </Container>

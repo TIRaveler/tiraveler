@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
-const { User, Itinerary, db } = require('../../db/index');
+const { User, db } = require('../../db/index');
 
 
 exports.login = (req, res) => {
   const pw = req.body.password;
-  const name = req.body.name;
+  const { name } = req.body;
 
   User.findOne({
     where: { username: name },
@@ -13,25 +13,39 @@ exports.login = (req, res) => {
       const isMatch = bcrypt.compareSync(pw, user.password);
       if (isMatch) {
         req.session.user = user;
-        const userId=user.id;
+        const userId = user.id;
         // Itinerary.findAll({
         //   where: {
         //     userId: user.id,
         //   },
-        //})
-        const sql= `select e.name eventName, e.location Address, price, i.name IternarariesName,i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`
-        db.query(sql,(err,events) => {
+        // })
+        const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
+        db.query(sql, (err, events) => {
           if (err) throw err;
-          const result = events.reduce((itineraries,event)=> {
-            if (itineraries[event.IternarariesName] === undefined){
-                itineraries[event.IternarariesName] = [event]
-            }else{
-              itineraries[event.IternarariesName].push(event);
+          const itineraries = events.reduce((result, event) => {
+            // Copy result
+            const newResult = result.slice();
+
+            for (let itinIndex = 0; itinIndex < newResult.length; itinIndex += 1) {
+              // Iterate through stored itineraries
+              const itin = newResult[itinIndex];
+
+              if (itin.name === event.itinerariesName) {
+                itin.events.push(event);
+                return newResult;
+              }
             }
-            return itineraries;
-          },{})
-          res.status(200).send(result);
-        })
+            // Not in array
+            newResult.push({
+              name: event.itinerariesName,
+              events: [event],
+            });
+
+            // Return result
+            return newResult;
+          }, []);
+          res.status(200).send(itineraries);
+        });
       } else {
         console.log('pw is not a match: ', isMatch);
       }

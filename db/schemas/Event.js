@@ -12,16 +12,16 @@ module.exports = (database, DataTypes) => {
     yelplink: DataTypes.STRING,
     price: DataTypes.STRING,
     photoUrl: DataTypes.STRING,
-    createdAt:{
-      type:DataTypes.DATE,
+    createdAt: {
+      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.literal('NOW()')
+      defaultValue: Sequelize.literal('NOW()'),
     },
-    updatedAt:{
-      type:DataTypes.DATE,
+    updatedAt: {
+      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.literal('NOW()')
-    }
+      defaultValue: Sequelize.literal('NOW()'),
+    },
   });
 
   Event.saveEvent = (event, itinId) => Event.create({

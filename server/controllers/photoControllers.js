@@ -18,10 +18,10 @@ exports.search = (req, res) => {
   const { location } = req.body;
 
   // for general travel info search
-   const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
+  const flickrPhotos1 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=sightseeing%2Ctrip%2Cbike%2CArchitecture%2Cart%2C${location}%2Cadventure%2Chiking&tag_mode=any&text=${location}+&sort=interestingness-desc&accuracy=11&privacy_filter=1&per_page=10&format=json&nojsoncallback=1&has_geo=1&page=1&media=photos`;
 
   // for food search
-const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=dish%2Cmeal&tag_mode=any&text=${location}+food+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
+  const flickrPhotos2 = `https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${process.env.FLICKR_API}&tags=dish%2Cmeal&tag_mode=any&text=${location}+food+&sort=relevance&accuracy=11&privacy_filter=1&per_page=2&format=json&nojsoncallback=1&has_geo=1&page=1`;
 
 
   // for search museum

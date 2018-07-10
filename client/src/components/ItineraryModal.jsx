@@ -60,7 +60,7 @@ class ItineraryModal extends React.Component {
         </Modal.Header>
         <Modal.Content>
           <div>
-              <ItineraryModalEntry />
+            <ItineraryModalEntry />
           </div>
           <Button onClick={this.close}>
             Close

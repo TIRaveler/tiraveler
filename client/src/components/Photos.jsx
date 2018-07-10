@@ -1,14 +1,13 @@
 /* eslint no-underscore-dangle: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
   Button,
   Checkbox,
   Image,
   Card,
 } from 'semantic-ui-react';
-import LoggedInNav from './LoggedInNav';
 
 /** Toggle isSelected in photo and returns new array
  * @param {[]}     pictures Array of picture objects (See Photos proptypes)
@@ -87,12 +86,8 @@ class Photos extends React.Component {
 
   render() {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
-    console.log(pictures);
     return (
       <div>
-        <div style={{ marginBottom: '80px' }}>
-          <LoggedInNav />
-        </div>
         <h1 className="ui big header center aligned page">
           Please select at least 3 photos that you like!
           {' '}
@@ -126,7 +121,7 @@ class Photos extends React.Component {
               sendSelectedPhotos();
             }}
           >
-            Let's travle!
+            {'Let\'s travel!'}
           </Button>
         )}
         />
