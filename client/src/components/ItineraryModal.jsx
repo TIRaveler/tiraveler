@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
+import ItineraryEntry from './ItineraryEntry';
 
 class ItineraryModal extends React.Component {
   /**
@@ -59,7 +60,7 @@ class ItineraryModal extends React.Component {
         <Modal.Content>
           <div>
             {
-              entries.map(entry => <SOMETHING key={entry.name} entry={entry} />)
+              entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
             }
           </div>
           <Button onClick={this.close}>

@@ -7,7 +7,7 @@ const ItineraryModalEntry = ({ entry }) => (
   <Item>
     <Item.Content>
       <Item.Header>
-        {entry.title}
+        {entry.name}
       </Item.Header>
       <Item.Meta>
         From object
@@ -16,7 +16,7 @@ const ItineraryModalEntry = ({ entry }) => (
         From object
       </Item.Description>
     </Item.Content>
-    <ItineraryModal />
+    <ItineraryModal events={entry.events} />
   </Item>
 );
 

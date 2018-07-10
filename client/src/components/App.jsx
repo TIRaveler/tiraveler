@@ -116,6 +116,7 @@ class App extends React.Component {
       name,
       location,
       pictures,
+      itineraries,
       popUpMessages,
     } = this.state;
 
@@ -167,7 +168,7 @@ class App extends React.Component {
                   />)}
               />
               <Route path="/events" exact render={props => <Events {...props} budged={budget} place={location} events={events} setEvents={this.superFunction('events')} />} />
-              <Route path="/myItineraries" exact render={props => <Itinerary {...props} />} />
+              <Route path="/myItineraries" exact render={props => <Itinerary {...props} entries={itineraries} />} />
             </Switch>
           </div>
         </BrowserRouter>
