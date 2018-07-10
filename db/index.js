@@ -8,8 +8,8 @@ const database = new Sequelize(databaseUrl, {
   dialect: 'mysql',
 });
 
-const db = mysql.createConnection(databaseUrl);
 
+const db = mysql.createConnection(databaseUrl);
 // const database = new Sequelize('TIRavelerDB', 'root', process.env.DB_PASSWORD, {
 //   dialect: 'mysql',
 // });
