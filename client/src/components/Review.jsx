@@ -51,7 +51,6 @@ class Review extends React.Component {
 
     // Get state values
     const { itin } = this.state;
-    console.log(entries, 'ENTRIES');
     // Save itinerary
     if (entries.length === 0) {
       alert('You have no events in your itinerary!');
@@ -60,7 +59,7 @@ class Review extends React.Component {
         itin,
         events: entries,
       })
-        .then(response => console.log(response))
+        .then(response => console.log('Saved!'))
         .catch(error => console.log(error, 'problem sending itinerary'));
     }
     this.close();
@@ -90,7 +89,7 @@ class Review extends React.Component {
         <Modal.Content>
           <div>
             {
-              entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
+              entries.map(entry => <ItineraryEntry key={entry.name} event={entry} />)
             }
           </div>
           <Button onClick={this.close}>

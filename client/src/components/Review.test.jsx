@@ -16,6 +16,16 @@ describe('Review', () => {
   const sampleItin = {
     name: 'Some test itin',
   };
+
+  /**
+   * Sample username
+   */
+  const sampleName = 'TIRaveler';
+
+  /**
+   * Sample place
+   */
+  const samplePlace = 'Here';
   /**
    * Events sent to server
    */
@@ -60,7 +70,7 @@ describe('Review', () => {
 
   test('can set props', () => {
     // Shallow render review
-    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} />);
+    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} name={sampleName} place={samplePlace} />);
 
     // Get entries
     const { entries } = wrapReview.props();
@@ -71,7 +81,7 @@ describe('Review', () => {
 
   test('finalize sends events', () => {
     // Shallow render review
-    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} />).dive();
+    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} name={sampleName} place={samplePlace} />).dive();
 
     // Set itinerary
     wrapReview.setState({ itin: sampleItin });
