@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ class Login extends React.Component {
   }
 
   handleSubmit(e) {
-    const { displayUsername } = this.props;
+    const { displayUsername, history, setItineraries } = this.props;
     e.preventDefault();
     const { submittedPassword, submittedName } = this.state;
     this.setState({
@@ -46,9 +46,9 @@ class Login extends React.Component {
       password: submittedPassword,
     })
       .then((res) => {
-        this.props.setItineraries({target: {value:res.data}});
-        displayUsername(this.state.submittedName);
-        this.props.history.push('/search');
+        setItineraries({ target: { value: res.data } });
+        displayUsername(submittedName);
+        history.push('/search');
       })
       .catch(err => console.error(err));
   }
@@ -81,6 +81,8 @@ class Login extends React.Component {
 
 Login.propTypes = {
   displayUsername: PropTypes.func.isRequired,
+  history: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setItineraries: PropTypes.func.isRequired,
 };
 
 export default withRouter(Login);

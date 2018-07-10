@@ -12,9 +12,9 @@ const signInBtn = (
 Get Started
   </Button>
 );
-const Main = ({ name, displayUsername,setItineraries }) => (
+const Main = ({ name, displayUsername, setItineraries }) => (
   <div>
-    <Navbar name={name} displayUsername={displayUsername} />
+    {/* <Navbar name={name} displayUsername={displayUsername} /> */}
     <Parallax
       bgImage="https://image.ibb.co/nN3bjy/adult_book_business_297755_1.jpg"
       bgImageAlt="welcome"
@@ -22,7 +22,12 @@ const Main = ({ name, displayUsername,setItineraries }) => (
     >
       <div style={{ height: '550px' }} />
       <div className="ui center aligned segment" style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
-        <GetStarted signin={signInBtn} name={name} displayUsername={displayUsername} setItineraries={setItineraries}/>
+        <GetStarted
+          signin={signInBtn}
+          name={name}
+          displayUsername={displayUsername}
+          setItineraries={setItineraries}
+        />
       </div>
     </Parallax>
     <Parallax
@@ -51,6 +56,7 @@ const Main = ({ name, displayUsername,setItineraries }) => (
 Main.propTypes = {
   name: PropTypes.string.isRequired,
   displayUsername: PropTypes.func.isRequired,
+  setItineraries: PropTypes.func.isRequired,
 };
 
 export default Main;
