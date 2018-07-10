@@ -53,12 +53,16 @@ class Review extends React.Component {
     const { itin } = this.state;
     console.log(entries, 'ENTRIES');
     // Save itinerary
-    $.post('/itinerary/save', {
-      itin,
-      events: entries,
-    })
-      .then(response => console.log(response))
-      .catch(error => console.log(error, 'problem sending itinerary'));
+    if (entries.length === 0) {
+      alert('You have no events in your itinerary!');
+    } else {
+      $.post('/itinerary/save', {
+        itin,
+        events: entries,
+      })
+        .then(response => console.log(response))
+        .catch(error => console.log(error, 'problem sending itinerary'));
+    }
     this.close();
   }
 
