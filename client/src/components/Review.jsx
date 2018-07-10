@@ -106,6 +106,7 @@ Review.propTypes = {
     name: PropTypes.string,
     image_url: PropTypes.string,
   })).isRequired,
+  place: PropTypes.string.isRequired,
 };
 
 export default Review;

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
-import ItineraryModalEntry from './ItineraryModalEntry';
-
+import ItineraryEntry from './ItineraryEntry';
 
 class ItineraryModal extends React.Component {
   /**
@@ -56,11 +55,13 @@ class ItineraryModal extends React.Component {
         basic
       >
         <Modal.Header>
-          Please ItineraryModal Your Epic Itinerary
+          Your Epic Itinerary
         </Modal.Header>
         <Modal.Content>
           <div>
-            <ItineraryModalEntry />
+            {
+              entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
+            }
           </div>
           <Button onClick={this.close}>
             Close
@@ -79,5 +80,3 @@ ItineraryModal.propTypes = {
 };
 
 export default ItineraryModal;
-
-// entries.map(entry =>  key={entry.name} entry={entry}
