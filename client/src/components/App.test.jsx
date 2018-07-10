@@ -52,6 +52,7 @@ describe('App page', () => {
   });
 
   test('can set and remove pop-up message', (done) => {
+    app.setState({ popUpMessages: [] });
     // Add popup message
     app.instance().logPopUpMessage('Test');
 

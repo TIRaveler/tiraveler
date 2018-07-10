@@ -81,7 +81,7 @@ class App extends React.Component {
     const { location, pictures } = this.state;
     const selectedPics = pictures.filter(pic => pic.isSelected);
     if (selectedPics.length === 0) {
-      alert('Please select photos first');
+      this.logPopUpMessage('Please select photos first');
     } else {
       history.push('/events');
       $.ajax({
