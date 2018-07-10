@@ -33,7 +33,7 @@ const getKeySetter = (setEvent, event, key, value) => (
 */
 const Event = ({ event, setEvent }) => (
   <Card>
-    <Image style={{ width: '160px', height: '160px' }} src={event.image_url} />
+    <Image style={{ height: '180px' }} src={event.image_url} />
     <Card.Content>
       <Card.Header>
         {event.name}
