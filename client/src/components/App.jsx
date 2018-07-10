@@ -80,7 +80,6 @@ class App extends React.Component {
   sendSelectedPhotos(history) {
     const { location, pictures } = this.state;
     const selectedPics = pictures.filter(pic => pic.isSelected);
-    console.log(pictures, 'pictures');
     if (selectedPics.length === 0) {
       alert('Please select photos first');
     } else {
