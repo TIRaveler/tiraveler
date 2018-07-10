@@ -14,11 +14,6 @@ exports.login = (req, res) => {
       if (isMatch) {
         req.session.user = user;
         const userId=user.id;
-        // Itinerary.findAll({
-        //   where: {
-        //     userId: user.id,
-        //   },
-        //})
         const sql= `select e.name eventName, e.location Address, price, i.name IternarariesName,i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`
         db.query(sql,(err,events) => {
           if (err) throw err;
