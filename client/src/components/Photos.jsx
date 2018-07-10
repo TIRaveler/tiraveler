@@ -117,8 +117,7 @@ class Photos extends React.Component {
             floated="right"
             className="blue"
             onClick={() => {
-              history.push('/events');
-              sendSelectedPhotos();
+              sendSelectedPhotos(history);
             }}
           >
             {'Let\'s travel!'}

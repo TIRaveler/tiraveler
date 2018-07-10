@@ -77,27 +77,31 @@ class App extends React.Component {
    * Post selected photos to server
    * Sets events state to result
    */
-  sendSelectedPhotos() {
+  sendSelectedPhotos(history) {
     const { location, pictures } = this.state;
     const selectedPics = pictures.filter(pic => pic.isSelected);
-
-    $.ajax({
-      url: '/events/search',
-
-      data: {
-        location,
-        pictures: selectedPics,
-      },
-      type: 'POST',
-      error: (xhr, status, err) => {
-        this.logPopUpMessage(`Error: ${err.message}`);
-      },
-      success: (data) => {
-        this.setState({
-          events: data,
-        });
-      },
-    });
+    console.log(pictures, 'pictures');
+    if (selectedPics.length === 0) {
+      alert('Please select photos first');
+    } else {
+      history.push('/events');
+      $.ajax({
+        url: '/events/search',
+        data: {
+          location,
+          pictures: selectedPics,
+        },
+        type: 'POST',
+        error: (xhr, status, err) => {
+          this.logPopUpMessage(`Error: ${err.message}`);
+        },
+        success: (data) => {
+          this.setState({
+            events: data,
+          });
+        },
+      });
+    }
   }
 
   /**
