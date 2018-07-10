@@ -11,6 +11,7 @@ const Itinerary = ({ entries }) => (
     <Container text>
       <Item.Group divided>
         {
+          // console.log(entries, 'here')
           entries.map(entry => <ItineraryModalEntry key={entry.name} entry={entry} />)
         }
       </Item.Group>

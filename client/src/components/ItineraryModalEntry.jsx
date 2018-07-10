@@ -5,6 +5,7 @@ import ItineraryModal from './ItineraryModal';
 
 const ItineraryModalEntry = ({ entry }) => (
   <Item>
+    {console.log(entry, 'there')}
     <Item.Content>
       <Item.Header>
         {entry.name}
@@ -16,7 +17,6 @@ const ItineraryModalEntry = ({ entry }) => (
         From object
       </Item.Description>
     </Item.Content>
-    <ItineraryModal events={entry.events} />
   </Item>
 );
 
@@ -28,3 +28,5 @@ ItineraryModalEntry.propTypes = {
 };
 
 export default ItineraryModalEntry;
+
+{/* <ItineraryModal events={entry.events} /> */}
