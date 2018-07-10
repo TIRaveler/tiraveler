@@ -29,4 +29,4 @@ ItineraryModalEntry.propTypes = {
 
 export default ItineraryModalEntry;
 
-{/* <ItineraryModal events={entry.events} /> */}
+{ /* <ItineraryModal events={entry.events} /> */ }
