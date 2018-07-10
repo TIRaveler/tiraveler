@@ -40,14 +40,14 @@ class ItineraryModal extends React.Component {
    * Render ItineraryModal button and pop-up
    */
   render() {
-    const { entries } = this.props;
+    const { events, name } = this.props;
     const { isOpen } = this.state;
 
     return (
       <Modal
         trigger={(
           <Button onClick={this.open}>
-            ItineraryModal
+            View my Itinerary
           </Button>
         )}
         open={isOpen}
@@ -55,12 +55,12 @@ class ItineraryModal extends React.Component {
         basic
       >
         <Modal.Header>
-          Your Epic Itinerary
+          {name}
         </Modal.Header>
         <Modal.Content>
           <div>
             {
-              entries.map(entry => <ItineraryEntry key={entry.name} entry={entry} />)
+              events.map(event => <ItineraryEntry key={event.eventName} event={event} />)
             }
           </div>
           <Button onClick={this.close}>
@@ -73,10 +73,11 @@ class ItineraryModal extends React.Component {
 }
 
 ItineraryModal.propTypes = {
-  entries: PropTypes.arrayOf(PropTypes.shape({
+  events: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     image_url: PropTypes.string,
   })).isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default ItineraryModal;

@@ -5,16 +5,12 @@ import ItineraryModal from './ItineraryModal';
 
 const ItineraryModalEntry = ({ entry }) => (
   <Item>
-    {console.log(entry, 'there')}
     <Item.Content>
       <Item.Header>
         {entry.name}
       </Item.Header>
-      <Item.Meta>
-        From object
-      </Item.Meta>
       <Item.Description>
-        From object
+        <ItineraryModal events={entry.events} name={entry.name} />
       </Item.Description>
     </Item.Content>
   </Item>
@@ -28,5 +24,3 @@ ItineraryModalEntry.propTypes = {
 };
 
 export default ItineraryModalEntry;
-
-{ /* <ItineraryModal events={entry.events} /> */ }
