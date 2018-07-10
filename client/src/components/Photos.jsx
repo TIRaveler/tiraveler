@@ -98,7 +98,7 @@ class Photos extends React.Component {
               <Card key={photo.id}>
                 <Card.Content>
                   <Image
-                    style={{ width: '190px', height: '190px' }}
+                    style={{ height: '190px' }}
                     src={photo.srcPath}
                   />
                   <Card.Description>
