@@ -15,7 +15,7 @@ const mysql = require('mysql2');
 //   dialect: 'mysql',
 // });
 
-const database = new Sequelize('TIRavelerDB', 'root', '', {
+const database = new Sequelize('TIRavelerDB', 'root', process.env.DB_PASSWORD, {
   dialect: 'mysql',
 });
 
