@@ -14,7 +14,6 @@ const signinBtn = (
 const logoutUser = () => {
   axios.get('/user/logout')
     .then(() => {
-      console.log('history props: ', this.props.history);
       this.props.history.push('/');
     })
     .catch((err) => {
