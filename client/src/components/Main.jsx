@@ -33,7 +33,7 @@ class Main extends React.Component {
    */
   updateDimensions() {
     if (window.screen.width > 1280) {
-      this.setState({ height: '650px' });
+      this.setState({ height: '800px' });
     }
   }
 
