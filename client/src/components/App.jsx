@@ -7,6 +7,7 @@ import Photos from './Photos';
 import Events from './Events';
 import Itinerary from './Itinerary';
 import Navbar from './Navbar';
+import Signup from './Signup';
 
 /**
  * TIRavler travel app
@@ -140,6 +141,17 @@ class App extends React.Component {
                 path="/"
                 render={props => (
                   <Main
+                    {...props}
+                    name={name}
+                    displayUsername={this.displayUsername}
+                    setItineraries={this.superFunction('itineraries')}
+                  />)}
+              />
+              <Route
+                exact
+                path="/signup"
+                render={props => (
+                  <Signup
                     {...props}
                     name={name}
                     displayUsername={this.displayUsername}

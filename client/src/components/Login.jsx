@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'semantic-ui-react';
+import { Form, Icon, Button, Loader } from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
@@ -11,43 +11,28 @@ class Login extends React.Component {
     this.state = {
       password: '',
       name: '',
-      submittedPassword: '',
-      submittedName: '',
     };
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handlePasswordChange(e) {
+  handleChange(e) {
     this.setState({
-      password: e.target.value,
-      submittedPassword: e.target.value,
-    });
-  }
-
-  handleNameChange(e) {
-    this.setState({
-      name: e.target.value,
-      submittedName: e.target.value,
+      [e.target.name]: e.target.value,
     });
   }
 
   handleSubmit(e) {
     const { displayUsername, history, setItineraries } = this.props;
     e.preventDefault();
-    const { submittedPassword, submittedName } = this.state;
-    this.setState({
-      password: '',
-      name: '',
-    });
+    const { password, name } = this.state;
     axios.post('/user/login', {
-      name: submittedName,
-      password: submittedPassword,
+      name: name,
+      password: password,
     })
       .then((res) => {
         setItineraries({ target: { value: res.data } });
-        displayUsername(submittedName);
+        displayUsername(name);
         history.push('/search');
       })
       .catch(err => console.error(err));
@@ -60,19 +45,34 @@ class Login extends React.Component {
         <div className="ui center aligned basic segment">
           <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
             <Form.Group>
-              <Form.Input placeholder="Name" name="name" value={name} onChange={this.handleNameChange} />
+              <Form.Input iconPosition="left" placeholder="Username" name="name" value={name} onChange={this.handleChange}>
+              <Icon name="user" />
+              <input />
+              </Form.Input>
             </Form.Group>
             <Form.Group>
               <Form.Input
+                iconPosition="left"
                 type="password"
                 placeholder="Password"
                 name="password"
                 value={password}
-                onChange={this.handlePasswordChange}
-              />
+                onChange={this.handleChange}
+              >
+                <Icon name="lock" />
+                <input />
+              </Form.Input>
             </Form.Group>
             <Form.Button content="Submit" />
           </Form>
+          <div className="ui horizontal divider">
+            Or
+          </div>
+          <Button
+            basic color="blue"
+            onClick={() => this.props.history.push('/signup')}>
+            New? Signup here!
+            </Button>
         </div>
       </div>
     );

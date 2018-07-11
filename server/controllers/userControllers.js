@@ -3,14 +3,13 @@ const { User, db } = require('../../db/index');
 
 
 exports.login = (req, res) => {
-  const pw = req.body.password;
-  const { name } = req.body;
+  const { name, password } = req.body;
 
   User.findOne({
     where: { username: name },
   }).then((user) => {
     if (user) {
-      const isMatch = bcrypt.compareSync(pw, user.password);
+      const isMatch = bcrypt.compareSync(password, user.password);
       if (isMatch) {
         req.session.user = user;
         const userId = user.id;
@@ -47,16 +46,8 @@ exports.login = (req, res) => {
           res.status(200).send(itineraries);
         });
       } else {
-        console.log('pw is not a match: ', isMatch);
+        console.log('password is not a match: ', isMatch);
       }
-    } else {
-      const hash = bcrypt.hashSync(pw, 10);
-      User.create({ username: name, password: hash }).then(() => {
-        req.session.user = user;
-        res.status(201).send('Created');
-      }).catch(() => {
-        res.status(404).send('Not created');
-      });
     }
   }).catch((err) => {
     console.error(err);
@@ -69,6 +60,30 @@ exports.logout = (req, res) => {
   req.session.reset();
   res.status(200).send('Logged out!');
 };
+
+exports.signup = (req, res) => {
+  const { name, password } = req.body;
+  console.log('name: ', name, 'password: ', password)
+
+  User.findOne({
+    where: { username: name }
+  }).then((user) => {
+    if (user) {
+      res.send('User already exists');
+    } else {
+      const hash = bcrypt.hashSync(password, 10);
+      User.create({ username: name, password: hash }).then(() => {
+        req.session.user = user;
+        res.status(201).send('Created');
+      }).catch(() => {
+        res.status(404).send('Not created');
+      });
+    }
+  }).catch((err) => {
+    console.error(err);
+    res.status(404).send(err);
+  })
+}
 
 exports.checkUser = (req, res) => {
   if (req.session && req.user) {

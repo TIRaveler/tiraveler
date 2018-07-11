@@ -20,13 +20,15 @@ const Navbar = ({
     <div className="item">
       <Route
         render={({ history }) => (
+          <div style={{ fontFamily: 'Baloo Bhaijaan', fontSize: '30px' }}>
+          TIRaveler
           <img
             alt="home"
             className="ui small image"
             onClick={() => history.push('/')}
             role="presentation"
-            src="https://image.ibb.co/hYsNrd/Screen_Shot_2018_06_29_at_6_06_38_PM.png"
-          />
+            src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png" style={{ width: '27px', height: '27px' }}/>
+          </div>
         )}
       />
     </div>
@@ -39,6 +41,16 @@ const Navbar = ({
               My Itineraries
             </button>
           )}
+        />
+    </div>
+    <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
+    <div className="right menu">
+      <div className="item">
+        <GetStarted
+          signin={signinBtn}
+          name={name}
+          displayUsername={displayUsername}
+          setItineraries={setItineraries}
         />
       </div>
       <div className="item">
