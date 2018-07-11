@@ -94,9 +94,6 @@ const Events = ({
   setEvents,
 }) => (
   <React.Fragment>
-    <div style={{ marginBottom: '100px' }}>
-      <LoggedInNav />
-    </div>
     <Header>
       Select an Event
     </Header>
