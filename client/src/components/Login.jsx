@@ -37,12 +37,18 @@ class Login extends React.Component {
     });
   }
 
+  /**
+   * Handle username and pw change
+   */
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
   }
 
+  /**
+   * Handle login submission
+   */
   handleSubmit(e) {
     const { displayUsername, history, setItineraries } = this.props;
     e.preventDefault();
@@ -61,6 +67,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { history } = this.props;
     const { password, name, isOpen } = this.state;
     return (
       <div
