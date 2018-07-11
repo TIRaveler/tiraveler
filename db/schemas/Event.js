@@ -1,4 +1,4 @@
-Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
 module.exports = (database, DataTypes) => {
   const Event = database.define('event', {

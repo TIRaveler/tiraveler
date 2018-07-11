@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 // const databaseUrl = process.env.DATABASE_URL
 //   || `mysql://${process.env.DB_USER}${process.env.DB_PASSWORD ? `:${process.env.DB_PASSWORD}` : undefined}@localhost/TIRavelerDB?reconnect=true`;
 
+
 // const database = new Sequelize(databaseUrl, {
 //   dialect: 'mysql',
 // });
