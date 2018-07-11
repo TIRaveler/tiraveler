@@ -17,6 +17,14 @@ describe('Review', () => {
     name: 'Some test itin',
   };
 
+  /** Array of all elements logged */
+  let logArray = [];
+
+  /** Sample logging function */
+  const sampleLog = (...args) => {
+    logArray.push(args);
+  };
+
   /**
    * Sample username
    */
@@ -66,11 +74,17 @@ describe('Review', () => {
     // Reset sent items
     sentEvents = [];
     sentItin = {};
+    logArray = [];
   });
 
   test('can set props', () => {
     // Shallow render review
-    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} name={sampleName} place={samplePlace} />);
+    const wrapReview = getShallowReviewWithRouter(<Review
+      entries={sampleEntries}
+      log={sampleLog}
+      name={sampleName}
+      place={samplePlace}
+    />);
 
     // Get entries
     const { entries } = wrapReview.props();
@@ -81,7 +95,12 @@ describe('Review', () => {
 
   test('finalize sends events', () => {
     // Shallow render review
-    const wrapReview = getShallowReviewWithRouter(<Review entries={sampleEntries} name={sampleName} place={samplePlace} />).dive();
+    const wrapReview = getShallowReviewWithRouter(<Review
+      entries={sampleEntries}
+      log={sampleLog}
+      name={sampleName}
+      place={samplePlace}
+    />).dive();
 
     // Set itinerary
     wrapReview.setState({ itin: sampleItin });

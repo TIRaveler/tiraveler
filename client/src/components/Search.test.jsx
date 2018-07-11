@@ -10,6 +10,9 @@ const { mount } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Search', () => {
+  /** Sample username */
+  const sampleName = 'TIRaveler';
+
   /**
    * The current app state
    * @prop {number} budget   The current budget
@@ -65,6 +68,7 @@ describe('Search', () => {
           appState={mockAppState}
           handleBudget={mockHandleBudget}
           handleLocation={mockHandleLocation}
+          name={sampleName}
         />
       </MemoryRouter>,
     ).find(Search);

@@ -15,8 +15,18 @@ describe('Events page', () => {
   /** The current budget */
   const budgetProp = 100;
 
+  /** Sample place to search */
+  const samplePlace = 'Here';
+
   /** Array holding all events */
   let eventsState = [];
+
+  /** Array of all elements logged */
+  let logArray = [];
+
+  const mockLog = (...args) => {
+    logArray.push(args);
+  };
 
   /**
    * Stub for setting events
@@ -46,6 +56,8 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={sampleEvents}
+          log={mockLog}
+          place={samplePlace}
           setEvents={setEventsStub}
         />
       </MemoryRouter>,
@@ -62,7 +74,9 @@ describe('Events page', () => {
   });
 
   beforeEach(() => {
+    // Reset values
     eventsState = [];
+    logArray = [];
   });
 
   test('updates events on like and dislike', () => {
@@ -124,6 +138,8 @@ describe('Events page', () => {
         <Events
           budget={budgetProp}
           events={events}
+          log={mockLog}
+          place={samplePlace}
           setEvents={setEventsStub}
         />
       </MemoryRouter>,
