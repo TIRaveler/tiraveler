@@ -16,7 +16,9 @@ class LoggedInNav extends React.Component {
       <div className="ui top fixed menu secondary pointing menu" style={{ background: 'white' }}>
         <div className="item">
           <div style={{ fontFamily: 'Baloo Bhaijaan', fontSize: '30px' }}>
-          TIRaveler <img src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png" style={{ width: '27px', height: '27px' }}/>
+          TIRaveler
+            {' '}
+            <img src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png" style={{ width: '27px', height: '27px' }} />
           </div>
         </div>
         <div className="right menu">

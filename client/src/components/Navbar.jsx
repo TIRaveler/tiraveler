@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Popup, Dropdown, Menu } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
-import GetStarted from './GetStarted';
 import axios from 'axios';
+import GetStarted from './GetStarted';
 
 const signinBtn = (
   <button type="button" className="ui basic button">
@@ -16,10 +16,19 @@ const logoutUser = () => {
     .then(() => {
       console.log('history props: ', this.props.history);
       this.props.history.push('/');
+    })
+    .catch((err) => {
+      console.log(err);
     });
-}
+};
 
-const options = { key: 1, text: <a href="/" onClick={logoutUser.bind(this)}>Logout</a>, value: 1 };
+const options = {
+  key: 1,
+  text: <a href="/" onClick={logoutUser.bind(this)}>
+Logout
+        </a>,
+  value: 1,
+};
 
 const Navbar = ({
   name,
@@ -32,13 +41,13 @@ const Navbar = ({
       <Route
         render={({ history }) => (
           <div
+            role="presentation"
             style={{ fontFamily: 'Baloo Bhaijaan', fontSize: '30px' }}
             onClick={() => history.push('/')}
           >
             TIRaveler
             <img
               alt="home"
-              role="presentation"
               src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png"
               style={{ width: '27px', height: '27px' }}
             />
@@ -56,23 +65,23 @@ const Navbar = ({
             </button>
           )}
         />
-    </div>
-    <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
-    <div className="right menu">
-      <div className="item">
-        <Route
-          render={({ history }) => (
-            <button type="button" className="mini ui basic button" onClick={() => history.push('/search')}>
-              Search
-            </button>
-          )}
-        />
       </div>
-      <div className="item">
-        {
+      <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
+      <div className="right menu">
+        <div className="item">
+          <Route
+            render={({ history }) => (
+              <button type="button" className="mini ui basic button" onClick={() => history.push('/search')}>
+              Search
+              </button>
+            )}
+          />
+        </div>
+        <div className="item">
+          {
           name ? (
-            <Menu.Menu position='right'>
-              <Dropdown item simple text={name} direction='right' options={options} />
+            <Menu.Menu position="right">
+              <Dropdown item simple text={name} direction="right" options={options} />
             </Menu.Menu>
           ) : (
             <GetStarted
@@ -83,8 +92,8 @@ const Navbar = ({
             />
           )
         }
+        </div>
       </div>
-    </div>
     </div>
   </div>
 );

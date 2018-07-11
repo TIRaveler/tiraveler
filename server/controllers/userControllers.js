@@ -63,10 +63,10 @@ exports.logout = (req, res) => {
 
 exports.signup = (req, res) => {
   const { name, password } = req.body;
-  console.log('name: ', name, 'password: ', password)
+  console.log('name: ', name, 'password: ', password);
 
   User.findOne({
-    where: { username: name }
+    where: { username: name },
   }).then((user) => {
     if (user) {
       res.send('User already exists');
@@ -82,8 +82,8 @@ exports.signup = (req, res) => {
   }).catch((err) => {
     console.error(err);
     res.status(404).send(err);
-  })
-}
+  });
+};
 
 exports.checkUser = (req, res) => {
   if (req.session && req.user) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Icon, Button, Loader } from 'semantic-ui-react';
+import {
+  Form, Icon, Button,
+} from 'semantic-ui-react';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 
@@ -27,8 +29,8 @@ class Login extends React.Component {
     e.preventDefault();
     const { password, name } = this.state;
     axios.post('/user/login', {
-      name: name,
-      password: password,
+      name,
+      password,
     })
       .then((res) => {
         setItineraries({ target: { value: res.data } });
@@ -40,14 +42,15 @@ class Login extends React.Component {
 
   render() {
     const { password, name } = this.state;
+    const { history } = this.props;
     return (
       <div>
         <div className="ui center aligned basic segment">
           <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
             <Form.Group>
               <Form.Input iconPosition="left" placeholder="Username" name="name" value={name} onChange={this.handleChange}>
-              <Icon name="user" />
-              <input />
+                <Icon name="user" />
+                <input />
               </Form.Input>
             </Form.Group>
             <Form.Group>
@@ -69,10 +72,12 @@ class Login extends React.Component {
             Or
           </div>
           <Button
-            basic color="blue"
-            onClick={() => this.props.history.push('/signup')}>
+            basic
+            color="blue"
+            onClick={() => history.push('/signup')}
+          >
             New? Signup here!
-            </Button>
+          </Button>
         </div>
       </div>
     );

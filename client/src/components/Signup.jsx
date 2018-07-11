@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Checkbox, Form, Card, Icon, Header } from 'semantic-ui-react';
+import {
+  Form, Card, Icon, Header,
+} from 'semantic-ui-react';
 import axios from 'axios';
 
 class Signup extends React.Component {
@@ -24,8 +26,8 @@ class Signup extends React.Component {
     e.preventDefault();
     const { password, name } = this.state;
     axios.post('/user/signup', {
-      name: name,
-      password: password,
+      name,
+      password,
     })
       .then((res) => {
         setItineraries({ target: { value: res.data } });
@@ -38,19 +40,19 @@ class Signup extends React.Component {
   render() {
     const { password, name } = this.state;
     return (
-      <div style={{ backgroundImage: `url("https://image.ibb.co/idiPsT/old_1130731_1280.jpg")`, height: '800px'}}>
-        <div style={{ justifyContent: 'center', display: 'flex', paddingTop: '170px'}}>
+      <div style={{ backgroundImage: 'url("https://image.ibb.co/idiPsT/old_1130731_1280.jpg")', height: '800px' }}>
+        <div style={{ justifyContent: 'center', display: 'flex', paddingTop: '170px' }}>
           <Card color="purple">
             <Card.Content>
               <Header icon="signup" content="Signup" />
-              <div className="ui inverted divider"></div>
+              <div className="ui inverted divider" />
             </Card.Content>
             <div className="ui center aligned basic segment">
               <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
                 <Form.Group>
                   <Form.Input iconPosition="left" placeholder="Username" name="name" value={name} onChange={this.handleChange}>
-                  <Icon name="user" />
-                  <input />
+                    <Icon name="user" />
+                    <input />
                   </Form.Input>
                 </Form.Group>
                 <Form.Group>
@@ -72,8 +74,8 @@ class Signup extends React.Component {
           </Card>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 export default Signup;
