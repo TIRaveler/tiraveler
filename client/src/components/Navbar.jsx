@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popup, Button } from 'semantic-ui-react';
+import { Popup } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
 import GetStarted from './GetStarted';
 

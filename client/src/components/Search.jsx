@@ -4,7 +4,6 @@ import {
   Button, Divider, Input, Header, Container, Grid,
 } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
-import LoggedInNav from './LoggedInNav';
 
 const styles = {
   bordered: {
@@ -15,14 +14,14 @@ const styles = {
   },
 };
 
-const searchService = ({ location, budget }) => {
-  // $.post('/photos/search', {
-  //   price: budget, location,
-  // })
-  //   .catch((error) => {
-  //     console.log(error, 'problem submitting search');
-  //   });
-};
+// const searchService = ({ location, budget }) => {
+//   // $.post('/photos/search', {
+//   //   price: budget, location,
+//   // })
+//   //   .catch((error) => {
+//   //     console.log(error, 'problem submitting search');
+//   //   });
+// };
 
 /**
  * Convert budget to number and update
@@ -42,7 +41,7 @@ const convertBudgetToNumberAndUpdate = (event, callback) => {
  * @param {{handleBudget: {*}, handleLocation: {*}, appState: {*}}}
  */
 const Search = ({
-  handleBudget, handleLocation, appState, name,
+  handleBudget, handleLocation, name,
 }) => (
   <div>
     <div className="ui equal width center aligned padded grid" style={styles.all}>
@@ -95,7 +94,7 @@ const Search = ({
               color="blue"
               onClick={() => {
                 history.push('/photos');
-                searchService(appState);
+                // searchService(appState);
               }}
             >
               GO
@@ -109,14 +108,6 @@ const Search = ({
 );
 
 Search.propTypes = {
-  /**
-   * Current app state
-   */
-  appState: PropTypes.shape({
-    budget: PropTypes.number.isRequired,
-    location: PropTypes.string.isRequired,
-  }).isRequired,
-
   /**
    * Update budget information
    * @param {{target: {value: {number}}}} event Event object
