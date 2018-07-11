@@ -47,20 +47,20 @@ class Review extends React.Component {
    */
   finalize() {
     // Get prop values
-    const { entries } = this.props;
+    const { entries, log } = this.props;
 
     // Get state values
     const { itin } = this.state;
     // Save itinerary
     if (entries.length === 0) {
-      alert('You have no events in your itinerary!');
+      log('You have no events in your itinerary!');
     } else {
       $.post('/itinerary/save', {
         itin,
         events: entries,
       })
-        .then(response => console.log('Saved!'))
-        .catch(error => console.log(error, 'problem sending itinerary'));
+        .then(response => log(response))
+        .catch(error => log(error, 'problem sending itinerary'));
     }
     this.close();
   }
@@ -110,6 +110,7 @@ Review.propTypes = {
     image_url: PropTypes.string,
   })).isRequired,
   place: PropTypes.string.isRequired,
+  log: PropTypes.func.isRequired,
 };
 
 export default Review;

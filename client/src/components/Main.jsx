@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Parallax } from 'react-parallax';
 import { Button } from 'semantic-ui-react';
-import Navbar from './Navbar';
 import StatCard from './StatCard';
 import AboutUs from './AboutUs';
 import GetStarted from './GetStarted';
@@ -14,7 +13,6 @@ Get Started
 );
 const Main = ({ name, displayUsername, setItineraries }) => (
   <div>
-    {/* <Navbar name={name} displayUsername={displayUsername} /> */}
     <Parallax
       bgImage="https://image.ibb.co/nN3bjy/adult_book_business_297755_1.jpg"
       bgImageAlt="welcome"

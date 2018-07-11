@@ -81,7 +81,7 @@ class App extends React.Component {
     const { location, pictures } = this.state;
     const selectedPics = pictures.filter(pic => pic.isSelected);
     if (selectedPics.length === 0) {
-      alert('Please select photos first');
+      this.logPopUpMessage('Please select photos first');
     } else {
       history.push('/events');
       $.ajax({
@@ -170,7 +170,19 @@ class App extends React.Component {
                     sendSelectedPhotos={this.sendSelectedPhotos}
                   />)}
               />
-              <Route path="/events" exact render={props => <Events {...props} budged={budget} place={location} events={events} setEvents={this.superFunction('events')} />} />
+              <Route
+                path="/events"
+                exact
+                render={props => (<Events
+                  {...props}
+                  budged={budget}
+                  events={events}
+                  log={this.logPopUpMessage}
+                  place={location}
+                  setEvents={this.superFunction('events')}
+                />
+                )}
+              />
               <Route path="/myItineraries" exact render={props => <Itinerary {...props} entries={itineraries} />} />
             </Switch>
           </div>
