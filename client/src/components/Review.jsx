@@ -59,10 +59,12 @@ class Review extends React.Component {
         itin,
         events: entries,
       })
-        .then(response => log(response))
+        .then((response) => {
+          log(response);
+          this.close();
+        })
         .catch(error => log(error, 'problem sending itinerary'));
     }
-    this.close();
   }
 
   /**
