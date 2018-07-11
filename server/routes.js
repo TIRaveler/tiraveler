@@ -23,6 +23,8 @@ router.route('/user/logout')
  * @param {string} username - The username
  * @param {string} password - The user's password
  */
+router.route('/user/signup')
+  .post(userCtrl.signup);
 
 /**
  * Search photos

@@ -23,7 +23,7 @@ app.use('/', express.static(clientFolder));
 app.use('/', routes);
 // Last endpoint, wild card
 const reactRouterRoutes = ['/', '/search', '/time', '/photos', '/events',
-  '/review', '/finalized', '/myItineraries'];
+  '/review', '/finalized', '/myItineraries', '/signup'];
 reactRouterRoutes.forEach((route) => {
   app.use(route, express.static(`${clientFolder}/index.html`));
 });

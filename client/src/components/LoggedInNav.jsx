@@ -15,10 +15,14 @@ class LoggedInNav extends React.Component {
     return (
       <div className="ui top fixed menu secondary pointing menu" style={{ background: 'white' }}>
         <div className="item">
-          <img className="ui small image" src="https://image.ibb.co/hYsNrd/Screen_Shot_2018_06_29_at_6_06_38_PM.png" alt="logo" />
+          <div style={{ fontFamily: 'Baloo Bhaijaan', fontSize: '30px' }}>
+          TIRaveler
+            {' '}
+            <img src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png" style={{ width: '27px', height: '27px' }} />
+          </div>
         </div>
         <div className="right menu">
-          <div className="item" style={{ marginBottom: '10px' }}>
+          <div className="item">
             <button type="button" className="ui basic button" onClick={this.logoutUser.bind(this)}>
               Logout
             </button>

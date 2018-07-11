@@ -9,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 
 import Review from './Review';
+import LoggedInNav from './LoggedInNav';
 
 /**
  * Closure to update event key to a specific value

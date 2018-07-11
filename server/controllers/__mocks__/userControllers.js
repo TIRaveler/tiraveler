@@ -6,6 +6,6 @@ exports.logout = (req, res) => {
   res.send('Success');
 };
 
-exports.register = (req, res) => {
+exports.signup = (req, res) => {
   res.send('Success');
 };

@@ -28,6 +28,7 @@ const Main = ({ name, displayUsername, setItineraries }) => (
         />
       </div>
     </Parallax>
+
     <Parallax
       blur={{ min: -15, max: 15 }}
       bgImage="https://images.pexels.com/photos/872958/pexels-photo-872958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"

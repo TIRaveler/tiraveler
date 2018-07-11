@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popup } from 'semantic-ui-react';
+import { Popup, Dropdown, Menu } from 'semantic-ui-react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 import GetStarted from './GetStarted';
 
 const signinBtn = (
@@ -9,6 +10,25 @@ const signinBtn = (
     Sign In
   </button>
 );
+
+const logoutUser = () => {
+  axios.get('/user/logout')
+    .then(() => {
+      console.log('history props: ', this.props.history);
+      this.props.history.push('/');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const options = {
+  key: 1,
+  text: <a href="/" onClick={logoutUser.bind(this)}>
+Logout
+        </a>,
+  value: 1,
+};
 
 const Navbar = ({
   name,
@@ -20,18 +40,23 @@ const Navbar = ({
     <div className="item">
       <Route
         render={({ history }) => (
-          <img
-            alt="home"
-            className="ui small image"
-            onClick={() => history.push('/')}
+          <div
             role="presentation"
-            src="https://image.ibb.co/hYsNrd/Screen_Shot_2018_06_29_at_6_06_38_PM.png"
-          />
+            style={{ fontFamily: 'Baloo Bhaijaan', fontSize: '30px' }}
+            onClick={() => history.push('/')}
+          >
+            TIRaveler
+            <img
+              alt="home"
+              src="https://purepng.com/public/uploads/large/purepng.com-paper-planepaper-planeaeroplanepaper-gliderpaper-dartaircraftfolded-paperpaperboardclipart-1421526589497gsu4z.png"
+              style={{ width: '27px', height: '27px' }}
+            />
+          </div>
         )}
       />
     </div>
     <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
-    <div className="right menu" style={{ marginBottom: '10px' }}>
+    <div className="right menu">
       <div className="item">
         <Route
           render={({ history }) => (
@@ -41,19 +66,23 @@ const Navbar = ({
           )}
         />
       </div>
-      <div className="item">
-        <Route
-          render={({ history }) => (
-            <button type="button" className="mini ui basic button" onClick={() => history.push('/search')}>
+      <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
+      <div className="right menu">
+        <div className="item">
+          <Route
+            render={({ history }) => (
+              <button type="button" className="mini ui basic button" onClick={() => history.push('/search')}>
               Search
-            </button>
-          )}
-        />
-      </div>
-      <div className="item">
-        {
+              </button>
+            )}
+          />
+        </div>
+        <div className="item">
+          {
           name ? (
-            `Hello ${name}`
+            <Menu.Menu position="right">
+              <Dropdown item simple text={name} direction="right" options={options} />
+            </Menu.Menu>
           ) : (
             <GetStarted
               signin={signinBtn}
@@ -63,6 +92,7 @@ const Navbar = ({
             />
           )
         }
+        </div>
       </div>
     </div>
   </div>
