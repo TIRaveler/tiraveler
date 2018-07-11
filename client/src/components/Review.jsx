@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import React from 'react';
+import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
 import ItineraryEntry from './ItineraryEntry';
@@ -44,8 +45,9 @@ class Review extends React.Component {
 
   /**
    * Save itinerary
+   * @param {Object} history Browser history for re-directing
    */
-  finalize() {
+  finalize(history) {
     // Get prop values
     const { entries, log } = this.props;
 
@@ -62,6 +64,7 @@ class Review extends React.Component {
         .then((response) => {
           log(response);
           this.close();
+          history.push('/myItineraries');
         })
         .catch(error => log(error, 'problem sending itinerary'));
     }
@@ -97,9 +100,17 @@ class Review extends React.Component {
           <Button onClick={this.close}>
             EDIT ITINERARY
           </Button>
-          <Button onClick={this.finalize}>
-            FINALIZE!
-          </Button>
+          <Route render={({ history }) => (
+            <Button
+              onClick={() => {
+                this.finalize(history);
+              }
+            }
+            >
+              FINALIZE!
+            </Button>
+          )}
+          />
         </Modal.Content>
       </Modal>
     );
