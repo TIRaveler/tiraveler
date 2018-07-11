@@ -14,14 +14,20 @@ const styles = {
   },
 };
 
-// const searchService = ({ location, budget }) => {
-//   // $.post('/photos/search', {
-//   //   price: budget, location,
-//   // })
-//   //   .catch((error) => {
-//   //     console.log(error, 'problem submitting search');
-//   //   });
-// };
+const go = (event) => {
+  if (event.key === 'Enter') {
+    document.getElementById('go').click();
+  }
+};
+
+const searchService = () => {
+  // $.post('/photos/search', {
+  //   price: budget, location,
+  // })
+  //   .catch((error) => {
+  //     console.log(error, 'problem submitting search');
+  //   });
+};
 
 /**
  * Convert budget to number and update
@@ -64,7 +70,7 @@ const Search = ({
         <Container>
           <Grid>
             <div className="eight column centered row">
-              <Input id="input-location" fluid size="huge" placeholder="Paradise..." onChange={handleLocation} />
+              <Input id="input-location" fluid size="huge" placeholder="Paradise..." onChange={handleLocation} onKeyPress={go} />
             </div>
             <div className="equal width row">
               <div className="column">
@@ -81,6 +87,7 @@ const Search = ({
                   onChange={e => convertBudgetToNumberAndUpdate(e, handleBudget)}
                   icon="dollar sign"
                   iconPosition="left"
+                  onKeyPress={go}
                 />
               </div>
             </div>
@@ -89,6 +96,7 @@ const Search = ({
         <div className="row">
           <Route render={({ history }) => (
             <Button
+              id="go"
               fluid
               size="huge"
               color="blue"
