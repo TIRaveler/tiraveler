@@ -18,8 +18,13 @@ const Main = ({ name, displayUsername, setItineraries }) => (
       bgImageAlt="welcome"
       strength={200}
     >
-      <div style={{ height: '550px' }} />
-      <div className="ui center aligned segment" style={{ background: 'transparent', border: 'none', paddingBottom: '70px' }}>
+      <div style={{ height: '550px', position: 'relative' }} />
+      <div
+        className="ui center aligned segment"
+        style={{
+          background: 'transparent', border: 'none', paddingBottom: '70px', position: 'relative',
+        }}
+      >
         <GetStarted
           signin={signInBtn}
           name={name}
