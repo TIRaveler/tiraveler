@@ -35,8 +35,7 @@ const Main = ({ name, displayUsername, setItineraries }) => (
       strength={400}
     >
       <StatCard />
-      Stats about our product
-      <div style={{ height: '400px' }} />
+      <div style={{ height: '50px' }} />
     </Parallax>
 
     <Parallax
