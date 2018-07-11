@@ -37,7 +37,7 @@ const Main = ({ name, displayUsername, setItineraries }) => (
       strength={400}
     >
       <StatCard />
-      <div style={{ height: '100px' }} />
+      <div style={{ height: '50px' }} />
     </Parallax>
 
     <Parallax
