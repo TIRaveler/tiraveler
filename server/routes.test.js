@@ -10,12 +10,10 @@ jest.mock('./controllers/userControllers');
 
 describe('Server API routes', () => {
   let app;
-  let server;
 
   beforeAll(() => {
     app = express();
     app.use('/', routes);
-    server = app.listen(8000);
   });
 
   test('can login user', () => {
@@ -57,6 +55,4 @@ describe('Server API routes', () => {
       .set('Accept', 'text/html')
       .then(res => expect(res.text).toEqual('Success'));
   });
-
-  afterAll(() => { server.close(); });
 });
