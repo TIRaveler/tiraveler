@@ -11,6 +11,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isOpen: false,
       password: '',
       name: '',
     };
@@ -18,7 +19,25 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
+  /**
+   * Open review modal
+   */
+  open() {
+    this.setState({
+      isOpen: true,
+    });
+  }
+
+  /**
+   * Close review modal
+   */
+  close() {
+    this.setState({
+      isOpen: false,
+    });
+  }
+
+  handlePasswordChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -38,13 +57,16 @@ class Login extends React.Component {
         history.push('/search');
       })
       .catch(err => console.error(err));
+    this.close();
   }
 
   render() {
-    const { password, name } = this.state;
-    const { history } = this.props;
+    const { password, name, isOpen } = this.state;
     return (
-      <div>
+      <div
+        open={isOpen}
+        onClose={this.close}
+      >
         <div className="ui center aligned basic segment">
           <Form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
             <Form.Group>
