@@ -3,6 +3,7 @@ import {
   Form, Card, Icon, Header,
 } from 'semantic-ui-react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Signup extends React.Component {
   }
 
   handleSubmit(e) {
-    const { displayUsername, history, setItineraries } = this.props;
+    const { displayUsername, history, log } = this.props;
     e.preventDefault();
     const { password, name } = this.state;
     axios.post('/user/signup', {
@@ -30,11 +31,11 @@ class Signup extends React.Component {
       password,
     })
       .then((res) => {
-        setItineraries({ target: { value: res.data } });
+        log(res);
         displayUsername(name);
         history.push('/search');
       })
-      .catch(err => console.error(err));
+      .catch(err => log(err));
   }
 
   render() {
@@ -77,5 +78,11 @@ class Signup extends React.Component {
     );
   }
 }
+
+Signup.propTypes = {
+  displayUsername: PropTypes.func.isRequired,
+  history: PropTypes.arrayOf(PropTypes.string).isRequired,
+  log: PropTypes.func.isRequired,
+};
 
 export default Signup;
