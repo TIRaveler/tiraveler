@@ -9,7 +9,7 @@ const ItineraryEntry = ({ event }) => (
   <div className="entry-list-entry media">
     <div className="media-left media-middle">
       <Card>
-          <Image style={{ width: '360px',height: '360px' }} src={event.image_url} />
+          <Image style={{ width: '300px',height: '300px' }} center src={event.image_url} />
           <Card.Content>
             <Card.Header>
               {event.name}
