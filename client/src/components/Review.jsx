@@ -25,6 +25,8 @@ class Review extends React.Component {
     this.finalize = this.finalize.bind(this);
   }
 
+  // handleContextRef(contextRef) { this.setState({ contextRef }); }
+
   /**
    * Open review modal
    */
@@ -42,6 +44,7 @@ class Review extends React.Component {
       isOpen: false,
     });
   }
+
 
   /**
    * Save itinerary
@@ -90,27 +93,29 @@ class Review extends React.Component {
       >
         <Modal.Header>
           Please Review Your Epic Itinerary
-        </Modal.Header>
-        <Modal.Content>
-          <div>
-            {
-              entries.map(entry => <ItineraryEntry key={entry.name} event={entry} />)
-            }
-          </div>
-          <Button onClick={this.close}>
-            EDIT ITINERARY
-          </Button>
           <Route render={({ history }) => (
             <Button
+              primary
               onClick={() => {
                 this.finalize(history);
               }
             }
+              floated="right"
             >
               FINALIZE!
             </Button>
           )}
           />
+          <Button onClick={this.close} floated="right">
+              EDIT ITINERARY
+          </Button>
+        </Modal.Header>
+        <Modal.Content scrolling>
+          <div>
+            {
+              entries.map(entry => <ItineraryEntry key={entry.name} event={entry} />)
+            }
+          </div>
         </Modal.Content>
       </Modal>
     );
