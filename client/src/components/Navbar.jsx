@@ -65,7 +65,6 @@ const Navbar = ({
           )}
         />
       </div>
-      <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
       <div className="right menu">
         <div className="item">
           <Route
