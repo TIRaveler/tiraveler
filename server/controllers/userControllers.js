@@ -13,12 +13,7 @@ exports.login = (req, res) => {
       if (isMatch) {
         req.session.user = user;
         const userId = user.id;
-        // Itinerary.findAll({
-        //   where: {
-        //     userId: user.id,
-        //   },
-        // })
-        const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,e.yelplink yelplink, e.photoUrl image_url, i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
+        const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,e.yelplink yelplink, e.photoUrl image_url, e.rating rating, i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
         db.query(sql, (err, events) => {
           if (err) throw err;
           const itineraries = events.reduce((result, event) => {
