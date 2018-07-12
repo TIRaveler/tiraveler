@@ -9,7 +9,6 @@ import {
 } from 'semantic-ui-react';
 
 import Review from './Review';
-import LoggedInNav from './LoggedInNav';
 
 /**
  * Closure to update event key to a specific value
@@ -23,7 +22,11 @@ const getKeySetter = (setEvent, event, key, value) => (
     // Duplicate event
     const newEvent = Object.assign({}, event);
 
-    newEvent[key] = value;
+    if (newEvent[key] === 1) {
+      newEvent[key] = 0;
+    } else {
+      newEvent[key] = value;
+    }
 
     setEvent(newEvent);
   }
@@ -42,12 +45,8 @@ const Event = ({ event, setEvent }) => (
     </Card.Content>
     <Card.Content extra style={{ backgroundColor: event.userRating === 1 ? 'green' : undefined }}>
       <Button positive onClick={getKeySetter(setEvent, event, 'userRating', 1)}>
-        <Icon name="thumbs up" />
-        Like
-      </Button>
-      <Button negative onClick={getKeySetter(setEvent, event, 'userRating', -1)}>
-        <Icon name="thumbs down" />
-        Dislike
+        { event.userRating === 1 ? <Icon name="close" /> : <Icon name="check" /> }
+        { event.userRating === 1 ? 'Remove' : 'Add'}
       </Button>
     </Card.Content>
   </Card>
