@@ -4,10 +4,10 @@ import { Header, Modal } from 'semantic-ui-react';
 import Login from './Login';
 
 const GetStarted = ({
-  signin,
-  name,
   displayUsername,
-  setItineraries,
+  log,
+  name,
+  signin,
 }) => (
   <Modal
     style={{ margin: '30px', height: '400px', width: '400px' }}
@@ -16,16 +16,16 @@ const GetStarted = ({
   >
     <Header icon="sign in" content="Sign In" />
     <Modal.Content>
-      <Login username={name} displayUsername={displayUsername} setItineraries={setItineraries} />
+      <Login username={name} displayUsername={displayUsername} log={log} />
     </Modal.Content>
   </Modal>
 );
 
 GetStarted.propTypes = {
-  signin: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
   displayUsername: PropTypes.func.isRequired,
-  setItineraries: PropTypes.func.isRequired,
+  log: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  signin: PropTypes.func.isRequired,
 };
 
 export default GetStarted;

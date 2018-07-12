@@ -26,6 +26,9 @@ router.route('/user/logout')
 router.route('/user/signup')
   .post(userCtrl.signup);
 
+router.route('/user/itineraries')
+  .get(userCtrl.getItineraries);
+
 /**
  * Search photos
  * @returns {array}
