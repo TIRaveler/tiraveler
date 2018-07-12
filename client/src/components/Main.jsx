@@ -38,7 +38,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { name, displayUsername, setItineraries } = this.props;
+    const { name, displayUsername, log } = this.props;
     const { height } = this.state;
     return (
       <div>
@@ -58,7 +58,7 @@ class Main extends React.Component {
               signin={signInBtn}
               name={name}
               displayUsername={displayUsername}
-              setItineraries={setItineraries}
+              log={log}
             />
           </div>
         </Parallax>
@@ -90,7 +90,7 @@ class Main extends React.Component {
 Main.propTypes = {
   name: PropTypes.string.isRequired,
   displayUsername: PropTypes.func.isRequired,
-  setItineraries: PropTypes.func.isRequired,
+  log: PropTypes.func.isRequired,
 };
 
 export default Main;
