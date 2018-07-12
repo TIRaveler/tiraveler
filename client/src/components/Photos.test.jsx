@@ -1,17 +1,12 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { stub } from 'sinon';
 
 import Photos from './Photos';
 import { getDifferentKeysAndTypes } from '../../../testUtils/objectUtils';
 import sampleServerPhotos from '../../../server/controllers/sample_data/photos';
 import samplePhotos from './sample_data/photos';
-
-Enzyme.configure({ adapter: new Adapter() });
-
-const { mount } = Enzyme;
 
 describe('Photos', () => {
   /**

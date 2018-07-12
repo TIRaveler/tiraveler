@@ -1,15 +1,11 @@
 import React from 'react';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router-dom';
 
 import Events from './Events';
 import Review from './Review';
 import sampleEvents from '../../../server/controllers/sample_data/events';
 
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('Events page', () => {
   /** The current budget */
