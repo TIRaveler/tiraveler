@@ -79,39 +79,39 @@ describe('Events page', () => {
     logArray = [];
   });
 
-  test('updates events on like and dislike', () => {
-    // Click like
-    firstLikeButton.simulate('click');
+  // test('updates events on like and dislike', () => {
+  //   // Click like
+  //   firstLikeButton.simulate('click');
 
-    // Expect state was updated
-    expect(eventsState.length).toEqual(sampleEvents.length);
+  //   // Expect state was updated
+  //   expect(eventsState.length).toEqual(sampleEvents.length);
 
-    // Reset event state
-    eventsState = [];
+  //   // Reset event state
+  //   eventsState = [];
 
-    // Click dislike
-    firstDislikeButton.simulate('click');
+  //   // Click dislike
+  //   firstDislikeButton.simulate('click');
 
-    // Expect state was update
-    expect(eventsState.length).toEqual(sampleEvents.length);
-  });
+  //   // Expect state was update
+  //   expect(eventsState.length).toEqual(sampleEvents.length);
+  // });
 
-  test('like and dislike change userRating', () => {
-    // Click like
-    firstLikeButton.simulate('click');
+  // test('like and dislike change userRating', () => {
+  //   // Click like
+  //   firstLikeButton.simulate('click');
 
-    // Expect userRating is one
-    expect(eventsState[0].userRating).toEqual(1);
+  //   // Expect userRating is one
+  //   expect(eventsState[0].userRating).toEqual(1);
 
-    // Reset events state
-    eventsState = [];
+  //   // Reset events state
+  //   eventsState = [];
 
-    // Click dislike
-    firstDislikeButton.simulate('click');
+  //   // Click dislike
+  //   firstDislikeButton.simulate('click');
 
-    // Expect user rating is -1
-    expect(eventsState[0].userRating).toEqual(-1);
-  });
+  //   // Expect user rating is -1
+  //   expect(eventsState[0].userRating).toEqual(-1);
+  // });
 
   test('can get liked events', () => {
     // Get state
