@@ -15,8 +15,9 @@ const ItineraryEntry = ({ event }) => (
               {event.name}
             </Card.Header>
             <Card.Description>
-              <p>Price: {event.price}</p>
+              <p>Price: {event.price ? event.price : "Free or N/A"}</p>
               <p>Rating: {event.rating}</p>
+              <p> {event.address ? event.address : " "} </p>
             </Card.Description>
           </Card.Content>
       </Card>
