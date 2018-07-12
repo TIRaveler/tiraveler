@@ -1,13 +1,8 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 
 import Search from './Search';
-
-const { mount } = Enzyme;
-
-Enzyme.configure({ adapter: new Adapter() });
 
 describe('Search', () => {
   /** Sample username */

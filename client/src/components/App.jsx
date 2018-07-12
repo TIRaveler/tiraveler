@@ -132,7 +132,7 @@ class App extends React.Component {
               name={name}
               displayUsername={this.displayUsername}
               popUpMessage={popUpMessages[0]}
-              setItineraries={this.superFunction('itineraries')}
+              log={this.logPopUpMessage}
             />
 
             <Switch>
@@ -144,7 +144,7 @@ class App extends React.Component {
                     {...props}
                     name={name}
                     displayUsername={this.displayUsername}
-                    setItineraries={this.superFunction('itineraries')}
+                    log={this.logPopUpMessage}
                   />)}
               />
               <Route
@@ -155,7 +155,7 @@ class App extends React.Component {
                     {...props}
                     name={name}
                     displayUsername={this.displayUsername}
-                    setItineraries={this.superFunction('itineraries')}
+                    log={this.logPopUpMessage}
                   />)}
               />
               <Route
@@ -195,7 +195,17 @@ class App extends React.Component {
                 />
                 )}
               />
-              <Route path="/myItineraries" exact render={props => <Itinerary {...props} entries={itineraries} />} />
+              <Route
+                path="/myItineraries"
+                exact
+                render={props => (
+                  <Itinerary
+                    {...props}
+                    entries={itineraries}
+                    setEntries={this.superFunction('itineraries')}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </BrowserRouter>

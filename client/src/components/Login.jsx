@@ -50,7 +50,7 @@ class Login extends React.Component {
    * Handle login submission
    */
   handleSubmit(e) {
-    const { displayUsername, history, setItineraries } = this.props;
+    const { displayUsername, history, log } = this.props;
     e.preventDefault();
     const { password, name } = this.state;
     axios.post('/user/login', {
@@ -58,11 +58,11 @@ class Login extends React.Component {
       password,
     })
       .then((res) => {
-        setItineraries({ target: { value: res.data } });
+        log(res.data);
         displayUsername(name);
         history.push('/search');
       })
-      .catch(err => console.error(err));
+      .catch(err => log(err));
     this.close();
   }
 
@@ -116,7 +116,7 @@ class Login extends React.Component {
 Login.propTypes = {
   displayUsername: PropTypes.func.isRequired,
   history: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setItineraries: PropTypes.func.isRequired,
+  log: PropTypes.func.isRequired,
 };
 
 export default withRouter(Login);

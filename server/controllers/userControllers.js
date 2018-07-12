@@ -2,6 +2,12 @@ const bcrypt = require('bcrypt');
 const { User, db } = require('../../db/index');
 
 
+/**
+ * Login user
+ * @param {*} req Express request object
+ * @param {*} res Express response object
+ * @returns {'Success' | 'Invalid password/name'} Server response
+ */
 exports.login = (req, res) => {
   const { name, password } = req.body;
 
@@ -12,41 +18,54 @@ exports.login = (req, res) => {
       const isMatch = bcrypt.compareSync(password, user.password);
       if (isMatch) {
         req.session.user = user;
-        const userId = user.id;
-        const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,e.yelplink yelplink, e.photoUrl image_url, e.rating rating, i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
-        db.query(sql, (err, events) => {
-          if (err) throw err;
-          const itineraries = events.reduce((result, event) => {
-            // Copy result
-            const newResult = result.slice();
-
-            for (let itinIndex = 0; itinIndex < newResult.length; itinIndex += 1) {
-              // Iterate through stored itineraries
-              const itin = newResult[itinIndex];
-
-              if (itin.name === event.itinerariesName) {
-                itin.events.push(event);
-                return newResult;
-              }
-            }
-            // Not in array
-            newResult.push({
-              name: event.itinerariesName,
-              events: [event],
-            });
-
-            // Return result
-            return newResult;
-          }, []);
-          res.status(200).send(itineraries);
-        });
-      } else {
-        console.log('password is not a match: ', isMatch);
+        res.status(200).send('Success');
+        return;
       }
     }
+
+    // There is no user, or bad username and password
+    // Throw error
+    throw new Error('Invalid password/name');
   }).catch((err) => {
     console.error(err);
-    res.status(404).send('Invalid password/name');
+    res.status(401).send('Invalid password/name');
+  });
+};
+
+/**
+ * Get users itineraries
+ * @param {*} req Express request object
+ * @param {*} res Express response object
+ * @returns {[*]} All itineraries associated with user
+ */
+exports.getItineraries = (req, res) => {
+  const userId = req.session.user.id;
+  const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,e.yelplink yelplink, e.photoUrl image_url, e.rating rating, i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
+  db.query(sql, (err, events) => {
+    if (err) throw err;
+    const itineraries = events.reduce((result, event) => {
+      // Copy result
+      const newResult = result.slice();
+
+      for (let itinIndex = 0; itinIndex < newResult.length; itinIndex += 1) {
+        // Iterate through stored itineraries
+        const itin = newResult[itinIndex];
+
+        if (itin.name === event.itinerariesName) {
+          itin.events.push(event);
+          return newResult;
+        }
+      }
+      // Not in array
+      newResult.push({
+        name: event.itinerariesName,
+        events: [event],
+      });
+
+      // Return result
+      return newResult;
+    }, []);
+    res.status(200).send(itineraries);
   });
 };
 

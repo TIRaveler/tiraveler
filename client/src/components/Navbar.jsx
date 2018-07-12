@@ -33,7 +33,7 @@ const Navbar = ({
   name,
   displayUsername,
   popUpMessage,
-  setItineraries,
+  log,
 }) => (
   <div className={`ui ${name ? '' : 'top fixed'} secondary pointing menu`} style={{ background: 'white' }}>
     <div className="item">
@@ -65,7 +65,6 @@ const Navbar = ({
           )}
         />
       </div>
-      <Popup open={Boolean(popUpMessage)} trigger={<p />} content={popUpMessage} position="bottom right" />
       <div className="right menu">
         <div className="item">
           <Route
@@ -87,7 +86,7 @@ const Navbar = ({
               signin={signinBtn}
               name={name}
               displayUsername={displayUsername}
-              setItineraries={setItineraries}
+              log={log}
             />
           )
         }
@@ -101,7 +100,7 @@ Navbar.propTypes = {
   name: PropTypes.string.isRequired,
   displayUsername: PropTypes.func.isRequired,
   popUpMessage: PropTypes.string,
-  setItineraries: PropTypes.func.isRequired,
+  log: PropTypes.func.isRequired,
 };
 
 Navbar.defaultProps = {
