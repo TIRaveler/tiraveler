@@ -1,25 +1,15 @@
 import React from 'react';
 import sinon from 'sinon';
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
 import $ from 'jquery';
 
 import App from './App';
 import events from '../../../server/controllers/sample_data/events';
 
-jest.useFakeTimers();
-
-const { shallow } = Enzyme;
-
-// Configure enzyme
-Enzyme.configure({ adapter: new Adapter() });
-
 // Use fake timers
 jest.useFakeTimers();
 
 describe('App page', () => {
-  let app;
-
   beforeAll(() => {
     const handleRoutes = (url, data, success) => {
       if (url === '/events/search') {
@@ -35,23 +25,36 @@ describe('App page', () => {
     sinon.stub($, 'post').callsFake((url, data, success) => {
       handleRoutes(url, data, success);
     });
-
-    app = shallow(<App />);
   });
 
   test('can use superFunction to set state', () => {
+    const app = shallow(<App />);
     const setEvents = app.instance().superFunction('events');
     setEvents({ target: { value: events } });
     expect(app.state().events).toEqual(events);
   });
 
   test('can post selected photos and set events', () => {
-    app.setState({ location: 'San Francisco', pictures: [] });
-    app.instance().sendSelectedPhotos();
+    const app = shallow(<App />);
+    // Give app one selected photo
+    app.setState({
+      location: 'Here',
+      pictures: [{
+        isSelected: true,
+      }],
+    });
+
+    // Send the selected photos
+    const history = [];
+    app.instance().sendSelectedPhotos(history);
+    // Test navigates to history page
+    expect(history).toEqual(['/events']);
+    // Test events are added
     expect(app.state().events).toEqual(events);
   });
 
   test('can set and remove pop-up message', (done) => {
+    const app = shallow(<App />);
     app.setState({ popUpMessages: [] });
     // Add popup message
     app.instance().logPopUpMessage('Test');
