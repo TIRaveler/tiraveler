@@ -32,7 +32,7 @@ class Main extends React.Component {
    * when width is greater than laptop
    */
   updateDimensions() {
-    if (window.screen.width > 1280) {
+    if (window.screen.width > 1440) {
       this.setState({ height: '800px' });
     }
   }
