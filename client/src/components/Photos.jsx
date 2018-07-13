@@ -7,6 +7,7 @@ import {
   Checkbox,
   Image,
   Card,
+  Header
 } from 'semantic-ui-react';
 
 /** Toggle isSelected in photo and returns new array
@@ -88,10 +89,10 @@ class Photos extends React.Component {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
     return (
       <div>
-        <h1 className="ui big header center aligned page">
+        <Header textAlign='center'>
           Please select at least 3 photos that you like!
           {' '}
-        </h1>
+        </Header>
         <Card.Group itemsPerRow={5}>
           {
             pictures.map((photo, index) => (
@@ -111,32 +112,37 @@ class Photos extends React.Component {
           }
 
         </Card.Group>
-        <Route render={({ history }) => (
-          <Button
-            id="submit"
-            floated="right"
-            className="blue"
-            onClick={() => {
-              sendSelectedPhotos(history);
-            }}
-          >
-            {'Let\'s travel!'}
-          </Button>
-        )}
-        />
-        <Route render={({ history }) => (
-          <Button
-            id="submit"
-            floated="left"
-            className="blue"
-            onClick={() => {
-              history.push('/search');
-            }}
-          >
-            Start Over!
-          </Button>
-        )}
-        />
+        <div className="ui segment">
+          <div className="ui sticky">
+            <Button.Group attached='bottom'>
+              <Route render={({ history }) => (
+                <Button
+                  floated="left"
+                  className="blue"
+                  onClick={() => {
+                    history.push('/search');
+                  }}
+                >
+                  Start Over!
+                </Button>
+              )}
+              />
+              <Route render={({ history }) => (
+                <Button
+                  id="submit"
+                  floated="right"
+                  className="blue"
+                  onClick={() => {
+                    sendSelectedPhotos(history);
+                  }}
+                >
+                  {'Let\'s travel!'}
+                </Button>
+              )}
+              />
+            </Button.Group>
+          </div>
+        </div>
       </div>
     );
   }
