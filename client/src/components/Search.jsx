@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Divider, Input, Header, Container, Grid, Message,Segment
+  Button, Divider, Input, Header, Container, Grid,Segment
 } from 'semantic-ui-react';
 import { Parallax, Background } from 'react-parallax';
 import { Route } from 'react-router-dom';
@@ -54,7 +54,6 @@ const convertBudgetToNumberAndUpdate = (event, callback) => {
 const Search = ({
   handleBudget, handleLocation, name,
 }) => (
-
   <div style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1472806679307-eab7abd1eb32?ixlib=rb-0.3.5&s=ab331c39ce9cf26efd88a98784f4d968&auto=format&fit=crop&w=1320&q=40',height: '800px'}} >
     <div className="ui equal width center aligned padded grid" style={styles.all}>
       <div className="ui twelve column centered grid">
@@ -63,8 +62,7 @@ const Search = ({
             <Divider horizontal>
             Hello
               {' '}
-              { name }
-!
+              { name }!
             </Divider>
           </Header>
         </div>
