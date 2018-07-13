@@ -83,7 +83,7 @@ class Review extends React.Component {
     return (
       <Modal
         trigger={(
-          <Button attached='bottom' onClick={this.open}>
+          <Button attached="bottom" onClick={this.open}>
             Review
           </Button>
         )}

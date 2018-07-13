@@ -93,7 +93,7 @@ const Events = ({
   setEvents,
 }) => (
   <React.Fragment>
-    <Header textAlign='center'>
+    <Header textAlign="center">
       Select an Event
     </Header>
     <Card.Group itemsPerRow={5}>

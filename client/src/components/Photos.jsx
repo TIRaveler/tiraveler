@@ -7,7 +7,6 @@ import {
   Checkbox,
   Image,
   Card,
-  Header
 } from 'semantic-ui-react';
 
 /** Toggle isSelected in photo and returns new array
@@ -92,14 +91,14 @@ class Photos extends React.Component {
         <h1 className="ui big header center aligned page">
           Please select at least one photo that you like!
           {' '}
-        </Header>
+        </h1>
         <Card.Group itemsPerRow={5}>
           {
             pictures.map((photo, index) => (
               <Card key={photo.id}>
                 <Card.Content>
                   <Image
-                    style={{ height: '190px',width: '260px' }}
+                    style={{ height: '190px', width: '260px' }}
                     src={photo.srcPath}
                   />
                   <Card.Description>
