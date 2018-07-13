@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Button, Divider, Input, Header, Container, Grid,
+  Button, Divider, Input, Header, Container, Grid, Message,Segment
 } from 'semantic-ui-react';
+import { Parallax, Background } from 'react-parallax';
 import { Route } from 'react-router-dom';
+import {
+  Image,
+  Card,
+} from 'semantic-ui-react';
 
 const styles = {
   bordered: {
@@ -49,6 +54,7 @@ const convertBudgetToNumberAndUpdate = (event, callback) => {
 const Search = ({
   handleBudget, handleLocation, name,
 }) => (
+
   <div style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1472806679307-eab7abd1eb32?ixlib=rb-0.3.5&s=ab331c39ce9cf26efd88a98784f4d968&auto=format&fit=crop&w=1320&q=40',height: '800px'}} >
     <div className="ui equal width center aligned padded grid" style={styles.all}>
       <div className="ui twelve column centered grid">
@@ -63,7 +69,7 @@ const Search = ({
           </Header>
         </div>
         <div className="six column centered row">
-          <Header size="huge">
+          <Header size="huge" >
           Where would you like to go?
           </Header>
         </div>
@@ -74,9 +80,11 @@ const Search = ({
             </div>
             <div className="equal width row">
               <div className="column">
-                <Header size="medium" floated="right" style={styles.bordered}>
-                What is your budget?
+                <Segment clearing>
+                <Header as='h3' floated='right'>
+                    What is your budget?
                 </Header>
+                </Segment>
               </div>
               <div className="column">
                 <Input
