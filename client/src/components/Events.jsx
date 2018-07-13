@@ -93,7 +93,7 @@ const Events = ({
   setEvents,
 }) => (
   <React.Fragment>
-    <Header>
+    <Header textAlign='center'>
       Select an Event
     </Header>
     <Card.Group itemsPerRow={5}>
@@ -109,11 +109,15 @@ const Events = ({
         ))
       }
     </Card.Group>
-    <Review
-      entries={getLikedEvents(events)}
-      log={log}
-      place={place}
-    />
+    <div className="ui segment">
+      <div className="ui sticky">
+        <Review
+          entries={getLikedEvents(events)}
+          log={log}
+          place={place}
+        />
+      </div>
+    </div>
   </React.Fragment>
 );
 
