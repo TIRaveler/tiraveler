@@ -46,7 +46,7 @@ class ItineraryModal extends React.Component {
     return (
       <Modal
         trigger={(
-          <Button  onClick={this.open}>
+          <Button onClick={this.open}>
             View my Itinerary
           </Button>
         )}
@@ -58,11 +58,9 @@ class ItineraryModal extends React.Component {
           {name}
         </Modal.Header>
         <Modal.Content>
-          <div>
-            {
-              events.map(event => <ItineraryEntry key={event.eventName} event={event} />)
-            }
-          </div>
+          {
+            events.map(event => <ItineraryEntry key={event.eventName} event={event} />)
+          }
           <Button onClick={this.close}>
             Close
           </Button>

@@ -4,20 +4,22 @@ import { Item } from 'semantic-ui-react';
 
 const ItineraryEntry = ({ event }) => (
   <Item>
-    <Item.Image style={{ height: '180px', width: '200px' }} src={event.image_url} />
+    <Item.Image size="small" src={event.image_url} />
     <Item.Content>
       <Item.Header as="a">
         {event.name}
       </Item.Header>
       <Item.Description>
         <p>
-          Price: {event.price ? event.price : "Free or N/A"}
+          Price:
+          {event.price ? event.price : 'Free or N/A'}
         </p>
         <p>
-          Rating: {event.rating}
+          Rating:
+          {event.rating}
         </p>
         <p>
-          {event.address ? event.address : " "}
+          {event.address ? event.address : ' '}
         </p>
       </Item.Description>
     </Item.Content>

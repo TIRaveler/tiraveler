@@ -89,8 +89,8 @@ class Photos extends React.Component {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
     return (
       <div>
-        <Header textAlign='center'>
-          Please select at least 3 photos that you like!
+        <h1 className="ui big header center aligned page">
+          Please select at least one photo that you like!
           {' '}
         </Header>
         <Card.Group itemsPerRow={5}>
@@ -112,6 +112,7 @@ class Photos extends React.Component {
           }
 
         </Card.Group>
+<<<<<<< HEAD
         <div className="ui segment">
           <div className="ui sticky">
             <Button.Group attached='bottom'>
@@ -142,6 +143,35 @@ class Photos extends React.Component {
               />
             </Button.Group>
           </div>
+=======
+        <div style={{ paddingTop: '5px' }}>
+          <Route render={({ history }) => (
+            <Button
+              id="submit"
+              floated="right"
+              className="blue"
+              onClick={() => {
+                sendSelectedPhotos(history);
+              }}
+            >
+              {'Let\'s travel!'}
+            </Button>
+          )}
+          />
+          <Route render={({ history }) => (
+            <Button
+              id="submit"
+              floated="left"
+              className="blue"
+              onClick={() => {
+                history.push('/search');
+              }}
+            >
+              Start Over!
+            </Button>
+          )}
+          />
+>>>>>>> Style Images on itin entries and buttons on photo page.
         </div>
       </div>
     );
