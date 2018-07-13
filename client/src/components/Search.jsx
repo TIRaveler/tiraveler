@@ -49,7 +49,7 @@ const convertBudgetToNumberAndUpdate = (event, callback) => {
 const Search = ({
   handleBudget, handleLocation, name,
 }) => (
-  <div style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1472806679307-eab7abd1eb32?ixlib=rb-0.3.5&s=ab331c39ce9cf26efd88a98784f4d968&auto=format&fit=crop&w=1360&q=40',height: '800px'}} >
+  <div style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1472806679307-eab7abd1eb32?ixlib=rb-0.3.5&s=ab331c39ce9cf26efd88a98784f4d968&auto=format&fit=crop&w=1320&q=40',height: '800px'}} >
     <div className="ui equal width center aligned padded grid" style={styles.all}>
       <div className="ui twelve column centered grid">
         <div className="row">
