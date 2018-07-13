@@ -112,38 +112,6 @@ class Photos extends React.Component {
           }
 
         </Card.Group>
-<<<<<<< HEAD
-        <div className="ui segment">
-          <div className="ui sticky">
-            <Button.Group attached='bottom'>
-              <Route render={({ history }) => (
-                <Button
-                  floated="left"
-                  className="blue"
-                  onClick={() => {
-                    history.push('/search');
-                  }}
-                >
-                  Start Over!
-                </Button>
-              )}
-              />
-              <Route render={({ history }) => (
-                <Button
-                  id="submit"
-                  floated="right"
-                  className="blue"
-                  onClick={() => {
-                    sendSelectedPhotos(history);
-                  }}
-                >
-                  {'Let\'s travel!'}
-                </Button>
-              )}
-              />
-            </Button.Group>
-          </div>
-=======
         <div style={{ paddingTop: '5px' }}>
           <Route render={({ history }) => (
             <Button
@@ -171,7 +139,6 @@ class Photos extends React.Component {
             </Button>
           )}
           />
->>>>>>> Style Images on itin entries and buttons on photo page.
         </div>
       </div>
     );
