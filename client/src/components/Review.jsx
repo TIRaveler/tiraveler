@@ -2,7 +2,7 @@ import $ from 'jquery';
 import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Button, Modal } from 'semantic-ui-react';
+import { Button, Modal, Item } from 'semantic-ui-react';
 import ItineraryEntry from './ItineraryEntry';
 
 
@@ -83,13 +83,13 @@ class Review extends React.Component {
     return (
       <Modal
         trigger={(
-          <Button attached='bottom' onClick={this.open}>
+          <Button attached="bottom" onClick={this.open}>
             Review
           </Button>
         )}
         open={isOpen}
         onClose={this.close}
-        basic
+        // basic
       >
         <Modal.Header>
           Please Review Your Epic Itinerary
@@ -102,7 +102,7 @@ class Review extends React.Component {
             }
               floated="right"
             >
-              FINALIZE!
+              SUBMIT ITINERARY!
             </Button>
           )}
           />
@@ -111,11 +111,11 @@ class Review extends React.Component {
           </Button>
         </Modal.Header>
         <Modal.Content scrolling>
-          <div>
+          <Item.Group>
             {
               entries.map(entry => <ItineraryEntry key={entry.name} event={entry} />)
             }
-          </div>
+          </Item.Group>
         </Modal.Content>
       </Modal>
     );

@@ -7,7 +7,6 @@ import {
   Checkbox,
   Image,
   Card,
-  Header
 } from 'semantic-ui-react';
 
 /** Toggle isSelected in photo and returns new array
@@ -89,17 +88,17 @@ class Photos extends React.Component {
     const { pictures, setPictures, sendSelectedPhotos } = this.props;
     return (
       <div>
-        <Header textAlign='center'>
-          Please select at least 3 photos that you like!
+        <h1 className="ui big header center aligned page">
+          Please select at least one photo that you like!
           {' '}
-        </Header>
+        </h1>
         <Card.Group itemsPerRow={5}>
           {
             pictures.map((photo, index) => (
               <Card key={photo.id}>
                 <Card.Content>
                   <Image
-                    style={{ height: '190px',width: '260px' }}
+                    style={{ height: '190px', width: '260px' }}
                     src={photo.srcPath}
                   />
                   <Card.Description>
@@ -129,9 +128,10 @@ class Photos extends React.Component {
               />
               <Route render={({ history }) => (
                 <Button
+                  
                   id="submit"
                   floated="right"
-                  className="blue"
+                  className="green"
                   onClick={() => {
                     sendSelectedPhotos(history);
                   }}

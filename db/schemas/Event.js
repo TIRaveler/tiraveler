@@ -10,7 +10,7 @@ module.exports = (database, DataTypes) => {
     yelplink: DataTypes.STRING,
     price: DataTypes.STRING,
     photoUrl: DataTypes.STRING,
-    rating: DataTypes.STRING
+    rating: DataTypes.STRING,
   });
 
   Event.saveEvent = (event, itinId) => Event.create({
@@ -19,7 +19,7 @@ module.exports = (database, DataTypes) => {
     yelplink: event.url,
     price: event.price,
     photoUrl: event.image_url,
-    rating:event.rating
+    rating: event.rating,
   }).then(result => [result.dataValues.id, itinId]);
 
   return Event;
