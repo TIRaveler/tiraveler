@@ -25,15 +25,6 @@ const go = (event) => {
   }
 };
 
-const searchService = () => {
-  // $.post('/photos/search', {
-  //   price: budget, location,
-  // })
-  //   .catch((error) => {
-  //     console.log(error, 'problem submitting search');
-  //   });
-};
-
 /**
  * Convert budget to number and update
  * @param {*}      event              Calling event
