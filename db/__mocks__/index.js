@@ -1,9 +1,7 @@
 module.exports = {
+  databaseUrl: '',
   Event: { },
   Itinerary: { },
   User: { },
   Sequelize: { },
-  db: {
-    query: (sql, callback) => callback(undefined, []),
-  },
 };
