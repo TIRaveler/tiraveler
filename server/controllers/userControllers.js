@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
-const { User, db } = require('../../db/index');
-
+const mysql = require('mysql2');
+const { User, databaseUrl } = require('../../db/index');
 
 /**
  * Login user
@@ -39,9 +39,15 @@ exports.login = (req, res) => {
  * @returns {[*]} All itineraries associated with user
  */
 exports.getItineraries = (req, res) => {
+  // Create SQL
   const userId = req.session.user.id;
   const sql = `select e.name eventName, e.location address, price, i.name itinerariesName,e.yelplink yelplink, e.photoUrl image_url, e.rating rating, i.id from events e join itinEvents ie on ie.eventId=e.id join itineraries i on i.id = ie.itinId where i.userId='${userId}'`;
-  db.query(sql, (err, events) => {
+
+  // Open connection
+  const connection = mysql.createConnection(databaseUrl);
+
+  // Lookup itineraries
+  connection.query(sql, (err, events) => {
     if (err) throw err;
     const itineraries = events.reduce((result, event) => {
       // Copy result
@@ -65,6 +71,9 @@ exports.getItineraries = (req, res) => {
       // Return result
       return newResult;
     }, []);
+
+    // Close connection and send results
+    connection.end();
     res.status(200).send(itineraries);
   });
 };
