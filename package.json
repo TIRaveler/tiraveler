@@ -12,7 +12,9 @@
     "lint:fix": "eslint --fix . --ext .js --ext .jsx --ext .json --ext .md",
     "start": "node server/index.js",
     "start:dev": "nodemon --inspect server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -67,7 +69,7 @@
     "connect-ensure-login": "^0.1.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "mysql2": "^1.5.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
@@ -78,10 +80,11 @@
     "semantic-ui-less": "^2.3.2",
     "semantic-ui-react": "^0.81.3",
     "sequelize": "^4.38.0",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^4.0.0",
+    "snyk": "^1.316.1"
   },
-
   "jest": {
     "setupTestFrameworkScriptFile": "./setupTests.js"
-  }
+  },
+  "snyk": true
 }
