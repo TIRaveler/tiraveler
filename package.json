@@ -78,7 +78,7 @@
     "semantic-ui-less": "^2.3.2",
     "semantic-ui-react": "^0.81.3",
     "sequelize": "^4.38.0",
-    "sequelize-cli": "^4.0.0"
+    "sequelize-cli": "^5.0.1"
   },
 
   "jest": {
