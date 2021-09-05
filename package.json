@@ -60,7 +60,7 @@
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.3",
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
     "client-sessions": "^0.8.0",
