@@ -60,8 +60,8 @@
     "webpack-cli": "^3.0.8"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "bcrypt": "^2.0.1",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.18.3",
     "client-sessions": "^0.8.0",
     "connect-ensure-login": "^0.1.1",
@@ -71,13 +71,13 @@
     "mysql2": "^1.5.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.4.2",
     "react-parallax": "^1.8.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "semantic-ui-less": "^2.3.2",
     "semantic-ui-react": "^0.81.3",
-    "sequelize": "^4.38.0",
+    "sequelize": "^6.1.0",
     "sequelize-cli": "^4.0.0"
   },
 
